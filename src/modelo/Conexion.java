@@ -29,7 +29,7 @@ public class Conexion {
     public Connection conectar() throws DataBaseException {
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection(
                     "jdbc:mysql://" + IP + ":" + PUERTO + "/" + SID + "",
                     USUARIO, CLAVE);
