@@ -38,8 +38,25 @@ public class homePage extends javax.swing.JFrame {
         lblNombreUsuario1 = new javax.swing.JLabel();
         lblTipoUsuario1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        btnArchivo = new javax.swing.JMenu();
+        btnSalir = new javax.swing.JMenuItem();
+        btnMantenimiento = new javax.swing.JMenu();
+        btnUsuarios = new javax.swing.JMenuItem();
+        btnProveedores = new javax.swing.JMenuItem();
+        btnSolicitarPedido = new javax.swing.JMenu();
+        btnEnviarSolicitud = new javax.swing.JMenuItem();
+        btnGestionarInventario = new javax.swing.JMenu();
+        btnProductos = new javax.swing.JMenuItem();
+        btnSolicitudes = new javax.swing.JMenuItem();
+        btnAprobarSolicitudes = new javax.swing.JMenu();
+        btnProcesarSolicitudes = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        btnDespachar = new javax.swing.JMenuItem();
+        btnOrdenCompra = new javax.swing.JMenuItem();
+        btnFactura = new javax.swing.JMenuItem();
+        btnReportes = new javax.swing.JMenu();
+        btnAyuda = new javax.swing.JMenu();
+        btnInformacion = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,11 +98,105 @@ public class homePage extends javax.swing.JFrame {
                 .addContainerGap(481, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        btnArchivo.setText("Archivo");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        btnArchivo.add(btnSalir);
+
+        jMenuBar1.add(btnArchivo);
+
+        btnMantenimiento.setText("Mantenimiento");
+
+        btnUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png"))); // NOI18N
+        btnUsuarios.setText("Usuarios");
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUsuariosActionPerformed(evt);
+            }
+        });
+        btnMantenimiento.add(btnUsuarios);
+
+        btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/proveedor.png"))); // NOI18N
+        btnProveedores.setText("Proveedores");
+        btnMantenimiento.add(btnProveedores);
+
+        jMenuBar1.add(btnMantenimiento);
+
+        btnSolicitarPedido.setText("Solicitar pedido");
+
+        btnEnviarSolicitud.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/enviarSolicitud.png"))); // NOI18N
+        btnEnviarSolicitud.setText("Enviar solicitud");
+        btnEnviarSolicitud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarSolicitudActionPerformed(evt);
+            }
+        });
+        btnSolicitarPedido.add(btnEnviarSolicitud);
+
+        jMenuBar1.add(btnSolicitarPedido);
+
+        btnGestionarInventario.setText("Gestionar inventario ");
+
+        btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productos-cosmeticos.png"))); // NOI18N
+        btnProductos.setText("Productos");
+        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductosActionPerformed(evt);
+            }
+        });
+        btnGestionarInventario.add(btnProductos);
+
+        btnSolicitudes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventario.png"))); // NOI18N
+        btnSolicitudes.setText("Solicitudes");
+        btnGestionarInventario.add(btnSolicitudes);
+
+        jMenuBar1.add(btnGestionarInventario);
+
+        btnAprobarSolicitudes.setText("Gestionar orden");
+
+        btnProcesarSolicitudes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/proceso (1).png"))); // NOI18N
+        btnProcesarSolicitudes.setText("Procesar solicitudes");
+        btnAprobarSolicitudes.add(btnProcesarSolicitudes);
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista-de-verificacion.png"))); // NOI18N
+        jMenuItem2.setText("Aprobar solicitudes");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        btnAprobarSolicitudes.add(jMenuItem2);
+
+        btnDespachar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/orden (1).png"))); // NOI18N
+        btnDespachar.setText("Despachar ordenes");
+        btnAprobarSolicitudes.add(btnDespachar);
+
+        btnOrdenCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista-de-la-compra.png"))); // NOI18N
+        btnOrdenCompra.setText("Orden de compra");
+        btnAprobarSolicitudes.add(btnOrdenCompra);
+
+        btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/factura (2).png"))); // NOI18N
+        btnFactura.setText("Factura");
+        btnAprobarSolicitudes.add(btnFactura);
+
+        jMenuBar1.add(btnAprobarSolicitudes);
+
+        btnReportes.setText("Reportes");
+        jMenuBar1.add(btnReportes);
+
+        btnAyuda.setText("Ayuda");
+
+        btnInformacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informacion.png"))); // NOI18N
+        btnInformacion.setText("Información");
+        btnAyuda.add(btnInformacion);
+
+        jMenuBar1.add(btnAyuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -102,6 +213,27 @@ public class homePage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    private void btnEnviarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarSolicitudActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEnviarSolicitudActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProductosActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,10 +271,27 @@ public class homePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu btnAprobarSolicitudes;
+    public javax.swing.JMenu btnArchivo;
+    private javax.swing.JMenu btnAyuda;
+    private javax.swing.JMenuItem btnDespachar;
+    private javax.swing.JMenuItem btnEnviarSolicitud;
+    private javax.swing.JMenuItem btnFactura;
+    private javax.swing.JMenu btnGestionarInventario;
+    private javax.swing.JMenuItem btnInformacion;
+    private javax.swing.JMenu btnMantenimiento;
+    private javax.swing.JMenuItem btnOrdenCompra;
+    private javax.swing.JMenuItem btnProcesarSolicitudes;
+    private javax.swing.JMenuItem btnProductos;
+    private javax.swing.JMenuItem btnProveedores;
+    private javax.swing.JMenu btnReportes;
+    private javax.swing.JMenuItem btnSalir;
+    private javax.swing.JMenu btnSolicitarPedido;
+    private javax.swing.JMenuItem btnSolicitudes;
+    private javax.swing.JMenuItem btnUsuarios;
     private javax.swing.JDesktopPane jDesktopPane1;
-    public javax.swing.JMenu jMenu1;
-    public javax.swing.JMenu jMenu2;
     public javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem2;
     public static javax.swing.JLabel lblNombreUsuario;
     public static javax.swing.JLabel lblNombreUsuario1;
     public static javax.swing.JLabel lblTipoUsuario;
