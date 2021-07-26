@@ -132,6 +132,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Despachar ordenes"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDespacharActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btnOrdenCompra">
               <Properties>
@@ -140,6 +143,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Orden de compra"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOrdenCompraActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btnFactura">
               <Properties>

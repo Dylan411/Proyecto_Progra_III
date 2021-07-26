@@ -5,6 +5,7 @@
  */
 package vista;
 
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +14,9 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import reporte.generarReporte;
+
+import controlador.ControllerDespacharOrden;
+
 
 /**
  *
@@ -184,10 +188,20 @@ public class homePage extends javax.swing.JFrame {
 
         btnDespachar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/orden (1).png"))); // NOI18N
         btnDespachar.setText("Despachar ordenes");
+        btnDespachar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDespacharActionPerformed(evt);
+            }
+        });
         btnAprobarSolicitudes.add(btnDespachar);
 
         btnOrdenCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista-de-la-compra.png"))); // NOI18N
         btnOrdenCompra.setText("Orden de compra");
+        btnOrdenCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrdenCompraActionPerformed(evt);
+            }
+        });
         btnAprobarSolicitudes.add(btnOrdenCompra);
 
         btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/factura (2).png"))); // NOI18N
@@ -254,6 +268,7 @@ public class homePage extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+
     private void btnInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformacionActionPerformed
         
     }//GEN-LAST:event_btnInformacionActionPerformed
@@ -266,6 +281,29 @@ public class homePage extends javax.swing.JFrame {
             Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnFacturaActionPerformed
+
+    private void btnDespacharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespacharActionPerformed
+        // TODO add your handling code here:
+        frmDespacharOrden obj = new frmDespacharOrden();
+        jDesktopPane1.add(obj);
+        //ControllerDespacharOrden con = new ControllerDespacharOrden(obj);
+        //con.iniciar();
+        obj.toFront();
+        obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
+        obj.setVisible(true);
+    }//GEN-LAST:event_btnDespacharActionPerformed
+
+    private void btnOrdenCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenCompraActionPerformed
+        // TODO add your handling code here:
+        frmGenerarOrdenCompra obj = new frmGenerarOrdenCompra();
+        jDesktopPane1.add(obj);
+        //ControllerGenerarOrdenCompra con = new ControllerGenerarOrdenCompra(obj);
+        //con.iniciar();
+        obj.toFront();
+        obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
+        obj.setVisible(true);
+    }//GEN-LAST:event_btnOrdenCompraActionPerformed
+
 
     /**
      * @param args the command line arguments
