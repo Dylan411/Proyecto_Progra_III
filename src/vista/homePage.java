@@ -5,6 +5,15 @@
  */
 package vista;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.Conexion;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import reporte.generarReporte;
+
 /**
  *
  * @author Janda
@@ -183,6 +192,11 @@ public class homePage extends javax.swing.JFrame {
 
         btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/factura (2).png"))); // NOI18N
         btnFactura.setText("Factura");
+        btnFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFacturaActionPerformed(evt);
+            }
+        });
         btnAprobarSolicitudes.add(btnFactura);
 
         jMenuBar1.add(btnAprobarSolicitudes);
@@ -194,6 +208,11 @@ public class homePage extends javax.swing.JFrame {
 
         btnInformacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/informacion.png"))); // NOI18N
         btnInformacion.setText("Información");
+        btnInformacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInformacionActionPerformed(evt);
+            }
+        });
         btnAyuda.add(btnInformacion);
 
         jMenuBar1.add(btnAyuda);
@@ -234,6 +253,19 @@ public class homePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformacionActionPerformed
+        
+    }//GEN-LAST:event_btnInformacionActionPerformed
+
+    private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
+        reporte.generarReporte r = new generarReporte();
+        try {
+            r.abrirReporte();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnFacturaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,7 +309,7 @@ public class homePage extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnDespachar;
     private javax.swing.JMenuItem btnEnviarSolicitud;
     private javax.swing.JMenuItem btnFactura;
-    private javax.swing.JMenu btnGestionarInventario;
+    public javax.swing.JMenu btnGestionarInventario;
     private javax.swing.JMenuItem btnInformacion;
     private javax.swing.JMenu btnMantenimiento;
     private javax.swing.JMenuItem btnOrdenCompra;
