@@ -6,6 +6,7 @@
 package vista;
 
 
+import controlador.ControllerProducto;
 import controlador.ControllerProveedores;
 import controlador.ControllerUsuario;
 import java.util.logging.Level;
@@ -274,6 +275,17 @@ public class homePage extends javax.swing.JFrame {
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         // TODO add your handling code here:
+        frmProductos obj = new frmProductos();
+        jDesktopPane1.add(obj);
+        ControllerProducto con = new ControllerProducto(obj);
+        try {
+            con.iniciar();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        obj.toFront();
+        obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
+        obj.setVisible(true);    
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
