@@ -292,7 +292,13 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
             txtContraseña.setText(tableUsuarios.getValueAt(fila, 2).toString());
             txtConfirmarContraseña.setText(tableUsuarios.getValueAt(fila, 2).toString());
             cbTipoUsuario.setSelectedItem(tableUsuarios.getValueAt(fila, 3).toString());
-            cbActivo.setSelected(Boolean.parseBoolean(tableUsuarios.getValueAt(fila, 4).toString()));
+            String active = tableUsuarios.getValueAt(fila, 4).toString();
+            System.out.println(active);
+            if ("1".equals(active)) {
+                cbActivo.setSelected(true);
+            }else{
+                cbActivo.setSelected(false);
+            }
             txtCorreo.setText(tableUsuarios.getValueAt(fila, 5).toString());
         } catch (Exception e) {
         }
