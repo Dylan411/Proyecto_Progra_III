@@ -65,7 +65,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setText("Tipo Usuario:");
 
-        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "ENCARGADO DE COMPRAS", "ENCARGADO DE BODEGA", " " }));
+        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Encargado de compras", "Encargado de bodega", " ", " " }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,7 +123,7 @@ public class Login extends javax.swing.JFrame {
         if (!txtNombreUsuario.getText().equals("") && !txtPassword.getText().equals("")) {
 
             u.setNombreUsuario(txtNombreUsuario.getText());
-            u.setPassword(txtPassword.getText());
+            u.setContraseña(txtPassword.getText());
             u.setTipoUsuario(comboTipo.getSelectedItem().toString());
 
         try {
