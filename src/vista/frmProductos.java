@@ -9,10 +9,10 @@ package vista;
  *
  * @author PC-Soma
  */
-public class frmProductos extends javax.swing.JPanel {
+public class frmProductos extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form frmProducto
+     * Creates new form Productos2
      */
     public frmProductos() {
         initComponents();
@@ -27,38 +27,74 @@ public class frmProductos extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnRefrescar = new javax.swing.JButton();
-        lblTitle = new javax.swing.JLabel();
-        btnEditar = new javax.swing.JButton();
-        lblIngresarDatos = new javax.swing.JLabel();
-        btnEliminar = new javax.swing.JButton();
-        lblIdProducto = new javax.swing.JLabel();
-        lblNombreProducto = new javax.swing.JLabel();
-        lblTipo = new javax.swing.JLabel();
-        lblTipoUsuario = new javax.swing.JLabel();
-        lblDescripcion = new javax.swing.JLabel();
-        txtIdProducto = new javax.swing.JTextField();
-        txtNombreProducto = new javax.swing.JTextField();
-        lblCantidad = new javax.swing.JLabel();
-        lblBusqueda = new javax.swing.JLabel();
-        lblBusquedaPorNomUsuario = new javax.swing.JLabel();
-        txtBusquedaPorNomProducto = new javax.swing.JTextField();
-        btnBuscarPorNomProducto = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableProducto = new javax.swing.JTable();
         btnGuardar = new javax.swing.JButton();
+        lblDescripcion = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescripcionProducto = new javax.swing.JTextPane();
+        txtIdProducto = new javax.swing.JTextField();
+        btnRefrescar = new javax.swing.JButton();
+        txtNombreProducto = new javax.swing.JTextField();
         lblProveedor = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
+        lblCantidad = new javax.swing.JLabel();
         cbProveedorProducto = new javax.swing.JComboBox<>();
+        btnEditar = new javax.swing.JButton();
+        lblBusqueda = new javax.swing.JLabel();
         txtTipo = new javax.swing.JTextField();
+        lblIngresarDatos = new javax.swing.JLabel();
+        lblBusquedaPorNomUsuario = new javax.swing.JLabel();
         txtCantidadProducto = new javax.swing.JTextField();
+        btnEliminar = new javax.swing.JButton();
+        txtBusquedaPorNomProducto = new javax.swing.JTextField();
+        lblIdProducto = new javax.swing.JLabel();
+        btnBuscarPorNomProducto = new javax.swing.JButton();
+        lblNombreProducto = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableProducto = new javax.swing.JTable();
+        lblTipo = new javax.swing.JLabel();
+
+        btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblDescripcion.setText("Descripción:");
+
+        jScrollPane2.setViewportView(txtDescripcionProducto);
+
+        txtIdProducto.setEditable(false);
+        txtIdProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         btnRefrescar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnRefrescar.setText("Refrescar");
 
+        txtNombreProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtNombreProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreProductoActionPerformed(evt);
+            }
+        });
+
+        lblProveedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblProveedor.setText("Proveedor");
+
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTitle.setText("Información del producto");
+
+        lblCantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblCantidad.setText("Cantidad");
+
+        cbProveedorProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cbProveedorProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        cbProveedorProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbProveedorProductoActionPerformed(evt);
+            }
+        });
 
         btnEditar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnEditar.setText("Editar");
@@ -68,8 +104,28 @@ public class frmProductos extends javax.swing.JPanel {
             }
         });
 
+        lblBusqueda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblBusqueda.setText("Búsqueda:");
+
+        txtTipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTipoActionPerformed(evt);
+            }
+        });
+
         lblIngresarDatos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblIngresarDatos.setText("Ingresar datos: ");
+
+        lblBusquedaPorNomUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblBusquedaPorNomUsuario.setText("Búsqueda por nombre de producto: ");
+
+        txtCantidadProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtCantidadProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantidadProductoActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnEliminar.setText("Eliminar");
@@ -77,38 +133,11 @@ public class frmProductos extends javax.swing.JPanel {
         lblIdProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblIdProducto.setText("Id del producto: ");
 
-        lblNombreProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblNombreProducto.setText("Nombre de producto:");
-
-        lblTipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblTipo.setText("Tipo:");
-
-        lblTipoUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        lblDescripcion.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblDescripcion.setText("Descripción:");
-
-        txtIdProducto.setEditable(false);
-        txtIdProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-
-        txtNombreProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtNombreProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreProductoActionPerformed(evt);
-            }
-        });
-
-        lblCantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblCantidad.setText("Cantidad");
-
-        lblBusqueda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblBusqueda.setText("Búsqueda:");
-
-        lblBusquedaPorNomUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblBusquedaPorNomUsuario.setText("Búsqueda por nombre de producto: ");
-
         btnBuscarPorNomProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnBuscarPorNomProducto.setText("Buscar");
+
+        lblNombreProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblNombreProducto.setText("Nombre de producto:");
 
         tableProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,43 +157,11 @@ public class frmProductos extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableProducto);
 
-        btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        btnGuardar.setText("Guardar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
+        lblTipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblTipo.setText("Tipo:");
 
-        jScrollPane2.setViewportView(txtDescripcionProducto);
-
-        lblProveedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblProveedor.setText("Proveedor");
-
-        cbProveedorProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cbProveedorProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Proveedor 1", "Proveedor 2", "Proveedor 3", "Proveedor 4", "Proveedor 5" }));
-        cbProveedorProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbProveedorProductoActionPerformed(evt);
-            }
-        });
-
-        txtTipo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTipoActionPerformed(evt);
-            }
-        });
-
-        txtCantidadProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtCantidadProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadProductoActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -180,21 +177,20 @@ public class frmProductos extends javax.swing.JPanel {
                                     .addComponent(lblNombreProducto)
                                     .addComponent(lblTipo)
                                     .addComponent(lblCantidad)
-                                    .addComponent(lblTipoUsuario)
                                     .addComponent(lblDescripcion)
                                     .addComponent(lblProveedor))
                                 .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnGuardar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnEditar))
                                     .addComponent(txtIdProducto)
                                     .addComponent(txtNombreProducto)
                                     .addComponent(jScrollPane2)
                                     .addComponent(cbProveedorProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtTipo)
-                                    .addComponent(txtCantidadProducto))))
+                                    .addComponent(txtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(72, 72, 72)
@@ -207,18 +203,18 @@ public class frmProductos extends javax.swing.JPanel {
                                         .addGap(18, 18, 18)
                                         .addComponent(btnBuscarPorNomProducto))
                                     .addComponent(jScrollPane1))
-                                .addGap(0, 17, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnRefrescar)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnEliminar)))))
-                .addGap(49, 49, 49))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(lblTitle)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -245,9 +241,7 @@ public class frmProductos extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCantidad)
                             .addComponent(txtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
-                        .addComponent(lblTipoUsuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblDescripcion)
@@ -264,17 +258,35 @@ public class frmProductos extends javax.swing.JPanel {
                     .addComponent(btnRefrescar)
                     .addComponent(btnGuardar)
                     .addComponent(btnEditar))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void txtNombreProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreProductoActionPerformed
+
+    private void cbProveedorProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProveedorProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbProveedorProductoActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEditarActionPerformed
 
-    private void txtNombreProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreProductoActionPerformed
+    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreProductoActionPerformed
+    }//GEN-LAST:event_txtTipoActionPerformed
+
+    private void txtCantidadProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantidadProductoActionPerformed
 
     private void tableProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProductoMouseClicked
         // TODO add your handling code here:
@@ -286,26 +298,10 @@ public class frmProductos extends javax.swing.JPanel {
             txtCantidadProducto.setText(tableProducto.getValueAt(fila, 3).toString());
             txtDescripcionProducto.setText(tableProducto.getValueAt(fila, 4).toString());
             cbProveedorProducto.setSelectedItem(tableProducto.getValueAt(fila, 5).toString());
-            
+
         } catch (Exception e) {
         }
     }//GEN-LAST:event_tableProductoMouseClicked
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void cbProveedorProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProveedorProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbProveedorProductoActionPerformed
-
-    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTipoActionPerformed
-
-    private void txtCantidadProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadProductoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -326,7 +322,6 @@ public class frmProductos extends javax.swing.JPanel {
     public javax.swing.JLabel lblNombreProducto;
     public javax.swing.JLabel lblProveedor;
     public javax.swing.JLabel lblTipo;
-    public javax.swing.JLabel lblTipoUsuario;
     public javax.swing.JLabel lblTitle;
     public javax.swing.JTable tableProducto;
     public javax.swing.JTextField txtBusquedaPorNomProducto;
@@ -336,8 +331,4 @@ public class frmProductos extends javax.swing.JPanel {
     public javax.swing.JTextField txtNombreProducto;
     public javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
-
-    void toFront() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

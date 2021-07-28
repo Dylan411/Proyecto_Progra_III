@@ -283,7 +283,6 @@ public class homePage extends javax.swing.JFrame {
         } catch (Conexion.DataBaseException ex) {
             Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
         }
-        obj.toFront();
         obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
         obj.setVisible(true);    
     }//GEN-LAST:event_btnProductosActionPerformed
