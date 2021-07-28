@@ -26,7 +26,7 @@ public class ProductosDAO {
     
     public int agregarProducto(Productos product) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "INSERT INTO productos (name, type, quantity, description, idProveedor) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO productos (name, type, quantity, description, idProveedor, price) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
@@ -35,6 +35,7 @@ public class ProductosDAO {
             ps.setInt(3, product.getCantidad());
             ps.setString(4, product.getDescripcion());
             ps.setInt(5, product.getIdProveedor() );
+            ps.setInt(6, product.getPrecio());
             r = ps.executeUpdate();
         } catch (SQLException e) {
         }
@@ -43,7 +44,7 @@ public class ProductosDAO {
     
     public int editarProducto(Productos product) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "UPDATE usuarios SET name=?, type=?, quantity=?, description=?, idProveedor=?  WHERE idProducto=?";
+        String sql = "UPDATE usuarios SET name=?, type=?, quantity=?, description=?, idProveedor=?, price=?  WHERE idProducto=?";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
@@ -52,7 +53,9 @@ public class ProductosDAO {
             ps.setInt(3, product.getCantidad());
             ps.setString(4, product.getDescripcion());
             ps.setInt(5, product.getIdProveedor());
-            ps.setInt(6, product.getIdProducto());
+            ps.setInt(6, product.getPrecio());
+            ps.setInt(7, product.getIdProducto());
+            
             r = ps.executeUpdate();
         } catch (SQLException e) {
         }
@@ -62,8 +65,8 @@ public class ProductosDAO {
     public void filtrarTablaNomProducto(JTable table, String filtro) throws Conexion.DataBaseException {
 
         //Declararo los headers del table
-        String[] titulos = {"Id Producto", "Nombre Producto", "Tipo", "Cantidad", "Descripción", "Proveedor"};
-        String[] registros = new String[6];
+        String[] titulos = {"Id Producto", "Nombre Producto", "Tipo", "Cantidad", "Descripción", "Proveedor", "Precio"};
+        String[] registros = new String[7];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
         String sql = "SELECT * FROM productos WHERE name LIKE '%" + filtro + "%'";
         try {
@@ -77,6 +80,7 @@ public class ProductosDAO {
                 registros[3] = rs.getString("quantity");
                 registros[4] = rs.getString("description");
                 registros[5] = rs.getString("idProveedor");
+                registros[6] = rs.getString("price");
                 model.addRow(registros);
             }
             table.setModel(model);
