@@ -6,6 +6,9 @@
 package vista;
 
 
+import controlador.ControllerProducto;
+import controlador.ControllerProveedores;
+import controlador.ControllerUsuario;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Conexion;
@@ -92,8 +95,8 @@ public class homePage extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addComponent(lblTipoUsuario1)
                 .addGap(18, 18, 18)
-                .addComponent(lblTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 279, Short.MAX_VALUE))
+                .addComponent(lblTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 206, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,6 +135,11 @@ public class homePage extends javax.swing.JFrame {
 
         btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/proveedor.png"))); // NOI18N
         btnProveedores.setText("Proveedores");
+        btnProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProveedoresActionPerformed(evt);
+            }
+        });
         btnMantenimiento.add(btnProveedores);
 
         jMenuBar1.add(btnMantenimiento);
@@ -244,6 +252,17 @@ public class homePage extends javax.swing.JFrame {
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
         // TODO add your handling code here:
+        frmUsuarios obj = new frmUsuarios();
+        jDesktopPane1.add(obj);
+        ControllerUsuario con = new ControllerUsuario(obj);
+        try {
+            con.iniciar();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        obj.toFront();
+        obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
+        obj.setVisible(true);
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnEnviarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarSolicitudActionPerformed
@@ -256,6 +275,16 @@ public class homePage extends javax.swing.JFrame {
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         // TODO add your handling code here:
+        frmProductos obj = new frmProductos();
+        jDesktopPane1.add(obj);
+        ControllerProducto con = new ControllerProducto(obj);
+        try {
+            con.iniciar();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
+        obj.setVisible(true);    
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -298,6 +327,21 @@ public class homePage extends javax.swing.JFrame {
         obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
         obj.setVisible(true);
     }//GEN-LAST:event_btnOrdenCompraActionPerformed
+
+    private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
+        // TODO add your handling code here:
+        frmProveedores obj = new frmProveedores();
+        jDesktopPane1.add(obj);
+        ControllerProveedores con = new ControllerProveedores(obj);
+        try {
+            con.iniciar();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        obj.toFront();
+        obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
+        obj.setVisible(true);
+    }//GEN-LAST:event_btnProveedoresActionPerformed
 
 
     /**

@@ -10,31 +10,32 @@ package modelo;
  * @author Janda
  */
 public class Usuario {
-     private int idUsuario;
-    private String nombre;
+
+    private int idUsuario;
     private String nombreUsuario;
-    private String clave;
+    private String contraseña;
     private String tipoUsuario;
-    
+    private boolean activo;
+    private String correo;
 
     public Usuario() {
     }
-    
-    public Usuario(int idUsuario, String nombre, String nombreUsuario, String clave, String tipoUsuario) {
+
+    public Usuario(int idUsuario, String nombreUsuario, String contraseña, String tipoUsuario, boolean activo, String correo) {
         this.idUsuario = idUsuario;
-        this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
-        this.clave = clave;
+        this.contraseña = contraseña;
         this.tipoUsuario = tipoUsuario;
-     
+        this.activo = activo;
+        this.correo = correo;
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getNombreUsuario() {
@@ -45,12 +46,12 @@ public class Usuario {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getPassword() {
-        return clave;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setPassword(String password) {
-        this.clave = password;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
     }
 
     public String getTipoUsuario() {
@@ -61,14 +62,19 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public boolean isActivo() {
+        return activo;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
-    
-    
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
 }
-
