@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -44,7 +43,7 @@ public class ProductosDAO {
     
     public int editarProducto(Productos product) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "UPDATE usuarios SET name=?, type=?, quantity=?, description=?,idProveedor=?  WHERE id=?";
+        String sql = "UPDATE usuarios SET name=?, type=?, quantity=?, description=?, idProveedor=?  WHERE idProducto=?";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
@@ -88,7 +87,7 @@ public class ProductosDAO {
 
     public int eliminarProducto(int idProducto) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "DELETE FROM productos WHERE id= " + idProducto ;
+        String sql = "DELETE FROM productos WHERE idProducto= " + idProducto ;
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
