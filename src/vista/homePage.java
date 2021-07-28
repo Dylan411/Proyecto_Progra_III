@@ -6,16 +6,11 @@
 package vista;
 
 
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Conexion;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
 import reporte.generarReporte;
 
-import controlador.ControllerDespacharOrden;
 
 
 /**
