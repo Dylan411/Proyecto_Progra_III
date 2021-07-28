@@ -42,7 +42,7 @@ public class ControllerProducto implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vistaProductos.btnGuardar) {
             try {
-                    agregarUsuario();
+                    agregarProducto();
                 } catch (Conexion.DataBaseException ex) {
                     Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -93,7 +93,7 @@ public class ControllerProducto implements ActionListener{
         }
         
     }
-    public void agregarUsuario() throws Conexion.DataBaseException {
+    public void agregarProducto() throws Conexion.DataBaseException {
 
         String nombreProducto = vistaProductos.txtNombreProducto.getText();
         String tipo = vistaProductos.txtTipo.getText(); 
