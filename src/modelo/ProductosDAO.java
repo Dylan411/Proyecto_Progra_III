@@ -44,7 +44,7 @@ public class ProductosDAO {
     
     public int editarProducto(Productos product) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "UPDATE usuarios SET name=?, type=?, quantity=?, description=?, idProveedor=?, price=?  WHERE idProducto=?";
+        String sql = "UPDATE Productos SET name=?, type=?, quantity=?, description=?, idProveedor=?, price=?  WHERE idProducto=?";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
@@ -68,7 +68,7 @@ public class ProductosDAO {
         String[] titulos = {"Id Producto", "Nombre Producto", "Tipo", "Cantidad", "Descripción", "Proveedor", "Precio"};
         String[] registros = new String[7];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
-        String sql = "SELECT * FROM productos WHERE name LIKE '%" + filtro + "%'";
+        String sql = "SELECT * FROM Productos WHERE name LIKE '%" + filtro + "%'";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);

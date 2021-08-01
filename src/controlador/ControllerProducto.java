@@ -42,9 +42,7 @@ public class ControllerProducto implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vistaProductos.btnGuardar) {
-            JOptionPane.showMessageDialog(vistaProductos, "Guardar");
-            JOptionPane.showMessageDialog(vistaProductos, vistaProductos.cbProveedorProducto.getSelectedItem().toString());
-            JOptionPane.showMessageDialog(vistaProductos, vistaProductos.txtCantidadProducto4.getText());
+            
             try {
                     agregarProducto();
                 } catch (Conexion.DataBaseException ex) {
