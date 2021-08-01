@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import modelo.Conexion;
 import modelo.Productos;
 import modelo.ProductosDAO;
+import modelo.Proveedores;
 import vista.frmProductos;
 
 /**
@@ -21,7 +22,7 @@ import vista.frmProductos;
  * @author PC-Soma
  */
 public class ControllerProducto implements ActionListener{
-    
+    Proveedores prov = new Proveedores();
     Productos p = new Productos();
     ProductosDAO dao = new ProductosDAO();
     frmProductos vistaProductos = new frmProductos();
@@ -99,14 +100,14 @@ public class ControllerProducto implements ActionListener{
         String tipo = vistaProductos.txtTipo.getText(); 
         int cantidad = Integer.parseInt(vistaProductos.txtCantidadProducto.getText());
         String descripcion = vistaProductos.txtDescripcionProducto.getText();
-        int proveedor = Integer.valueOf(vistaProductos.cbProveedorProducto.getSelectedItem().toString());
+        int idProveedor = Integer.valueOf(vistaProductos.cbProveedorProducto.getSelectedItem().toString());
         int precio = Integer.valueOf(vistaProductos.txtPrecio.getText());
         
         p.setNombreProducto(nombreProducto);
         p.setTipoProducto(tipo);
         p.setCantidad(cantidad);
         p.setDescripcion(descripcion);
-        p.setIdProveedor(proveedor);
+        prov.setIdProveedor(idProveedor);
         p.setPrecio(precio);
 
         int r = dao.agregarProducto(p);
@@ -132,7 +133,7 @@ public class ControllerProducto implements ActionListener{
         p.setTipoProducto(tipo);
         p.setCantidad(cantidad);
         p.setDescripcion(descripcion);
-        p.setIdProducto(proveedor);
+        prov.setIdProveedor(proveedor);
         p.setPrecio(precio);
 
         int r = dao.editarProducto(p);

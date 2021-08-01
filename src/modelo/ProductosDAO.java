@@ -34,7 +34,7 @@ public class ProductosDAO {
             ps.setString(2, product.getTipoProducto());
             ps.setInt(3, product.getCantidad());
             ps.setString(4, product.getDescripcion());
-            ps.setInt(5, product.getIdProveedor() );
+            ps.setInt(5, product.getProveedor().getIdProveedor());
             ps.setInt(6, product.getPrecio());
             r = ps.executeUpdate();
         } catch (SQLException e) {
@@ -52,7 +52,7 @@ public class ProductosDAO {
             ps.setString(2, product.getTipoProducto());
             ps.setInt(3, product.getCantidad());
             ps.setString(4, product.getDescripcion());
-            ps.setInt(5, product.getIdProveedor());
+            ps.setInt(5, product.getProveedor().getIdProveedor());
             ps.setInt(6, product.getPrecio());
             ps.setInt(7, product.getIdProducto());
             
