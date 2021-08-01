@@ -43,7 +43,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
         txtTipo = new javax.swing.JTextField();
         lblIngresarDatos = new javax.swing.JLabel();
         lblBusquedaPorNomUsuario = new javax.swing.JLabel();
-        txtCantidadProducto = new javax.swing.JTextField();
+        txtCantidadProducto4 = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         txtBusquedaPorNomProducto = new javax.swing.JTextField();
         lblIdProducto = new javax.swing.JLabel();
@@ -53,7 +53,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
         tableProducto = new javax.swing.JTable();
         lblTipo = new javax.swing.JLabel();
         lblPrecio = new javax.swing.JLabel();
-        txtPrecio = new javax.swing.JTextField();
+        txtPrecio4 = new javax.swing.JTextField();
 
         btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnGuardar.setText("Guardar");
@@ -122,10 +122,10 @@ public class frmProductos extends javax.swing.JInternalFrame {
         lblBusquedaPorNomUsuario.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblBusquedaPorNomUsuario.setText("Búsqueda por nombre de producto: ");
 
-        txtCantidadProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtCantidadProducto.addActionListener(new java.awt.event.ActionListener() {
+        txtCantidadProducto4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtCantidadProducto4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadProductoActionPerformed(evt);
+                txtCantidadProducto4ActionPerformed(evt);
             }
         });
 
@@ -165,10 +165,10 @@ public class frmProductos extends javax.swing.JInternalFrame {
         lblPrecio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblPrecio.setText("Precio");
 
-        txtPrecio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+        txtPrecio4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        txtPrecio4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecioActionPerformed(evt);
+                txtPrecio4ActionPerformed(evt);
             }
         });
 
@@ -201,12 +201,12 @@ public class frmProductos extends javax.swing.JInternalFrame {
                                     .addComponent(txtNombreProducto)
                                     .addComponent(jScrollPane2)
                                     .addComponent(cbProveedorProducto, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCantidadProducto4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(lblPrecio)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtPrecio4, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(72, 72, 72)
@@ -258,7 +258,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCantidad)
-                            .addComponent(txtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCantidadProducto4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -267,7 +267,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
                             .addComponent(jScrollPane2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrecio4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblPrecio))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -305,9 +305,9 @@ public class frmProductos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTipoActionPerformed
 
-    private void txtCantidadProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadProductoActionPerformed
+    private void txtCantidadProducto4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadProducto4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadProductoActionPerformed
+    }//GEN-LAST:event_txtCantidadProducto4ActionPerformed
 
     private void tableProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProductoMouseClicked
         // TODO add your handling code here:
@@ -316,7 +316,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
             txtIdProducto.setText(tableProducto.getValueAt(fila, 0).toString());
             txtNombreProducto.setText(tableProducto.getValueAt(fila, 1).toString());
             txtTipo.setText(tableProducto.getValueAt(fila, 2).toString());
-            txtCantidadProducto.setText(tableProducto.getValueAt(fila, 3).toString());
+            txtCantidadProducto4.setText(tableProducto.getValueAt(fila, 3).toString());
             txtDescripcionProducto.setText(tableProducto.getValueAt(fila, 4).toString());
             cbProveedorProducto.setSelectedItem(tableProducto.getValueAt(fila, 5).toString());
 
@@ -324,9 +324,9 @@ public class frmProductos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tableProductoMouseClicked
 
-    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+    private void txtPrecio4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecio4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioActionPerformed
+    }//GEN-LAST:event_txtPrecio4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -351,11 +351,11 @@ public class frmProductos extends javax.swing.JInternalFrame {
     public javax.swing.JLabel lblTitle;
     public javax.swing.JTable tableProducto;
     public javax.swing.JTextField txtBusquedaPorNomProducto;
-    public javax.swing.JTextField txtCantidadProducto;
+    public javax.swing.JTextField txtCantidadProducto4;
     public javax.swing.JTextPane txtDescripcionProducto;
     public javax.swing.JTextField txtIdProducto;
     public javax.swing.JTextField txtNombreProducto;
-    public javax.swing.JTextField txtPrecio;
+    public javax.swing.JTextField txtPrecio4;
     public javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 }

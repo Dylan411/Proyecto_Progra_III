@@ -42,6 +42,9 @@ public class ControllerProducto implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vistaProductos.btnGuardar) {
+            JOptionPane.showMessageDialog(vistaProductos, "Guardar");
+            JOptionPane.showMessageDialog(vistaProductos, vistaProductos.cbProveedorProducto.getSelectedItem().toString());
+            JOptionPane.showMessageDialog(vistaProductos, vistaProductos.txtCantidadProducto4.getText());
             try {
                     agregarProducto();
                 } catch (Conexion.DataBaseException ex) {
@@ -98,16 +101,17 @@ public class ControllerProducto implements ActionListener{
 
         String nombreProducto = vistaProductos.txtNombreProducto.getText();
         String tipo = vistaProductos.txtTipo.getText(); 
-        int cantidad = Integer.parseInt(vistaProductos.txtCantidadProducto.getText());
+        int cantidad = Integer.parseInt(vistaProductos.txtCantidadProducto4.getText());
         String descripcion = vistaProductos.txtDescripcionProducto.getText();
         int idProveedor = Integer.valueOf(vistaProductos.cbProveedorProducto.getSelectedItem().toString());
-        int precio = Integer.valueOf(vistaProductos.txtPrecio.getText());
+        int precio = Integer.parseInt(vistaProductos.txtPrecio4.getText());
         
         p.setNombreProducto(nombreProducto);
         p.setTipoProducto(tipo);
         p.setCantidad(cantidad);
         p.setDescripcion(descripcion);
         prov.setIdProveedor(idProveedor);
+        p.setProveedor(prov);
         p.setPrecio(precio);
 
         int r = dao.agregarProducto(p);
@@ -123,10 +127,10 @@ public class ControllerProducto implements ActionListener{
         int idProducto = Integer.parseInt(vistaProductos.txtIdProducto.getText());
         String nombreProducto = vistaProductos.txtNombreProducto.getText();
         String tipo = vistaProductos.txtTipo.getText(); 
-        int cantidad = Integer.parseInt(vistaProductos.txtCantidadProducto.getText());
+        int cantidad = Integer.parseInt(vistaProductos.txtCantidadProducto4.getText());
         String descripcion = vistaProductos.txtDescripcionProducto.getText();
         int proveedor = Integer.valueOf(vistaProductos.cbProveedorProducto.getSelectedItem().toString());
-        int precio = Integer.valueOf(vistaProductos.txtPrecio.getText());
+        int precio = Integer.valueOf(vistaProductos.txtPrecio4.getText());
 
         p.setIdProducto(idProducto);
         p.setNombreProducto(nombreProducto);
@@ -172,11 +176,11 @@ public class ControllerProducto implements ActionListener{
         vistaProductos.txtIdProducto.setText("");
         vistaProductos.txtNombreProducto.setText("");
         vistaProductos.txtTipo.setText("");
-        vistaProductos.txtCantidadProducto.setText("");
+        vistaProductos.txtCantidadProducto4.setText("");
         vistaProductos.txtDescripcionProducto.setText("");
         vistaProductos.cbProveedorProducto.setSelectedIndex(0);
         vistaProductos.txtBusquedaPorNomProducto.setText("");
-        vistaProductos.txtPrecio.setText("");
+        vistaProductos.txtPrecio4.setText("");
     }
 
     public void iniciar() throws Conexion.DataBaseException {

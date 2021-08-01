@@ -26,7 +26,7 @@ public class ProductosDAO {
     
     public int agregarProducto(Productos product) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "INSERT INTO productos (name, type, quantity, description, idProveedor, price) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Productos (name, type, quantity, description, idProveedor, price) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
@@ -34,7 +34,7 @@ public class ProductosDAO {
             ps.setString(2, product.getTipoProducto());
             ps.setInt(3, product.getCantidad());
             ps.setString(4, product.getDescripcion());
-            ps.setInt(5, product.getProveedor().getIdProveedor());
+            ps.setInt(5, product.getProveedor().getIdProveedor() );
             ps.setInt(6, product.getPrecio());
             r = ps.executeUpdate();
         } catch (SQLException e) {
