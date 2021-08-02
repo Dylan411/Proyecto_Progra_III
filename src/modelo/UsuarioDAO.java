@@ -221,5 +221,18 @@ public class UsuarioDAO {
         }
     }
     
-    
+      public int cargarIdUsuario(String nombreUsuario)throws Conexion.DataBaseException{
+        int idUsuario=0;
+        String sql="SELECT id FROM Usuarios WHERE userName='" + nombreUsuario + "'";
+        try{
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs= ps.executeQuery();
+            rs.next();
+            idUsuario = rs.getInt("IdUsuario");
+        }catch(SQLException e){
+            
+        }
+        return idUsuario;
+    }
 }
