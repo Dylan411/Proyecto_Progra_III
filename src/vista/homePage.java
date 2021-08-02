@@ -5,33 +5,33 @@
  */
 package vista;
 
-
+import controlador.ControllerPedido;
 import controlador.ControllerProducto;
 import controlador.ControllerProveedores;
 import controlador.ControllerUsuario;
+import controlador.controllerClientes;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.Conexion;
 import reporte.generarReporte;
 
-
-
 /**
  *
- * @author Janda
+
  */
 public class homePage extends javax.swing.JFrame {
 
     /**
      * Creates new form homePage
      */
-    public homePage(String nombreUsuario,String tipoUsuario) {
+    public homePage(String nombreUsuario, String tipoUsuario, String idUsuario) {
         initComponents();
         setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
         setTitle("Sistema de pedidos de inventarios");
         lblNombreUsuario.setText(nombreUsuario);
         lblTipoUsuario.setText(tipoUsuario);
+        lblId2.setText(idUsuario);
     }
 
     /**
@@ -48,12 +48,15 @@ public class homePage extends javax.swing.JFrame {
         lblTipoUsuario = new javax.swing.JLabel();
         lblNombreUsuario1 = new javax.swing.JLabel();
         lblTipoUsuario1 = new javax.swing.JLabel();
+        lblId1 = new javax.swing.JLabel();
+        lblId2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         btnArchivo = new javax.swing.JMenu();
         btnSalir = new javax.swing.JMenuItem();
         btnMantenimiento = new javax.swing.JMenu();
         btnUsuarios = new javax.swing.JMenuItem();
         btnProveedores = new javax.swing.JMenuItem();
+        btnClientes = new javax.swing.JMenuItem();
         btnSolicitarPedido = new javax.swing.JMenu();
         btnEnviarSolicitud = new javax.swing.JMenuItem();
         btnGestionarInventario = new javax.swing.JMenu();
@@ -79,10 +82,16 @@ public class homePage extends javax.swing.JFrame {
 
         lblTipoUsuario1.setText("Tipo Usuario:");
 
+        lblId1.setText("Id Usuario:");
+
+        lblId2.setText("Id Usuario:");
+
         jDesktopPane1.setLayer(lblNombreUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(lblTipoUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(lblNombreUsuario1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(lblTipoUsuario1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(lblId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(lblId2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -96,7 +105,11 @@ public class homePage extends javax.swing.JFrame {
                 .addComponent(lblTipoUsuario1)
                 .addGap(18, 18, 18)
                 .addComponent(lblTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 206, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 50, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +118,9 @@ public class homePage extends javax.swing.JFrame {
                     .addComponent(lblNombreUsuario)
                     .addComponent(lblNombreUsuario1)
                     .addComponent(lblTipoUsuario1)
-                    .addComponent(lblTipoUsuario))
+                    .addComponent(lblTipoUsuario)
+                    .addComponent(lblId1)
+                    .addComponent(lblId2))
                 .addContainerGap(481, Short.MAX_VALUE))
         );
 
@@ -141,6 +156,15 @@ public class homePage extends javax.swing.JFrame {
             }
         });
         btnMantenimiento.add(btnProveedores);
+
+        btnClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png"))); // NOI18N
+        btnClientes.setText("Clientes");
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientesActionPerformed(evt);
+            }
+        });
+        btnMantenimiento.add(btnClientes);
 
         jMenuBar1.add(btnMantenimiento);
 
@@ -266,7 +290,18 @@ public class homePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnEnviarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarSolicitudActionPerformed
-        // TODO add your handling code here:
+        frmSolicitarPedido obj = new frmSolicitarPedido();
+        jDesktopPane1.add(obj);
+        ControllerPedido con = new ControllerPedido(obj);
+        try {
+            con.iniciar();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        obj.toFront();
+        obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
+        obj.setVisible(true);
+
     }//GEN-LAST:event_btnEnviarSolicitudActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -274,8 +309,7 @@ public class homePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-        // TODO add your handling code here:
-        frmProductos obj = new frmProductos();
+            frmProductos obj = new frmProductos();
         jDesktopPane1.add(obj);
         ControllerProducto con = new ControllerProducto(obj);
         try {
@@ -285,6 +319,7 @@ public class homePage extends javax.swing.JFrame {
         }
         obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
         obj.setVisible(true);    
+               
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -294,7 +329,7 @@ public class homePage extends javax.swing.JFrame {
 
 
     private void btnInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformacionActionPerformed
-        
+
     }//GEN-LAST:event_btnInformacionActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
@@ -343,6 +378,20 @@ public class homePage extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
+       frmClientes obj = new frmClientes();
+        jDesktopPane1.add(obj);
+        controllerClientes con = new controllerClientes(obj);
+        try {
+            con.iniciar();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        obj.toFront();
+        obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
+        obj.setVisible(true);
+    
+    }//GEN-LAST:event_btnClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,7 +423,7 @@ public class homePage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-              new homePage(lblNombreUsuario.getText(),lblTipoUsuario.getText()).setVisible(true);
+                new homePage(lblNombreUsuario.getText(), lblTipoUsuario.getText(),lblId2.getText()).setVisible(true);
             }
         });
     }
@@ -383,6 +432,7 @@ public class homePage extends javax.swing.JFrame {
     private javax.swing.JMenu btnAprobarSolicitudes;
     public javax.swing.JMenu btnArchivo;
     private javax.swing.JMenu btnAyuda;
+    public javax.swing.JMenuItem btnClientes;
     private javax.swing.JMenuItem btnDespachar;
     private javax.swing.JMenuItem btnEnviarSolicitud;
     private javax.swing.JMenuItem btnFactura;
@@ -401,6 +451,8 @@ public class homePage extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     public javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
+    public javax.swing.JLabel lblId1;
+    public static javax.swing.JLabel lblId2;
     public static javax.swing.JLabel lblNombreUsuario;
     public static javax.swing.JLabel lblNombreUsuario1;
     public static javax.swing.JLabel lblTipoUsuario;
