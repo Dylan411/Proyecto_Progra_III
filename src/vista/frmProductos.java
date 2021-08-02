@@ -55,6 +55,9 @@ public class frmProductos extends javax.swing.JInternalFrame {
         lblPrecio = new javax.swing.JLabel();
         txtPrecio4 = new javax.swing.JTextField();
 
+        setClosable(true);
+        setIconifiable(true);
+
         btnGuardar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
