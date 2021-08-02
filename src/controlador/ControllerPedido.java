@@ -1,0 +1,136 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controlador;
+
+import Helpers.Helpers;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import javax.swing.JTable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import modelo.Clientes;
+import modelo.ClientesDAO;
+import modelo.Conexion;
+import modelo.Pedido;
+import modelo.PedidoDAO;
+import modelo.Productos;
+import modelo.Usuario;
+import vista.frmSolicitarPedido;
+import vista.homePage;
+
+/**
+ *
+ * @author Janda
+ */
+public class ControllerPedido implements ActionListener {
+
+    PedidoDAO dao = new PedidoDAO();
+    ClientesDAO clieDAO = new ClientesDAO();
+    frmSolicitarPedido vistaPedido = new frmSolicitarPedido();
+    Productos productos = new Productos();
+    Clientes clientes = new Clientes();
+    Usuario usuarios = new Usuario();
+    Pedido pedido = new Pedido();
+    Helpers Helpers = new Helpers();
+
+    public ControllerPedido(frmSolicitarPedido frm) {
+        this.vistaPedido = frm;
+        this.vistaPedido.btnEnviar.addActionListener(this);
+        this.vistaPedido.btnCancelar.addActionListener(this);
+        this.vistaPedido.cbClientes.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == vistaPedido.btnEnviar) {
+            try {
+                enviarSolicitud();
+            } catch (Conexion.DataBaseException ex) {
+                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                limpiarCampos();
+            } catch (Conexion.DataBaseException ex) {
+                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (e.getSource() == vistaPedido.btnCancelar) {
+            try {
+                limpiarCampos();
+            } catch (Conexion.DataBaseException ex) {
+                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (e.getSource() == vistaPedido.cbClientes) {
+
+            try {
+                clieDAO.cargarIdCliente(vistaPedido.cbClientes, vistaPedido.txtIdCliente);
+            } catch (Conexion.DataBaseException ex) {
+                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+    }
+
+    public void enviarSolicitud() throws Conexion.DataBaseException {
+        Integer idCliente = Integer.parseInt(vistaPedido.txtIdCliente.getText());
+        Integer idProducto = Integer.parseInt(vistaPedido.txtIdProducto.getText());
+        Integer idUsuario = Integer.parseInt(homePage.lblId2.getText());
+        int numPedido = Integer.parseInt(vistaPedido.txtNumPedido.getText());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaVenta = sdf.format(vistaPedido.jDate.getDate());
+        String destino = vistaPedido.txtDestino.getText();
+        int total = Integer.parseInt(vistaPedido.txtTotal.getText());
+        byte descuento = Byte.parseByte(vistaPedido.txtDescuento.getText());
+
+        productos.setIdProducto(idProducto);
+        clientes.setIdCliente(idCliente);
+        usuarios.setIdUsuario(idUsuario);
+
+        pedido.setProducto(productos);
+        pedido.setClientes(clientes);
+        pedido.setUsuarios(usuarios);
+        pedido.setNumPedido(numPedido);
+        pedido.setFechaVenta(fechaVenta);
+
+        pedido.setDestino(destino);
+        pedido.setTotal(total);
+        pedido.setDescuento(descuento);
+
+        int r = dao.enviarSolicitud(pedido);
+        if (r == 1) {
+            JOptionPane.showMessageDialog(vistaPedido, "Solicitud enviada correctamente");
+        } else {
+            JOptionPane.showMessageDialog(vistaPedido, "La solicitud NO fue enviada");
+        }
+
+    }
+
+    public void iniciar() throws Conexion.DataBaseException {
+        filtrarTablaNombre(vistaPedido.tblProductos, "");
+
+        cargarComboClientes();
+    }
+
+    public void filtrarTablaNombre(JTable table, String filtro) throws Conexion.DataBaseException {
+        dao.filtrarTablaNombre(table, filtro);
+    }
+
+    public void limpiarCampos() throws Conexion.DataBaseException {
+
+    }
+
+    public void cargarComboClientes() throws Conexion.DataBaseException {
+        clieDAO.cargarComboCliente(vistaPedido.cbClientes);
+    }
+}
