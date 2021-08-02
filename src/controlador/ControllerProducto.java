@@ -136,6 +136,7 @@ public class ControllerProducto implements ActionListener{
         p.setCantidad(cantidad);
         p.setDescripcion(descripcion);
         prov.setIdProveedor(proveedor);
+        p.setProveedor(prov);
         p.setPrecio(precio);
 
         int r = dao.editarProducto(p);
