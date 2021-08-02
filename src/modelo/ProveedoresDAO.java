@@ -9,8 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -83,7 +84,7 @@ public class ProveedoresDAO {
             System.out.println("Error al buscar los datos: " + e.getMessage());
         }
     }
-    
+
     public int eliminarProveedor(int id) throws Conexion.DataBaseException {
         int r = 0;
         String sql = "DELETE FROM proveedores WHERE idProveedor= " + id;
@@ -94,5 +95,33 @@ public class ProveedoresDAO {
         } catch (SQLException e) {
         }
         return r;
+    }
+
+    public void cargarIdProveedor(JComboBox combo, JTextField textField) throws Conexion.DataBaseException {
+        String sql = "SELECT idProveedor FROM proveedores WHERE companyName = '" + combo.getSelectedItem() + "'";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            rs.next();
+            textField.setText(String.valueOf(rs.getInt("idProveedor")));
+
+        } catch (SQLException e) {
+        }
+    }
+
+    public void cargarComboDueños(JComboBox combo) throws Conexion.DataBaseException {
+        combo.removeAllItems();
+        combo.addItem("Seleccionar un proveedor");
+        String sql = "SELECT * FROM proveedores";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery(); //le da play al query
+            while (rs.next()) {
+                combo.addItem(rs.getString("companyName"));
+            }
+        } catch (SQLException e) {
+        }
     }
 }

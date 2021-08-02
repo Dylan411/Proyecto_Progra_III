@@ -54,6 +54,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
         lblTipo = new javax.swing.JLabel();
         lblPrecio = new javax.swing.JLabel();
         txtPrecio4 = new javax.swing.JTextField();
+        txtIdProveedor = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -85,7 +86,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
         });
 
         lblProveedor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblProveedor.setText("Proveedor");
+        lblProveedor.setText("Proveedor:");
 
         lblTitle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTitle.setText("Información del producto");
@@ -94,7 +95,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
         lblCantidad.setText("Cantidad");
 
         cbProveedorProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cbProveedorProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        cbProveedorProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el proveedor" }));
         cbProveedorProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbProveedorProductoActionPerformed(evt);
@@ -166,12 +167,19 @@ public class frmProductos extends javax.swing.JInternalFrame {
         lblTipo.setText("Tipo:");
 
         lblPrecio.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblPrecio.setText("Precio");
+        lblPrecio.setText("Precio:");
 
         txtPrecio4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         txtPrecio4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecio4ActionPerformed(evt);
+            }
+        });
+
+        txtIdProveedor.setEditable(false);
+        txtIdProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdProveedorActionPerformed(evt);
             }
         });
 
@@ -193,7 +201,8 @@ public class frmProductos extends javax.swing.JInternalFrame {
                                     .addComponent(lblTipo)
                                     .addComponent(lblCantidad)
                                     .addComponent(lblDescripcion)
-                                    .addComponent(lblProveedor))
+                                    .addComponent(lblProveedor)
+                                    .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(25, 25, 25)
@@ -271,7 +280,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblDescripcion)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtPrecio4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,12 +289,17 @@ public class frmProductos extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblProveedor)
                             .addComponent(cbProveedorProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminar)
-                    .addComponent(btnRefrescar)
-                    .addComponent(btnGuardar)
-                    .addComponent(btnEditar))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEliminar)
+                            .addComponent(btnRefrescar)
+                            .addComponent(btnGuardar)
+                            .addComponent(btnEditar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15))
         );
 
@@ -325,7 +339,8 @@ public class frmProductos extends javax.swing.JInternalFrame {
             txtTipo.setText(tableProducto.getValueAt(fila, 2).toString());
             txtCantidadProducto4.setText(tableProducto.getValueAt(fila, 3).toString());
             txtDescripcionProducto.setText(tableProducto.getValueAt(fila, 4).toString());
-            cbProveedorProducto.setSelectedItem(tableProducto.getValueAt(fila, 5).toString());
+            txtIdProveedor.setText(tableProducto.getValueAt(fila, 5).toString());
+            txtPrecio4.setText(tableProducto.getValueAt(fila, 6).toString());
 
         } catch (Exception e) {
         }
@@ -334,6 +349,10 @@ public class frmProductos extends javax.swing.JInternalFrame {
     private void txtPrecio4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecio4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecio4ActionPerformed
+
+    private void txtIdProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdProveedorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -361,6 +380,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
     public javax.swing.JTextField txtCantidadProducto4;
     public javax.swing.JTextPane txtDescripcionProducto;
     public javax.swing.JTextField txtIdProducto;
+    public javax.swing.JTextField txtIdProveedor;
     public javax.swing.JTextField txtNombreProducto;
     public javax.swing.JTextField txtPrecio4;
     public javax.swing.JTextField txtTipo;

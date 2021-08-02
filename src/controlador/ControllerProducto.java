@@ -15,17 +15,23 @@ import modelo.Conexion;
 import modelo.Productos;
 import modelo.ProductosDAO;
 import modelo.Proveedores;
+import modelo.ProveedoresDAO;
 import vista.frmProductos;
 
 /**
  *
  * @author PC-Soma
  */
-public class ControllerProducto implements ActionListener{
+public class ControllerProducto implements ActionListener {
+
     Proveedores prov = new Proveedores();
     Productos p = new Productos();
     ProductosDAO dao = new ProductosDAO();
     frmProductos vistaProductos = new frmProductos();
+
+    //Para el combo box en frm productos
+    Proveedores proveedores = new Proveedores();
+    ProveedoresDAO pdao = new ProveedoresDAO();
 
     public ControllerProducto(frmProductos frm) {
         this.vistaProductos = frm;
@@ -34,38 +40,36 @@ public class ControllerProducto implements ActionListener{
         this.vistaProductos.btnRefrescar.addActionListener(this);
         this.vistaProductos.btnEliminar.addActionListener(this);
         this.vistaProductos.btnBuscarPorNomProducto.addActionListener(this);
+        this.vistaProductos.cbProveedorProducto.addActionListener(this);
     }
-    
-    
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vistaProductos.btnGuardar) {
-            
+
             try {
-                    agregarProducto();
-                } catch (Conexion.DataBaseException ex) {
-                    Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                agregarProducto();
+            } catch (Conexion.DataBaseException ex) {
+                Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
             try {
-                    limpiarCampos();
-                } catch (Conexion.DataBaseException ex) {
-                    Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            
+                limpiarCampos();
+            } catch (Conexion.DataBaseException ex) {
+                Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
         if (e.getSource() == vistaProductos.btnEditar) {
             try {
-                    editarProducto();
-                } catch (Conexion.DataBaseException ex) {
-                    Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                editarProducto();
+            } catch (Conexion.DataBaseException ex) {
+                Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
             try {
-                    limpiarCampos();
-                } catch (Conexion.DataBaseException ex) {
-                    Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                limpiarCampos();
+            } catch (Conexion.DataBaseException ex) {
+                Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vistaProductos.btnRefrescar) {
             try {
@@ -93,17 +97,26 @@ public class ControllerProducto implements ActionListener{
                 Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+
+        if (e.getSource() == vistaProductos.cbProveedorProducto) {
+            try {
+                pdao.cargarIdProveedor(vistaProductos.cbProveedorProducto, vistaProductos.txtIdProveedor);
+            } catch (Conexion.DataBaseException ex) {
+                Logger.getLogger(ControllerProducto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }
+
     public void agregarProducto() throws Conexion.DataBaseException {
 
         String nombreProducto = vistaProductos.txtNombreProducto.getText();
-        String tipo = vistaProductos.txtTipo.getText(); 
+        String tipo = vistaProductos.txtTipo.getText();
         int cantidad = Integer.parseInt(vistaProductos.txtCantidadProducto4.getText());
         String descripcion = vistaProductos.txtDescripcionProducto.getText();
-        int idProveedor = Integer.valueOf(vistaProductos.cbProveedorProducto.getSelectedItem().toString());
+        int idProveedor = Integer.parseInt(vistaProductos.txtIdProveedor.getText());
         int precio = Integer.parseInt(vistaProductos.txtPrecio4.getText());
-        
+
         p.setNombreProducto(nombreProducto);
         p.setTipoProducto(tipo);
         p.setCantidad(cantidad);
@@ -124,10 +137,10 @@ public class ControllerProducto implements ActionListener{
 
         int idProducto = Integer.parseInt(vistaProductos.txtIdProducto.getText());
         String nombreProducto = vistaProductos.txtNombreProducto.getText();
-        String tipo = vistaProductos.txtTipo.getText(); 
+        String tipo = vistaProductos.txtTipo.getText();
         int cantidad = Integer.parseInt(vistaProductos.txtCantidadProducto4.getText());
         String descripcion = vistaProductos.txtDescripcionProducto.getText();
-        int proveedor = Integer.valueOf(vistaProductos.cbProveedorProducto.getSelectedItem().toString());
+        int proveedor = Integer.parseInt(vistaProductos.txtIdProveedor.getText());
         int precio = Integer.valueOf(vistaProductos.txtPrecio4.getText());
 
         p.setIdProducto(idProducto);
@@ -180,10 +193,16 @@ public class ControllerProducto implements ActionListener{
         vistaProductos.cbProveedorProducto.setSelectedIndex(0);
         vistaProductos.txtBusquedaPorNomProducto.setText("");
         vistaProductos.txtPrecio4.setText("");
+        vistaProductos.txtIdProveedor.setText("");
+        cargarComboProveedores();
     }
 
     public void iniciar() throws Conexion.DataBaseException {
         filtrarTablaNomProducto(vistaProductos.tableProducto, "");
         limpiarCampos();
+    }
+
+    public void cargarComboProveedores() throws Conexion.DataBaseException {
+        pdao.cargarComboDueños(vistaProductos.cbProveedorProducto);
     }
 }
