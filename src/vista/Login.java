@@ -153,8 +153,8 @@ public class Login extends javax.swing.JFrame {
                 this.dispose();
                 String nombreUsuario = vista.Login.txtNombreUsuario.getText();
                 String tipoUsuario = vista.Login.comboTipo.getSelectedItem().toString();
-                
-                vista.homePage home = new homePage(nombreUsuario, tipoUsuario);
+                String idUsuario = String.valueOf(dao.cargarIdUsuario(nombreUsuario));
+                vista.homePage home = new homePage(nombreUsuario, tipoUsuario,idUsuario);
                 home.setVisible(true);
             }
         } catch (Conexion.DataBaseException ex) {
