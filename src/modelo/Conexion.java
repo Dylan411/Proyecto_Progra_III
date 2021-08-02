@@ -23,7 +23,7 @@ public class Conexion {
     private final static String IP = "localhost";
     private final static String PUERTO = "3306";
     private final static String USUARIO = "root";
-    private final static String CLAVE = "12345";
+    private final static String CLAVE = "root";
     private final static String SID = "sistemapedidos?serverTimezone=UTC";
 
     public Connection conectar() throws DataBaseException {
@@ -42,51 +42,51 @@ public class Conexion {
         return conexion;
     }
 
-    public void cerrar(Connection conn, ResultSet res, Statement stmt) throws DataBaseException {
-        try {
-            if (!res.isClosed()) {
-                res.close();
-            } else if (!stmt.isClosed()) {
-                stmt.close();
-            } else if (!conn.isClosed()) {
-                conn.close();
-            }
-        } catch (SQLException e) {
-            throw new DataBaseException("Error al cerrar");
-        } finally {
-            System.out.println("Closing connection with database...");
-        }
-    }
-
-    public void cerrar(Connection conn, ResultSet res, PreparedStatement pstmt) throws DataBaseException {
-        try {
-            if (!res.isClosed()) {
-                res.close();
-            } else if (!pstmt.isClosed()) {
-                pstmt.close();
-            } else if (!conn.isClosed()) {
-                conn.close();
-            }
-        } catch (SQLException e) {
-            throw new DataBaseException("Error al cerrar");
-        } finally {
-            System.out.println("Closing connection with database...");
-        }
-    }
-
-    public void cerrar(Connection conn, PreparedStatement pstmt) throws DataBaseException {
-        try {
-            if (!pstmt.isClosed()) {
-                pstmt.close();
-            } else if (!conn.isClosed()) {
-                conn.close();
-            }
-        } catch (SQLException e) {
-            throw new DataBaseException("Error al cerrar");
-        } finally {
-            System.out.println("Closing connection with database...");
-        }
-    }
+//    public void cerrar(Connection conn, ResultSet res, Statement stmt) throws DataBaseException {
+//        try {
+//            if (!res.isClosed()) {
+//                res.close();
+//            } else if (!stmt.isClosed()) {
+//                stmt.close();
+//            } else if (!conn.isClosed()) {
+//                conn.close();
+//            }
+//        } catch (SQLException e) {
+//            throw new DataBaseException("Error al cerrar");
+//        } finally {
+//            System.out.println("Closing connection with database...");
+//        }
+//    }
+//
+//    public void cerrar(Connection conn, ResultSet res, PreparedStatement pstmt) throws DataBaseException {
+//        try {
+//            if (!res.isClosed()) {
+//                res.close();
+//            } else if (!pstmt.isClosed()) {
+//                pstmt.close();
+//            } else if (!conn.isClosed()) {
+//                conn.close();
+//            }
+//        } catch (SQLException e) {
+//            throw new DataBaseException("Error al cerrar");
+//        } finally {
+//            System.out.println("Closing connection with database...");
+//        }
+//    }
+//
+//    public void cerrar(Connection conn, PreparedStatement pstmt) throws DataBaseException {
+//        try {
+//            if (!pstmt.isClosed()) {
+//                pstmt.close();
+//            } else if (!conn.isClosed()) {
+//                conn.close();
+//            }
+//        } catch (SQLException e) {
+//            throw new DataBaseException("Error al cerrar");
+//        } finally {
+//            System.out.println("Closing connection with database...");
+//        }
+//    }
 
     public Connection getConnexion() throws DataBaseException {
         System.out.println("Conxion establecida");

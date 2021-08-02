@@ -17,19 +17,29 @@ public class Usuario {
     private String tipoUsuario;
     private boolean activo;
     private String correo;
+    private String codigo;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nombreUsuario, String contraseña, String tipoUsuario, boolean activo, String correo) {
+    public Usuario(int idUsuario, String nombreUsuario, String contraseña, String tipoUsuario, boolean activo, String correo, String codigo) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
         this.contraseña = contraseña;
         this.tipoUsuario = tipoUsuario;
         this.activo = activo;
         this.correo = correo;
+        this.codigo = codigo;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+    
     public int getIdUsuario() {
         return idUsuario;
     }

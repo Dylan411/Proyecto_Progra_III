@@ -5,13 +5,17 @@
  */
 package modelo;
 
+import java.io.UnsupportedEncodingException;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import mail.Mail;
 
 /**
  *
@@ -22,9 +26,21 @@ public class UsuarioDAO {
     PreparedStatement ps;
     ResultSet rs;
     Connection con;
+    StringBuilder generatedString= new StringBuilder();
     //Creo los objetos 
     Conexion conectar = new Conexion();
     Usuario u = new Usuario();
+    Mail mail = new Mail();
+
+    public StringBuilder getGeneratedString() {
+        return generatedString;
+    }
+
+    public void setGeneratedString(StringBuilder generatedString) {
+        this.generatedString = generatedString;
+    }
+    
+    
 
     public boolean login(Usuario user) throws Conexion.DataBaseException {
         String sql = "SELECT  * FROM usuarios WHERE userName=? and password = ? and typeUser = ? and act = 1";
@@ -121,4 +137,89 @@ public class UsuarioDAO {
         }
         return r;
     }
+    
+    public int cambioPassword(Usuario user) throws Conexion.DataBaseException {
+        String sql = "SELECT  * FROM usuarios WHERE userName=? and email = ? and act = 1";
+
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, user.getNombreUsuario());
+            ps.setString(2, user.getCorreo());
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return 1;
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos Incorrectos");
+                return 0;
+            }
+
+        } catch (SQLException e) {
+            return 0;
+        }
+    }
+    
+    public void generarCodigoRamdom(){
+        SecureRandom secureRandom = new SecureRandom();
+        String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789$@!$%^&*";
+        for (int i = 0; i < 8; i++) {
+            int randonSequence = secureRandom .nextInt(CHARACTERS.length());
+            generatedString.append(CHARACTERS.charAt(randonSequence));
+        }
+        setGeneratedString(generatedString);
+    }
+    
+    
+    public int insertarCodigo(Usuario user) throws Conexion.DataBaseException, UnsupportedEncodingException, MessagingException {
+        int r = 0;
+        String sql = "UPDATE usuarios SET cod=?  WHERE email=?";
+        generarCodigoRamdom();
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            ps.setString(1,getGeneratedString().toString());
+            ps.setString(2, user.getCorreo());
+            r = ps.executeUpdate();
+            mail.enviarMail(user.getCorreo(), getGeneratedString().toString());
+        } catch (SQLException e) {
+        }
+        return r;
+    }
+    public int insertarPassword(Usuario user) throws Conexion.DataBaseException, UnsupportedEncodingException, MessagingException {
+        int r = 0;
+        String sql = "UPDATE usuarios SET password=?  WHERE email=?";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, user.getContraseña());
+            ps.setString(2, user.getCorreo());
+            r = ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+        return r;
+    }
+    public int compararCodigo(Usuario user) throws Conexion.DataBaseException {
+        String sql = "SELECT  * FROM usuarios WHERE userName=? and cod= ? ";
+
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, user.getNombreUsuario());
+            ps.setString(2, user.getCodigo());
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return 1;
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos Incorrectos");
+                return 0;
+            }
+
+        } catch (SQLException e) {
+            return 0;
+        }
+    }
+    
+    
 }
