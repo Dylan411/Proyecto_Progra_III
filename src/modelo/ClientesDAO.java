@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -47,7 +48,7 @@ public class ClientesDAO {
 
     public int editarCliente(Clientes client) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "UPDATE Clientes SET contactName=?, companyName=?, adress=?, city=?,region=?, phone=?  WHERE id=?";
+        String sql = "UPDATE Clientes SET contactName=?, companyName=?, adress=?, city=?,region=?, phone=?  WHERE idCliente=?";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
@@ -57,6 +58,7 @@ public class ClientesDAO {
             ps.setString(4, client.getCuidad());
             ps.setString(5, client.getRegion());
             ps.setInt(6, client.getTelefono());
+            ps.setInt(7, client.getIdCliente());
             r = ps.executeUpdate();
         } catch (SQLException e) {
         }
@@ -66,7 +68,7 @@ public class ClientesDAO {
     public void filtrarTablaNomCliente(JTable table, String filtro) throws Conexion.DataBaseException {
 
         //Declararo los headers del table
-        String[] titulos = {"Id Cliente", "Nombre", "Nombre Compañia", "Direccion ", "Cuidad", "Region", "Telefono"};
+        String[] titulos = {"IdCliente", "Nombre", "Nombre Compañia", "Direccion ", "Cuidad", "Region", "Telefono"};
         String[] registros = new String[7];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
         String sql = "SELECT * FROM Clientes WHERE contactName LIKE '%" + filtro + "%'";
@@ -92,7 +94,7 @@ public class ClientesDAO {
 
     public int eliminarCliente(int id) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "DELETE FROM Clientes WHERE id= " + id;
+        String sql = "DELETE FROM Clientes WHERE idCliente= " + id;
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
