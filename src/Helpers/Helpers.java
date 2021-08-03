@@ -32,8 +32,8 @@ public class Helpers {
         String dia = String.valueOf(fecha.get(Calendar.DAY_OF_MONTH));
         String mes = String.valueOf(fecha.get(Calendar.MONTH) + 1);
         String año = String.valueOf(fecha.get(Calendar.YEAR));
-        String fechaActual = dia + "/" + mes + "/" + año;
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy"); // New Pattern
+        String fechaActual = año + "-" + mes + "-" + dia;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd"); // New Pattern
         java.util.Date date = format.parse(fechaActual); // Returns a Date format object with the pattern
         java.sql.Date sqlfechaActual = new java.sql.Date(date.getTime());
         return sqlfechaActual;

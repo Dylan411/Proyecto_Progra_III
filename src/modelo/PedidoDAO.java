@@ -9,9 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,6 +23,7 @@ public class PedidoDAO {
     Connection con;
     Conexion conectar = new Conexion();
     Pedido pedido = new Pedido();
+    
 
     public void filtrarTablaNombre(JTable table, String filtro) throws Conexion.DataBaseException {
 
@@ -54,7 +53,7 @@ public class PedidoDAO {
 
     public int enviarSolicitud(Pedido order) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "INSERT INTO Pedidos (numPedido, dateActually, destiny, total, discount,id,idProducto,idCliente) VALUES (?, ?, ?, ?, ?, ?,?,?)";
+        String sql = "INSERT INTO pedidos (numPedido, date, destiny, total, discount,id,idProducto,idCliente) VALUES (?,?,?,?,?,?,?,?)";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);

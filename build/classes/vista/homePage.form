@@ -55,6 +55,20 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProveedoresActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="btnClientes">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/imagenes/usuario.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Clientes"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClientesActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
+            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="btnSolicitarPedido">
@@ -235,7 +249,11 @@
                   <Component id="lblTipoUsuario1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lblTipoUsuario" min="-2" pref="162" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="206" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblId1" min="-2" pref="70" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="lblId2" min="-2" pref="70" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="50" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -247,6 +265,8 @@
                       <Component id="lblNombreUsuario1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTipoUsuario1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTipoUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblId1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblId2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="481" max="32767" attributes="0"/>
               </Group>
@@ -281,6 +301,22 @@
         <Component class="javax.swing.JLabel" name="lblTipoUsuario1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Tipo Usuario:"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblId1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Id Usuario:"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblId2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Id Usuario:"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
