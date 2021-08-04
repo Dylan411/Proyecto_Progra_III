@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,7 +25,6 @@ public class PedidoDAO {
     Connection con;
     Conexion conectar = new Conexion();
     Pedido pedido = new Pedido();
-    
 
     public void filtrarTablaNombre(JTable table, String filtro) throws Conexion.DataBaseException {
 
@@ -53,7 +54,7 @@ public class PedidoDAO {
 
     public int enviarSolicitud(Pedido order) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "INSERT INTO pedidos (numPedido, date, destiny, total, discount,id,idProducto,idCliente) VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Pedidos (numPedido,dateActually, destiny, total, discount,id,idProducto,idCliente,accepted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
@@ -61,16 +62,18 @@ public class PedidoDAO {
             ps.setString(2, order.getFechaVenta());
             ps.setString(3, order.getDestino());
             ps.setInt(4, order.getTotal());
-            ps.setByte(5, order.getDescuento());
+            ps.setBoolean(5, order.getDescuento());
             ps.setInt(6, order.getUsuarios().getIdUsuario());
             ps.setInt(7, order.getProducto().getIdProducto());
             ps.setInt(8, order.getClientes().getIdCliente());
+            ps.setBoolean(9, order.getCheck());
             r = ps.executeUpdate();
         } catch (SQLException e) {
         }
         return r;
     }
     
+  
     
    }
 
