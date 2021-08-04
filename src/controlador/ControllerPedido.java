@@ -91,7 +91,6 @@ public class ControllerPedido implements ActionListener {
         String fechaVenta = sdf.format(vistaPedido.jDate.getDate());
         String destino = vistaPedido.txtDestino.getText();
         int total = Integer.parseInt(vistaPedido.txtTotal.getText());
-        byte descuento = Byte.parseByte(vistaPedido.txtDescuento.getText());
 
         productos.setIdProducto(idProducto);
         clientes.setIdCliente(idCliente);
@@ -105,7 +104,15 @@ public class ControllerPedido implements ActionListener {
 
         pedido.setDestino(destino);
         pedido.setTotal(total);
-        pedido.setDescuento(descuento);
+        int condicion = total;
+        if(condicion > 10){
+            pedido.setDescuento(true);
+            
+        }else{
+            pedido.setDescuento(false);
+        }
+       
+        pedido.setCheck(false);
 
         int r = dao.enviarSolicitud(pedido);
         if (r == 1) {
