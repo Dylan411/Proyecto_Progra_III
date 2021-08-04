@@ -30,7 +30,7 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="183" max="32767" attributes="0"/>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
@@ -60,17 +60,17 @@
                                       <Component id="jLabel6" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel7" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jScrollPane1" max="32767" attributes="0"/>
-                                  <Component id="txtTotal" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtDescuento" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtNumPedido" alignment="0" pref="229" max="32767" attributes="0"/>
-                                  <Component id="jDate" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                                      <Component id="txtTotal" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="txtNumPedido" alignment="0" min="-2" pref="229" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jDate" min="-2" pref="250" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="515" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -151,17 +151,12 @@
                       <Component id="jScrollPane1" min="-2" pref="59" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTotal" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDescuento" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnEnviar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -359,16 +354,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTotal">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel8">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Descuento"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtDescuento">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
