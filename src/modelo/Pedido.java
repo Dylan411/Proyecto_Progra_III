@@ -17,7 +17,7 @@ public class Pedido {
     private String fechaVenta;
     private String destino;
     private int total;
-    private byte descuento;
+    private boolean descuento;
     private Usuario usuarios;
     private Clientes clientes;
     private Productos producto;
@@ -28,7 +28,7 @@ public class Pedido {
         
     }
 
-    public Pedido(int idPedido, int numPedido, String fechaVenta, String destino, int total, byte descuento, Usuario usuarios, Clientes clientes, Productos producto, boolean check) {
+    public Pedido(int idPedido, int numPedido, String fechaVenta, String destino, int total, boolean descuento, Usuario usuarios, Clientes clientes, Productos producto, boolean check) {
         this.idPedido = idPedido;
         this.numPedido = numPedido;
         this.fechaVenta = fechaVenta;
@@ -83,11 +83,11 @@ public class Pedido {
         this.total = total;
     }
 
-    public byte getDescuento() {
+    public boolean getDescuento() {
         return descuento;
     }
 
-    public void setDescuento(byte descuento) {
+    public void setDescuento(boolean descuento) {
         this.descuento = descuento;
     }
 
@@ -115,7 +115,7 @@ public class Pedido {
         this.producto = producto;
     }
 
-    public boolean isCheck() {
+    public boolean getCheck() {
         return check;
     }
 
