@@ -88,6 +88,32 @@ public class PedidoDAO {
         return r;
     } 
     
+    public void filtrarTablaTramitar(JTable table, int filtro) throws Conexion.DataBaseException {
+
+        String[] titulos = {"Numero Pedido", "Fecha", "Destino", "ID CLiente", "Total"};
+        String[] registros = new String[4];
+        DefaultTableModel model = new DefaultTableModel(null, titulos);
+        String sql = "SELECT * FROM pedidos WHERE numPedido LIKE '%" + filtro + "%'";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                
+                registros[0] = rs.getString("numPedido");
+                registros[1] = rs.getString("dateActually");
+                registros[2] = rs.getString("destiny");
+                registros[3] = rs.getString("idCliente");
+                registros[4] = rs.getString("total");
+
+                model.addRow(registros);
+            }
+            table.setModel(model);
+        } catch (SQLException e) {
+            System.out.println("Error al buscar los datos" + e.getMessage());
+        }
+    }
+    
   
     
    }

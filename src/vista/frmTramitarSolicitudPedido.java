@@ -350,7 +350,7 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable tblProductos;
     public javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextPane txtDestino;
+    public javax.swing.JTextPane txtDestino;
     public javax.swing.JTextField txtFecha;
     public javax.swing.JTextField txtIdCliente;
     public javax.swing.JTextField txtIdPedido;

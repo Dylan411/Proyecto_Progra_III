@@ -112,7 +112,7 @@ public class ControllerPedido implements ActionListener {
             pedido.setDescuento(false);
         }
        
-        pedido.setCheck(false);
+        pedido.setCheck(0);
 
         int r = dao.enviarSolicitud(pedido);
         if (r == 1) {

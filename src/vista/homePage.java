@@ -8,6 +8,7 @@ package vista;
 import controlador.ControllerPedido;
 import controlador.ControllerProducto;
 import controlador.ControllerProveedores;
+import controlador.ControllerTramitarSolicitudPedido;
 import controlador.ControllerUsuario;
 import controlador.controllerClientes;
 import java.util.logging.Level;
@@ -307,7 +308,7 @@ public class homePage extends javax.swing.JFrame {
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         frmTramitarSolicitudPedido obj = new frmTramitarSolicitudPedido();
         jDesktopPane1.add(obj);
-        ControllerProducto con = new ControllerProducto(obj);
+        ControllerTramitarSolicitudPedido con = new ControllerTramitarSolicitudPedido(obj);
         try {
             con.iniciar();
         } catch (Conexion.DataBaseException ex) {
