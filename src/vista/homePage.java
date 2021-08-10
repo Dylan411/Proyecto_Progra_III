@@ -305,11 +305,27 @@ public class homePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEnviarSolicitudActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
+        frmTramitarSolicitudPedido obj = new frmTramitarSolicitudPedido();
+        jDesktopPane1.add(obj);
+        ControllerProducto con = new ControllerProducto(obj);
+        try {
+            con.iniciar();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
+        obj.setVisible(true);   
+        
+        
+        
+        
+        
+       
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-            frmProductos obj = new frmProductos();
+        frmProductos obj = new frmProductos();
         jDesktopPane1.add(obj);
         ControllerProducto con = new ControllerProducto(obj);
         try {

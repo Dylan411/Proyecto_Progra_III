@@ -66,12 +66,27 @@ public class PedidoDAO {
             ps.setInt(6, order.getUsuarios().getIdUsuario());
             ps.setInt(7, order.getProducto().getIdProducto());
             ps.setInt(8, order.getClientes().getIdCliente());
-            ps.setBoolean(9, order.getCheck());
+            ps.setInt(9, order.getCheck());
             r = ps.executeUpdate();
         } catch (SQLException e) {
         }
         return r;
     }
+    
+    public int tramitarSolicitud(Pedido order) throws Conexion.DataBaseException {
+        int r = 0;
+        String sql = "UPDATE Pedidos SET accepted=?,  WHERE idPedidos=?";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, order.getCheck());
+            ps.setInt(2, order.getIdPedido());
+            
+            r = ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+        return r;
+    } 
     
   
     

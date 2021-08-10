@@ -21,14 +21,14 @@ public class Pedido {
     private Usuario usuarios;
     private Clientes clientes;
     private Productos producto;
-    private boolean check;
+    private int check;
     
 
     public Pedido() {
         
     }
 
-    public Pedido(int idPedido, int numPedido, String fechaVenta, String destino, int total, boolean descuento, Usuario usuarios, Clientes clientes, Productos producto, boolean check) {
+    public Pedido(int idPedido, int numPedido, String fechaVenta, String destino, int total, boolean descuento, Usuario usuarios, Clientes clientes, Productos producto, int check) {
         this.idPedido = idPedido;
         this.numPedido = numPedido;
         this.fechaVenta = fechaVenta;
@@ -115,11 +115,11 @@ public class Pedido {
         this.producto = producto;
     }
 
-    public boolean getCheck() {
+    public int getCheck() {
         return check;
     }
 
-    public void setCheck(boolean check) {
+    public void setCheck(int check) {
         this.check = check;
     }
     
