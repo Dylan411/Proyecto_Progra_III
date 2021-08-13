@@ -229,7 +229,7 @@ public class UsuarioDAO {
             ps = con.prepareStatement(sql);
             rs= ps.executeQuery();
             rs.next();
-            idUsuario = rs.getInt("IdUsuario");
+            idUsuario = rs.getInt("Id");
         }catch(SQLException e){
             
         }

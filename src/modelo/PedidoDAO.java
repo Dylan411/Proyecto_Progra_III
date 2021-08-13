@@ -9,9 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -54,7 +52,7 @@ public class PedidoDAO {
 
     public int enviarSolicitud(Pedido order) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "INSERT INTO Pedidos (numPedido,dateActually, destiny, total, discount,id,idProducto,idCliente,accepted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Pedidos (numPedido,date, destiny, total, discount,id,idProducto,idCliente,accepted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
@@ -101,7 +99,7 @@ public class PedidoDAO {
             while (rs.next()) {
                 
                 registros[0] = rs.getString("numPedido");
-                registros[1] = rs.getString("dateActually");
+                registros[1] = rs.getString("date");
                 registros[2] = rs.getString("destiny");
                 registros[3] = rs.getString("idCliente");
                 registros[4] = rs.getString("total");

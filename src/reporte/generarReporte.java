@@ -26,7 +26,6 @@ import net.sf.jasperreports.view.JasperViewer;
 public class generarReporte {
     JasperReport reporte = null;
     String path = "src\\reporte\\report.jasper";
-    String path1 = "src\\reporte\\report.pdf";
     Conexion conn = new Conexion();
     
     
@@ -43,7 +42,8 @@ public class generarReporte {
         }
     }
     
-    public void guardarPdf() throws  Conexion.DataBaseException, JRException{
+    public void guardarPdf(String num) throws  Conexion.DataBaseException, JRException{
+        String path1 = "src\\reporte\\report"+num+".pdf";
         reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
         JasperPrint jprint1 = (JasperPrint) JasperFillManager.fillReport(reporte, null, conn.getConnexion());
         JasperExportManager.exportReportToPdfFile(jprint1, path1);

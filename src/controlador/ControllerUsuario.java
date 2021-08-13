@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import modelo.Conexion;
@@ -107,14 +109,20 @@ public class ControllerUsuario implements ActionListener {
         u.setContraseña(contraseña);
         u.setTipoUsuario(tipoUsuario);
         u.setActivo(activo);
-        u.setCorreo(correo);
+        Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+        Matcher mather = pattern.matcher(correo);
 
-        int r = dao.agregarUsuario(u);
-        if (r == 1) {
-            JOptionPane.showMessageDialog(vistaUsuario, "Usuario agregado correctamente");
+        if (mather.find() == true) {
+            u.setCorreo(correo);
+            int r = dao.agregarUsuario(u);
+            if (r == 1) {
+                JOptionPane.showMessageDialog(vistaUsuario, "Usuario agregado correctamente");
+            } else {
+                JOptionPane.showMessageDialog(vistaUsuario, "El usuario NO fue agregado");
+            }
         } else {
-            JOptionPane.showMessageDialog(vistaUsuario, "El usuario NO fue agregado");
-        }
+            JOptionPane.showMessageDialog(vistaUsuario, "El email ingresado es inválido.");
+        } 
     }
 
     public void editarUsuario() throws Conexion.DataBaseException {
@@ -131,14 +139,22 @@ public class ControllerUsuario implements ActionListener {
         u.setContraseña(contraseña);
         u.setTipoUsuario(tipoUsuario);
         u.setActivo(activo);
-        u.setCorreo(correo);
-
-        int r = dao.editarUsuario(u);
+        
+        Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+        Matcher mather = pattern.matcher(correo);
+        
+        if (mather.find() == true) {
+            u.setCorreo(correo);
+            int r = dao.editarUsuario(u);
         if (r == 1) {
             JOptionPane.showMessageDialog(vistaUsuario, "Usuario actualizado con exito");
         } else {
             JOptionPane.showMessageDialog(vistaUsuario, "Usuario NO actualizado");
         }
+        } else {
+            JOptionPane.showMessageDialog(vistaUsuario, "El email ingresado es inválido.");
+        } 
+
     }
 
     public void filtrarTablaPorNombreDeUsuario(JTable tabla, String filtro) throws Conexion.DataBaseException {

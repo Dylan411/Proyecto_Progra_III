@@ -11,8 +11,10 @@ import controlador.ControllerProveedores;
 import controlador.ControllerTramitarSolicitudPedido;
 import controlador.ControllerUsuario;
 import controlador.controllerClientes;
+import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import modelo.Conexion;
 import reporte.generarReporte;
 
@@ -316,13 +318,6 @@ public class homePage extends javax.swing.JFrame {
         }
         obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
         obj.setVisible(true);   
-        
-        
-        
-        
-        
-       
-        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
@@ -346,7 +341,14 @@ public class homePage extends javax.swing.JFrame {
 
 
     private void btnInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformacionActionPerformed
-
+        mail.Mail m = new mail.Mail();
+        try {
+            m.enviarFactura("dylanfvm@gmail.com","0");
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnInformacionActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
