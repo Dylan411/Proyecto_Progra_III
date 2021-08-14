@@ -127,9 +127,9 @@ public class ControllerProducto implements ActionListener {
 
         int r = dao.agregarProducto(p);
         if (r == 1) {
-            JOptionPane.showMessageDialog(vistaProductos, "Usuario agregado correctamente");
+            JOptionPane.showMessageDialog(vistaProductos, "Producto agregado correctamente");
         } else {
-            JOptionPane.showMessageDialog(vistaProductos, "El usuario NO fue agregado");
+            JOptionPane.showMessageDialog(vistaProductos, "Producto NO agregado");
         }
     }
 
@@ -154,9 +154,9 @@ public class ControllerProducto implements ActionListener {
 
         int r = dao.editarProducto(p);
         if (r == 1) {
-            JOptionPane.showMessageDialog(vistaProductos, "Usuario actualizado con exito");
+            JOptionPane.showMessageDialog(vistaProductos, "Producto actualizado con exito");
         } else {
-            JOptionPane.showMessageDialog(vistaProductos, "Usuario NO actualizado");
+            JOptionPane.showMessageDialog(vistaProductos, "Producto NO actualizado");
         }
     }
 
@@ -176,9 +176,9 @@ public class ControllerProducto implements ActionListener {
             if (r == 1) {
                 filtrarTablaNomProducto(vistaProductos.tableProducto, "");
                 limpiarCampos();
-                JOptionPane.showMessageDialog(vistaProductos, "Usuario eliminado con exito");
+                JOptionPane.showMessageDialog(vistaProductos, "Producto eliminado con exito");
             } else {
-                JOptionPane.showMessageDialog(vistaProductos, "Usuario NO eliminado");
+                JOptionPane.showMessageDialog(vistaProductos, "Producto NO eliminado");
             }
         }
     }

@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import modelo.Conexion;
 import modelo.Pedido;
 import modelo.PedidoDAO;
+import modelo.Productos;
 import vista.frmTramitarSolicitudPedido;
 
 /**
@@ -24,6 +25,7 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
 
     Pedido pedido = new Pedido();
     PedidoDAO dao = new PedidoDAO();
+    Productos productos = new Productos(); 
     frmTramitarSolicitudPedido vistaTramitar = new frmTramitarSolicitudPedido();
 
     public ControllerTramitarSolicitudPedido(frmTramitarSolicitudPedido frm) {
@@ -79,18 +81,20 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
 
     public void tramitarSolicitud(int num) throws Conexion.DataBaseException {
 
-        int idProducto = Integer.parseInt(vistaTramitar.txtNumPedido.getText());
+        int numPedido = Integer.parseInt(vistaTramitar.txtNumPedido.getText());
         int check = num;
-
-        pedido.setNumPedido(idProducto);
+        
+        
+        
+        pedido.setNumPedido(numPedido);
         pedido.setCheck(check);
 
         int r = dao.tramitarSolicitud(pedido);
 
         if (r == 1) {
-            JOptionPane.showMessageDialog(vistaTramitar, "Usuario actualizado con exito");
+            JOptionPane.showMessageDialog(vistaTramitar, "Solicitud tramitada correctamente");
         } else {
-            JOptionPane.showMessageDialog(vistaTramitar, "Usuario NO actualizado");
+            JOptionPane.showMessageDialog(vistaTramitar, "Solicitud NO tramitada ");
         }
     }
 

@@ -101,12 +101,12 @@ public class ControllerPedido implements ActionListener {
         clientes.setIdCliente(idCliente);
         usuarios.setIdUsuario(idUsuario);
 
+       
+        pedido.setUsuarios(usuarios); 
         pedido.setProducto(productos);
         pedido.setClientes(clientes);
-        pedido.setUsuarios(usuarios);
         pedido.setNumPedido(numPedido);
         pedido.setFechaVenta(fechaVenta);
-
         pedido.setDestino(destino);
         pedido.setTotal(total);
         int condicion = total;

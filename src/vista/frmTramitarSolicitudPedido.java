@@ -294,7 +294,20 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
     private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
         try {
             int fila = tblProductos.getSelectedRow();
+            
+            
             txtIdCliente.setText(tblProductos.getValueAt(fila, 0).toString());
+            txtIdPedido.setText(tblProductos.getValueAt(fila, 1).toString());
+            txtNumPedido.setText(tblProductos.getValueAt(fila, 2).toString());
+            txtFecha.setText(tblProductos.getValueAt(fila, 3).toString());
+            txtDestino.setText(tblProductos.getValueAt(fila, 4).toString());
+            txtTotal.setText(tblProductos.getValueAt(fila, 5).toString());
+            
+           
+           
+            
+            
+            
 
         } catch (Exception e) {
         }
