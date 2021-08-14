@@ -56,7 +56,7 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
         }
         if (e.getSource() == vistaTramitar.btnBuscar) {
             try {
-                filtrarTablaNumProducto(vistaTramitar.tblProductos, Integer.parseInt(vistaTramitar.txtBuscar.getText()));
+                filtrarTablaNumProducto(vistaTramitar.tblProductos, vistaTramitar.txtBuscar.getText());
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -94,12 +94,12 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
         }
     }
 
-    public void filtrarTablaNumProducto(JTable tabla, int filtro) throws Conexion.DataBaseException {
+    public void filtrarTablaNumProducto(JTable tabla, String filtro) throws Conexion.DataBaseException {
         dao.filtrarTablaTramitar(tabla, filtro);
     }
     
     public void limpiarCampos() throws Conexion.DataBaseException {
-        filtrarTablaNumProducto(vistaTramitar.tblProductos, 0 );
+        filtrarTablaNumProducto(vistaTramitar.tblProductos, "" );
         vistaTramitar.txtIdCliente.setText("");
         vistaTramitar.txtNumPedido.setText("");
         vistaTramitar.txtFecha.setText("");
@@ -109,7 +109,7 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
         vistaTramitar.txtBuscar.setText("");
     }
     public void iniciar() throws Conexion.DataBaseException {
-        filtrarTablaNumProducto(vistaTramitar.tblProductos , 0 );
+        filtrarTablaNumProducto(vistaTramitar.tblProductos , "" );
 
     }
 

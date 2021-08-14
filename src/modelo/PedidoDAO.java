@@ -41,7 +41,7 @@ public class PedidoDAO {
                 registros[3] = rs.getString("quantity");
                 registros[4] = rs.getString("description");
                 registros[5] = rs.getString("idProveedor");
-                registros[5] = rs.getString("price");
+                registros[6] = rs.getString("price");
 
                 model.addRow(registros);
             }
@@ -87,10 +87,10 @@ public class PedidoDAO {
         return r;
     }
 
-    public void filtrarTablaTramitar(JTable table, int filtro) throws Conexion.DataBaseException {
+    public void filtrarTablaTramitar(JTable table, String filtro) throws Conexion.DataBaseException {
 
         String[] titulos = {"Numero Pedido", "Fecha", "Destino", "ID CLiente", "Total"};
-        String[] registros = new String[4];
+        String[] registros = new String[5];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
         String sql = "SELECT * FROM pedidos WHERE numPedido LIKE '%" + filtro + "%'";
         try {
