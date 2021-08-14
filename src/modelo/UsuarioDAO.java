@@ -26,7 +26,7 @@ public class UsuarioDAO {
     PreparedStatement ps;
     ResultSet rs;
     Connection con;
-    StringBuilder generatedString= new StringBuilder();
+    StringBuilder generatedString = new StringBuilder();
     //Creo los objetos 
     Conexion conectar = new Conexion();
     Usuario u = new Usuario();
@@ -39,8 +39,6 @@ public class UsuarioDAO {
     public void setGeneratedString(StringBuilder generatedString) {
         this.generatedString = generatedString;
     }
-    
-    
 
     public boolean login(Usuario user) throws Conexion.DataBaseException {
         String sql = "SELECT  * FROM usuarios WHERE userName=? and password = ? and typeUser = ? and act = 1";
@@ -137,7 +135,7 @@ public class UsuarioDAO {
         }
         return r;
     }
-    
+
     public int cambioPassword(Usuario user) throws Conexion.DataBaseException {
         String sql = "SELECT  * FROM usuarios WHERE userName=? and email = ? and act = 1";
 
@@ -159,18 +157,17 @@ public class UsuarioDAO {
             return 0;
         }
     }
-    
-    public void generarCodigoRamdom(){
+
+    public void generarCodigoRamdom() {
         SecureRandom secureRandom = new SecureRandom();
         String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789$@!$%^&*";
         for (int i = 0; i < 8; i++) {
-            int randonSequence = secureRandom .nextInt(CHARACTERS.length());
+            int randonSequence = secureRandom.nextInt(CHARACTERS.length());
             generatedString.append(CHARACTERS.charAt(randonSequence));
         }
         setGeneratedString(generatedString);
     }
-    
-    
+
     public int insertarCodigo(Usuario user) throws Conexion.DataBaseException, UnsupportedEncodingException, MessagingException {
         int r = 0;
         String sql = "UPDATE usuarios SET cod=?  WHERE email=?";
@@ -178,7 +175,7 @@ public class UsuarioDAO {
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
-            ps.setString(1,getGeneratedString().toString());
+            ps.setString(1, getGeneratedString().toString());
             ps.setString(2, user.getCorreo());
             r = ps.executeUpdate();
             mail.enviarMail(user.getCorreo(), getGeneratedString().toString());
@@ -186,6 +183,7 @@ public class UsuarioDAO {
         }
         return r;
     }
+
     public int insertarPassword(Usuario user) throws Conexion.DataBaseException, UnsupportedEncodingException, MessagingException {
         int r = 0;
         String sql = "UPDATE usuarios SET password=?  WHERE email=?";
@@ -199,6 +197,7 @@ public class UsuarioDAO {
         }
         return r;
     }
+
     public int compararCodigo(Usuario user) throws Conexion.DataBaseException {
         String sql = "SELECT  * FROM usuarios WHERE userName=? and cod= ? ";
 
@@ -220,18 +219,18 @@ public class UsuarioDAO {
             return 0;
         }
     }
-    
-      public int cargarIdUsuario(String nombreUsuario)throws Conexion.DataBaseException{
-        int idUsuario=0;
-        String sql="SELECT id FROM Usuarios WHERE userName='" + nombreUsuario + "'";
-        try{
+
+    public int cargarIdUsuario(String nombreUsuario) throws Conexion.DataBaseException {
+        int idUsuario = 0;
+        String sql = "SELECT id FROM usuarios WHERE userName='" + nombreUsuario + "'";
+        try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
-            rs= ps.executeQuery();
+            rs = ps.executeQuery();
             rs.next();
-            idUsuario = rs.getInt("Id");
-        }catch(SQLException e){
-            
+            idUsuario = rs.getInt("id");
+        } catch (SQLException e) {
+
         }
         return idUsuario;
     }

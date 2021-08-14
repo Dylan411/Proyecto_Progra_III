@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author Janda
  */
 public class Pedido {
+
     private int idPedido;
     private int numPedido;
     private String fechaVenta;
@@ -22,13 +23,13 @@ public class Pedido {
     private Clientes clientes;
     private Productos producto;
     private int check;
-    
 
     public Pedido() {
-        
+
     }
 
     public Pedido(int idPedido, int numPedido, String fechaVenta, String destino, int total, boolean descuento, Usuario usuarios, Clientes clientes, Productos producto, int check) {
+
         this.idPedido = idPedido;
         this.numPedido = numPedido;
         this.fechaVenta = fechaVenta;
@@ -48,8 +49,6 @@ public class Pedido {
     public void setNumPedido(int numPedido) {
         this.numPedido = numPedido;
     }
-
-   
 
     public int getIdPedido() {
         return idPedido;
@@ -83,7 +82,7 @@ public class Pedido {
         this.total = total;
     }
 
-    public boolean getDescuento() {
+    public boolean isDescuento() {
         return descuento;
     }
 
@@ -122,7 +121,4 @@ public class Pedido {
     public void setCheck(int check) {
         this.check = check;
     }
-    
-    }
-
-    
+}

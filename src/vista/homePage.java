@@ -15,6 +15,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
+import javax.swing.JOptionPane;
 import modelo.Conexion;
 import reporte.generarReporte;
 
@@ -72,6 +73,9 @@ public class homePage extends javax.swing.JFrame {
         btnOrdenCompra = new javax.swing.JMenuItem();
         btnFactura = new javax.swing.JMenuItem();
         btnReportes = new javax.swing.JMenu();
+        btnReporteClientes = new javax.swing.JMenuItem();
+        btnReportePedidos = new javax.swing.JMenuItem();
+        btnReporteInventario = new javax.swing.JMenuItem();
         btnAyuda = new javax.swing.JMenu();
         btnInformacion = new javax.swing.JMenuItem();
 
@@ -246,6 +250,31 @@ public class homePage extends javax.swing.JFrame {
         jMenuBar1.add(btnAprobarSolicitudes);
 
         btnReportes.setText("Reportes");
+
+        btnReporteClientes.setText("Clientes");
+        btnReporteClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteClientesActionPerformed(evt);
+            }
+        });
+        btnReportes.add(btnReporteClientes);
+
+        btnReportePedidos.setText("Pedidos");
+        btnReportePedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportePedidosActionPerformed(evt);
+            }
+        });
+        btnReportes.add(btnReportePedidos);
+
+        btnReporteInventario.setText("Inventario");
+        btnReporteInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteInventarioActionPerformed(evt);
+            }
+        });
+        btnReportes.add(btnReporteInventario);
+
         jMenuBar1.add(btnReportes);
 
         btnAyuda.setText("Ayuda");
@@ -412,6 +441,37 @@ public class homePage extends javax.swing.JFrame {
     
     }//GEN-LAST:event_btnClientesActionPerformed
 
+    private void btnReporteClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteClientesActionPerformed
+        // TODO add your handling code here:
+        reporte.generarReporte r = new generarReporte();
+        try {
+            r.abrirReporteClientes(JOptionPane.showInputDialog(null, "Digite el nombre de la compañia"));
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_btnReporteClientesActionPerformed
+
+    private void btnReportePedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportePedidosActionPerformed
+        // TODO add your handling code here:
+        reporte.generarReporte r = new generarReporte();
+        try {   
+            r.abrirReportePedidos();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReportePedidosActionPerformed
+
+    private void btnReporteInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteInventarioActionPerformed
+        // TODO add your handling code here:
+        reporte.generarReporte r = new generarReporte();
+        try {
+            r.abrirReporteInventario();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReporteInventarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -462,6 +522,9 @@ public class homePage extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnProcesarSolicitudes;
     private javax.swing.JMenuItem btnProductos;
     private javax.swing.JMenuItem btnProveedores;
+    private javax.swing.JMenuItem btnReporteClientes;
+    private javax.swing.JMenuItem btnReporteInventario;
+    private javax.swing.JMenuItem btnReportePedidos;
     private javax.swing.JMenu btnReportes;
     private javax.swing.JMenuItem btnSalir;
     private javax.swing.JMenu btnSolicitarPedido;

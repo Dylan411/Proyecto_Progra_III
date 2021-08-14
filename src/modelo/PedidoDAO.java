@@ -60,7 +60,7 @@ public class PedidoDAO {
             ps.setString(2, order.getFechaVenta());
             ps.setString(3, order.getDestino());
             ps.setInt(4, order.getTotal());
-            ps.setBoolean(5, order.getDescuento());
+            ps.setBoolean(5, order.isDescuento());
             ps.setInt(6, order.getUsuarios().getIdUsuario());
             ps.setInt(7, order.getProducto().getIdProducto());
             ps.setInt(8, order.getClientes().getIdCliente());
@@ -70,7 +70,7 @@ public class PedidoDAO {
         }
         return r;
     }
-    
+
     public int tramitarSolicitud(Pedido order) throws Conexion.DataBaseException {
         int r = 0;
         String sql = "UPDATE Pedidos SET accepted=?,  WHERE idPedidos=?";
@@ -79,13 +79,13 @@ public class PedidoDAO {
             ps = con.prepareStatement(sql);
             ps.setInt(1, order.getCheck());
             ps.setInt(2, order.getIdPedido());
-            
+
             r = ps.executeUpdate();
         } catch (SQLException e) {
         }
         return r;
-    } 
-    
+    }
+
     public void filtrarTablaTramitar(JTable table, int filtro) throws Conexion.DataBaseException {
 
         String[] titulos = {"Numero Pedido", "Fecha", "Destino", "ID CLiente", "Total"};
@@ -97,7 +97,7 @@ public class PedidoDAO {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                
+
                 registros[0] = rs.getString("numPedido");
                 registros[1] = rs.getString("date");
                 registros[2] = rs.getString("destiny");
@@ -111,12 +111,4 @@ public class PedidoDAO {
             System.out.println("Error al buscar los datos" + e.getMessage());
         }
     }
-    
-  
-    
-   }
-
-  
-
-   
- 
+}
