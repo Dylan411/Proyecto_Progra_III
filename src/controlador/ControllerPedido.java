@@ -43,6 +43,7 @@ public class ControllerPedido implements ActionListener {
         this.vistaPedido.btnEnviar.addActionListener(this);
         this.vistaPedido.btnCancelar.addActionListener(this);
         this.vistaPedido.cbClientes.addActionListener(this);
+        this.vistaPedido.btnBuscar.addActionListener(this);
     }
 
     @Override
@@ -75,8 +76,15 @@ public class ControllerPedido implements ActionListener {
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
+        if (e.getSource() == vistaPedido.btnBuscar) {
+            try {
+                filtrarTablaNombre(vistaPedido.tblProductos, vistaPedido.txtBuscar.getText());
+            } catch (Conexion.DataBaseException ex) {
+                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }
 
     public void enviarSolicitud() throws Conexion.DataBaseException {
@@ -102,13 +110,13 @@ public class ControllerPedido implements ActionListener {
         pedido.setDestino(destino);
         pedido.setTotal(total);
         int condicion = total;
-        if(condicion > 10){
+        if (condicion > 10) {
             pedido.setDescuento(true);
-            
-        }else{
+
+        } else {
             pedido.setDescuento(false);
         }
-       
+
         pedido.setCheck(0);
 
         int r = dao.enviarSolicitud(pedido);

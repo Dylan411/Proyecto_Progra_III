@@ -41,6 +41,7 @@ public class PedidoDAO {
                 registros[3] = rs.getString("quantity");
                 registros[4] = rs.getString("description");
                 registros[5] = rs.getString("idProveedor");
+                registros[5] = rs.getString("price");
 
                 model.addRow(registros);
             }
