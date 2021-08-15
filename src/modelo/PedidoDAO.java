@@ -53,7 +53,7 @@ public class PedidoDAO {
 
     public int enviarSolicitud(Pedido order) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "INSERT INTO Pedidos (numPedido, dateActually, destiny, total, discount, id, idProducto, idCliente, accepted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Pedidos (numPedido, date, destiny, total, discount, id, idProducto, idCliente, accepted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
@@ -102,7 +102,7 @@ public class PedidoDAO {
                 registros[0] = rs.getString("idCliente");
                 registros[1] = rs.getString("idPedidos");
                 registros[2] = rs.getString("numPedido");
-                registros[3] = rs.getString("dateActually");
+                registros[3] = rs.getString("date");
                 registros[4] = rs.getString("destiny");
                 registros[5] = rs.getString("total");
                 registros[6] = rs.getString("accepted");

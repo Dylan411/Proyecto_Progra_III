@@ -93,7 +93,7 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
 
         int r = peDao.tramitarSolicitud(pedido);
 
-        if (r == 1) {
+        if (r > 1) {
             JOptionPane.showMessageDialog(vistaTramitar, "Solicitud tramitada correctamente");
         } else {
             JOptionPane.showMessageDialog(vistaTramitar, "Solicitud NO tramitada ");
