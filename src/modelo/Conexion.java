@@ -23,7 +23,7 @@ public class Conexion {
     private final static String IP = "localhost";
     private final static String PUERTO = "3306";
     private final static String USUARIO = "root";
-    private final static String CLAVE = "mierdita100"
+    private final static String CLAVE = "adminadmin"
             + ""
             + ""
             + ""
