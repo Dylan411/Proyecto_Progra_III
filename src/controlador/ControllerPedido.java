@@ -42,7 +42,8 @@ public class ControllerPedido implements ActionListener {
         this.vistaPedido = frm;
         this.vistaPedido.btnEnviar.addActionListener(this);
         this.vistaPedido.btnCancelar.addActionListener(this);
-        this.vistaPedido.cbClientes.addActionListener(this);
+        this.vistaPedido.btnAgregar.addActionListener(this);
+        this.vistaPedido.btnEliminar.addActionListener(this);
         this.vistaPedido.btnBuscar.addActionListener(this);
     }
 
@@ -69,14 +70,6 @@ public class ControllerPedido implements ActionListener {
             }
 
         }
-        if (e.getSource() == vistaPedido.cbClientes) {
-
-            try {
-                clieDAO.cargarIdCliente(vistaPedido.cbClientes, vistaPedido.txtIdCliente);
-            } catch (Conexion.DataBaseException ex) {
-                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
         if (e.getSource() == vistaPedido.btnBuscar) {
             try {
                 filtrarTablaNombre(vistaPedido.tblProductos, vistaPedido.txtBuscar.getText());
@@ -84,7 +77,6 @@ public class ControllerPedido implements ActionListener {
                 Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
 
     public void enviarSolicitud() throws Conexion.DataBaseException {
@@ -93,14 +85,13 @@ public class ControllerPedido implements ActionListener {
         Integer idUsuario = Integer.parseInt(homePage.lblId2.getText());
         int numPedido = Integer.parseInt(vistaPedido.txtNumPedido.getText());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaVenta = sdf.format(vistaPedido.jDate.getDate());
+        String fechaVenta = sdf.format(vistaPedido.txtFecha.getText());
         String destino = vistaPedido.txtDestino.getText();
         int total = Integer.parseInt(vistaPedido.txtTotal.getText());
 
         productos.setIdProducto(idProducto);
         clientes.setIdCliente(idCliente);
         usuarios.setIdUsuario(idUsuario);
-
        
         pedido.setUsuarios(usuarios); 
         pedido.setProducto(productos);
@@ -125,12 +116,10 @@ public class ControllerPedido implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(vistaPedido, "La solicitud NO fue enviada");
         }
-
     }
 
     public void iniciar() throws Conexion.DataBaseException {
         filtrarTablaNombre(vistaPedido.tblProductos, "");
-
         cargarComboClientes();
     }
 
@@ -139,7 +128,12 @@ public class ControllerPedido implements ActionListener {
     }
 
     public void limpiarCampos() throws Conexion.DataBaseException {
-
+        vistaPedido.txtBuscar.setText("");
+        vistaPedido.txtCantidadProduc.setText("");
+        vistaPedido.txtNumPedido.setText("");
+        vistaPedido.txtFecha.setText("");
+        vistaPedido.txtDestino.setText("");
+        vistaPedido.txtTotal.setText("");
     }
 
     public void cargarComboClientes() throws Conexion.DataBaseException {
