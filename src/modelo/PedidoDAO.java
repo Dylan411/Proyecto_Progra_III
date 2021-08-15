@@ -74,13 +74,13 @@ public class PedidoDAO {
 
     public int tramitarSolicitud(Pedido order) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "UPDATE Pedidos SET accepted=?,  WHERE numPedido=?";
+        String sql = "UPDATE Pedidos SET accepted=?  WHERE numPedido=?";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
             ps.setInt(1, order.getCheck());
             ps.setInt(2, order.getNumPedido());
-
+            
             r = ps.executeUpdate();
         } catch (SQLException e) {
         }
@@ -89,8 +89,8 @@ public class PedidoDAO {
 
     public void filtrarTablaTramitar(JTable table, String filtro) throws Conexion.DataBaseException {
 
-        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total"};
-        String[] registros = new String[6];
+        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
+        String[] registros = new String[7];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
         String sql = "SELECT * FROM pedidos WHERE numPedido LIKE '%" + filtro + "%'";
         try {
@@ -105,6 +105,7 @@ public class PedidoDAO {
                 registros[3] = rs.getString("dateActually");
                 registros[4] = rs.getString("destiny");
                 registros[5] = rs.getString("total");
+                registros[6] = rs.getString("accepted");
 
                 model.addRow(registros);
             }

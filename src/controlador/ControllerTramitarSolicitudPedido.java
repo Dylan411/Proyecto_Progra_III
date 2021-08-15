@@ -24,7 +24,7 @@ import vista.frmTramitarSolicitudPedido;
 public class ControllerTramitarSolicitudPedido implements ActionListener {
 
     Pedido pedido = new Pedido();
-    PedidoDAO dao = new PedidoDAO();
+    PedidoDAO peDao = new PedidoDAO();
     Productos productos = new Productos(); 
     frmTramitarSolicitudPedido vistaTramitar = new frmTramitarSolicitudPedido();
 
@@ -43,6 +43,7 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
         if (e.getSource() == vistaTramitar.btnAceptar) {
             try {
                 tramitarSolicitud(1);
+                filtrarTablaNumProducto(vistaTramitar.tblProductos, "");
 
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,6 +52,7 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
         if (e.getSource() == vistaTramitar.btnRechazar) {
             try {
                 tramitarSolicitud(2);
+                filtrarTablaNumProducto(vistaTramitar.tblProductos, "");
 
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -89,7 +91,7 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
         pedido.setNumPedido(numPedido);
         pedido.setCheck(check);
 
-        int r = dao.tramitarSolicitud(pedido);
+        int r = peDao.tramitarSolicitud(pedido);
 
         if (r == 1) {
             JOptionPane.showMessageDialog(vistaTramitar, "Solicitud tramitada correctamente");
@@ -99,7 +101,7 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
     }
 
     public void filtrarTablaNumProducto(JTable tabla, String filtro) throws Conexion.DataBaseException {
-        dao.filtrarTablaTramitar(tabla, filtro);
+        peDao.filtrarTablaTramitar(tabla, filtro);
     }
     
     public void limpiarCampos() throws Conexion.DataBaseException {
