@@ -67,7 +67,6 @@ public class homePage extends javax.swing.JFrame {
         btnProductos = new javax.swing.JMenuItem();
         btnSolicitudes = new javax.swing.JMenuItem();
         btnAprobarSolicitudes = new javax.swing.JMenu();
-        btnProcesarSolicitudes = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         btnDespachar = new javax.swing.JMenuItem();
         btnFactura = new javax.swing.JMenuItem();
@@ -206,10 +205,6 @@ public class homePage extends javax.swing.JFrame {
 
         btnAprobarSolicitudes.setText("Gestionar orden");
 
-        btnProcesarSolicitudes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/proceso (1).png"))); // NOI18N
-        btnProcesarSolicitudes.setText("Procesar solicitudes");
-        btnAprobarSolicitudes.add(btnProcesarSolicitudes);
-
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista-de-verificacion.png"))); // NOI18N
         jMenuItem2.setText("Aprobar solicitudes");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -241,6 +236,7 @@ public class homePage extends javax.swing.JFrame {
 
         btnReportes.setText("Reportes");
 
+        btnReporteClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png"))); // NOI18N
         btnReporteClientes.setText("Clientes");
         btnReporteClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,6 +245,7 @@ public class homePage extends javax.swing.JFrame {
         });
         btnReportes.add(btnReporteClientes);
 
+        btnReportePedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista-de-la-compra.png"))); // NOI18N
         btnReportePedidos.setText("Pedidos");
         btnReportePedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,6 +254,7 @@ public class homePage extends javax.swing.JFrame {
         });
         btnReportes.add(btnReportePedidos);
 
+        btnReporteInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventario.png"))); // NOI18N
         btnReporteInventario.setText("Inventario");
         btnReporteInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -497,7 +495,6 @@ public class homePage extends javax.swing.JFrame {
     public javax.swing.JMenu btnGestionarInventario;
     private javax.swing.JMenuItem btnInformacion;
     private javax.swing.JMenu btnMantenimiento;
-    private javax.swing.JMenuItem btnProcesarSolicitudes;
     private javax.swing.JMenuItem btnProductos;
     private javax.swing.JMenuItem btnProveedores;
     private javax.swing.JMenuItem btnReporteClientes;
