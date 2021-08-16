@@ -16,6 +16,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
      */
     public frmProductos() {
         initComponents();
+        txtIdProveedor.setVisible(false);
     }
 
     /**

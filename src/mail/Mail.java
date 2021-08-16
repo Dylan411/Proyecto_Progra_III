@@ -8,8 +8,8 @@ package mail;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
+//import javax.activation.DataHandler;
+//import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -84,7 +84,7 @@ public class Mail {
             mail.setSubject(asunto);
             mail.setText(mensaje);
             BodyPart adjunto = new MimeBodyPart();
-            adjunto.setDataHandler(new DataHandler(new FileDataSource("src\\reporte\\report"+num+".pdf")));
+            //adjunto.setDataHandler(new DataHandler(new FileDataSource("src\\reporte\\report"+num+".pdf")));
             adjunto.setFileName("report.pdf");
             MimeMultipart multiParte = new MimeMultipart();
             multiParte.addBodyPart(adjunto);

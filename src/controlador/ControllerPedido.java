@@ -8,6 +8,7 @@ package controlador;
 import Helpers.Helpers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JTable;
 import java.util.logging.Level;
@@ -45,6 +46,7 @@ public class ControllerPedido implements ActionListener {
         this.vistaPedido.btnAgregar.addActionListener(this);
         this.vistaPedido.btnEliminar.addActionListener(this);
         this.vistaPedido.btnBuscar.addActionListener(this);
+        this.vistaPedido.cbClientes.addActionListener(this);
     }
 
     @Override
@@ -60,7 +62,6 @@ public class ControllerPedido implements ActionListener {
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
         if (e.getSource() == vistaPedido.btnCancelar) {
             try {
@@ -68,7 +69,6 @@ public class ControllerPedido implements ActionListener {
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
         if (e.getSource() == vistaPedido.btnBuscar) {
             try {
@@ -77,23 +77,30 @@ public class ControllerPedido implements ActionListener {
                 Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        if (e.getSource() == vistaPedido.cbClientes) {
+            try {
+                clieDAO.cargarIdCliente(vistaPedido.cbClientes, vistaPedido.txtIdCliente);
+            } catch (Conexion.DataBaseException ex) {
+                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public void enviarSolicitud() throws Conexion.DataBaseException {
-        Integer idCliente = Integer.parseInt(vistaPedido.cbClientes.getSelectedItem().toString());
+        Integer idCliente = Integer.parseInt(vistaPedido.txtIdCliente.getText());
         Integer idProducto = Integer.parseInt(vistaPedido.txtIdProducto.getText());
         Integer idUsuario = Integer.parseInt(homePage.lblId2.getText());
         int numPedido = Integer.parseInt(vistaPedido.txtNumPedido.getText());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaVenta = sdf.format(vistaPedido.txtFecha.getText());
+        String fechaVenta = sdf.format(vistaPedido.dcFecha.getDate());
         String destino = vistaPedido.txtDestino.getText();
         int total = Integer.parseInt(vistaPedido.txtTotal.getText());
 
         productos.setIdProducto(idProducto);
         clientes.setIdCliente(idCliente);
         usuarios.setIdUsuario(idUsuario);
-       
-        pedido.setUsuarios(usuarios); 
+
+        pedido.setUsuarios(usuarios);
         pedido.setProducto(productos);
         pedido.setClientes(clientes);
         pedido.setNumPedido(numPedido);
@@ -131,9 +138,11 @@ public class ControllerPedido implements ActionListener {
         vistaPedido.txtBuscar.setText("");
         vistaPedido.txtCantidadProduc.setText("");
         vistaPedido.txtNumPedido.setText("");
-        vistaPedido.txtFecha.setText("");
+        vistaPedido.dcFecha.setCalendar(null);
         vistaPedido.txtDestino.setText("");
         vistaPedido.txtTotal.setText("");
+        vistaPedido.txtIdProducto.setText("");
+        clieDAO.cargarComboCliente(vistaPedido.cbClientes);
     }
 
     public void cargarComboClientes() throws Conexion.DataBaseException {

@@ -26,7 +26,7 @@ public class PedidoDAO {
 
     public void filtrarTablaNombre(JTable table, String filtro) throws Conexion.DataBaseException {
 
-        String[] titulos = {"idProducto", "nombreProducto", "tipoProducto", "cantidad", "descripcion", "idProveedor", "precio"};
+        String[] titulos = {"idProducto", "nombreProducto", "tipoProducto", "cantidad en stock", "descripcion", "idProveedor", "precio"};
         String[] registros = new String[7];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
         String sql = "SELECT * FROM Productos WHERE name LIKE '%" + filtro + "%'";

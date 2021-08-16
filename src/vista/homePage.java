@@ -70,7 +70,6 @@ public class homePage extends javax.swing.JFrame {
         btnProcesarSolicitudes = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         btnDespachar = new javax.swing.JMenuItem();
-        btnOrdenCompra = new javax.swing.JMenuItem();
         btnFactura = new javax.swing.JMenuItem();
         btnReportes = new javax.swing.JMenu();
         btnReporteClientes = new javax.swing.JMenuItem();
@@ -228,15 +227,6 @@ public class homePage extends javax.swing.JFrame {
             }
         });
         btnAprobarSolicitudes.add(btnDespachar);
-
-        btnOrdenCompra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista-de-la-compra.png"))); // NOI18N
-        btnOrdenCompra.setText("Orden de compra");
-        btnOrdenCompra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOrdenCompraActionPerformed(evt);
-            }
-        });
-        btnAprobarSolicitudes.add(btnOrdenCompra);
 
         btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/factura (2).png"))); // NOI18N
         btnFactura.setText("Factura");
@@ -400,17 +390,6 @@ public class homePage extends javax.swing.JFrame {
         obj.setVisible(true);
     }//GEN-LAST:event_btnDespacharActionPerformed
 
-    private void btnOrdenCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrdenCompraActionPerformed
-        // TODO add your handling code here:
-        frmGenerarOrdenCompra obj = new frmGenerarOrdenCompra();
-        jDesktopPane1.add(obj);
-        //ControllerGenerarOrdenCompra con = new ControllerGenerarOrdenCompra(obj);
-        //con.iniciar();
-        obj.toFront();
-        obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
-        obj.setVisible(true);
-    }//GEN-LAST:event_btnOrdenCompraActionPerformed
-
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
         // TODO add your handling code here:
         frmProveedores obj = new frmProveedores();
@@ -518,7 +497,6 @@ public class homePage extends javax.swing.JFrame {
     public javax.swing.JMenu btnGestionarInventario;
     private javax.swing.JMenuItem btnInformacion;
     private javax.swing.JMenu btnMantenimiento;
-    private javax.swing.JMenuItem btnOrdenCompra;
     private javax.swing.JMenuItem btnProcesarSolicitudes;
     private javax.swing.JMenuItem btnProductos;
     private javax.swing.JMenuItem btnProveedores;
