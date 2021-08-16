@@ -80,7 +80,7 @@ public class ControllerPedido implements ActionListener {
     }
 
     public void enviarSolicitud() throws Conexion.DataBaseException {
-        Integer idCliente = Integer.parseInt(vistaPedido.txtIdCliente.getText());
+        Integer idCliente = Integer.parseInt(vistaPedido.cbClientes.getSelectedItem().toString());
         Integer idProducto = Integer.parseInt(vistaPedido.txtIdProducto.getText());
         Integer idUsuario = Integer.parseInt(homePage.lblId2.getText());
         int numPedido = Integer.parseInt(vistaPedido.txtNumPedido.getText());
