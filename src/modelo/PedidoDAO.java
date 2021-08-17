@@ -114,4 +114,59 @@ public class PedidoDAO {
             System.out.println("Error al buscar los datos" + e.getMessage());
         }
     }
+     public void filtrarTablaNegada(JTable table, String filtro) throws Conexion.DataBaseException {
+
+        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
+        String[] registros = new String[7];
+        DefaultTableModel model = new DefaultTableModel(null, titulos);
+        String sql = "SELECT * FROM pedidos WHERE  numPedido LIKE '%" + filtro + "%'";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                registros[0] = rs.getString("idCliente");
+                registros[1] = rs.getString("idPedidos");
+                registros[2] = rs.getString("numPedido");
+                registros[3] = rs.getString("date");
+                registros[4] = rs.getString("destiny");
+                registros[5] = rs.getString("total");
+                registros[6] = rs.getString("accepted");
+
+                model.addRow(registros);
+            }
+            table.setModel(model);
+        } catch (SQLException e) {
+            System.out.println("Error al buscar los datos" + e.getMessage());
+        }
+    }
+        public void iniciar(JTable table, String filtro) throws Conexion.DataBaseException {
+
+        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
+        String[] registros = new String[7];
+        DefaultTableModel model = new DefaultTableModel(null, titulos);
+        String sql = "SELECT * FROM pedidos WHERE  accepted=2";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                registros[0] = rs.getString("idCliente");
+                registros[1] = rs.getString("idPedidos");
+                registros[2] = rs.getString("numPedido");
+                registros[3] = rs.getString("date");
+                registros[4] = rs.getString("destiny");
+                registros[5] = rs.getString("total");
+                registros[6] = rs.getString("accepted");
+
+                model.addRow(registros);
+            }
+            table.setModel(model);
+        } catch (SQLException e) {
+            System.out.println("Error al buscar los datos" + e.getMessage());
+        }
+    }
 }
+   
