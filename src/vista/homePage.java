@@ -8,6 +8,7 @@ package vista;
 import controlador.ControllerPedido;
 import controlador.ControllerProducto;
 import controlador.ControllerProveedores;
+import controlador.ControllerSolicitudesNegadas;
 import controlador.ControllerTramitarSolicitudPedido;
 import controlador.ControllerUsuario;
 import controlador.controllerClientes;
@@ -70,6 +71,7 @@ public class homePage extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         btnDespachar = new javax.swing.JMenuItem();
         btnFactura = new javax.swing.JMenuItem();
+        btnNegadas = new javax.swing.JMenuItem();
         btnReportes = new javax.swing.JMenu();
         btnReporteClientes = new javax.swing.JMenuItem();
         btnReportePedidos = new javax.swing.JMenuItem();
@@ -231,6 +233,15 @@ public class homePage extends javax.swing.JFrame {
             }
         });
         btnAprobarSolicitudes.add(btnFactura);
+
+        btnNegadas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista-de-verificacion.png"))); // NOI18N
+        btnNegadas.setText("Solicitudes negadas");
+        btnNegadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNegadasActionPerformed(evt);
+            }
+        });
+        btnAprobarSolicitudes.add(btnNegadas);
 
         jMenuBar1.add(btnAprobarSolicitudes);
 
@@ -459,6 +470,21 @@ public class homePage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnReporteInventarioActionPerformed
 
+    private void btnNegadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNegadasActionPerformed
+        frmSolicitudesNegadas obj = new frmSolicitudesNegadas();
+        jDesktopPane1.add(obj);
+        ControllerSolicitudesNegadas con = new ControllerSolicitudesNegadas(obj);
+        try {
+            con.iniciar();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
+        obj.setVisible(true);   
+                                           
+
+    }//GEN-LAST:event_btnNegadasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -505,6 +531,7 @@ public class homePage extends javax.swing.JFrame {
     public javax.swing.JMenu btnGestionarInventario;
     private javax.swing.JMenuItem btnInformacion;
     private javax.swing.JMenu btnMantenimiento;
+    private javax.swing.JMenuItem btnNegadas;
     private javax.swing.JMenuItem btnProductos;
     private javax.swing.JMenuItem btnProveedores;
     private javax.swing.JMenuItem btnReporteClientes;
