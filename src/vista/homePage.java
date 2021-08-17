@@ -358,14 +358,24 @@ public class homePage extends javax.swing.JFrame {
 
 
     private void btnInformacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInformacionActionPerformed
-        mail.Mail m = new mail.Mail();
+        /*mail.Mail m = new mail.Mail();
         try {
             m.enviarFactura("dylanfvm@gmail.com","0");
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MessagingException ex) {
             Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
+        JOptionPane.showMessageDialog(null, "*****GRACIAS POR UTILIZAR ESTA APLICACION*****" + "\n\n"
+                                            + "Programadores: " + "\n"
+                                            + "-Jan Chris Solís Díaz" + "\n"
+                                            + "-Adrián Somarribas Brenes" + "\n"
+                                            + "-Isabel Uribe Álvarez" + "\n"
+                                            + "-Dylan Fabian Vargas Martínez" + "\n"
+                                            + "-Kevin Alberto Barquero Brenes" + "\n\n"
+                                            + "Elaborado el 16 de Agosto del 2021" + "\n\n"
+                                            + "Esta aplicacion fue elaborada con lucros" + "\n"
+                                            + "educativos para el curso de Programacion III");
     }//GEN-LAST:event_btnInformacionActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
