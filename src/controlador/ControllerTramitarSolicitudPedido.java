@@ -42,8 +42,15 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
 
         if (e.getSource() == vistaTramitar.btnAceptar) {
             try {
-                tramitarSolicitud(1);
+                if (vistaTramitar.txtEstado.equals(0)) {
+                    tramitarSolicitud(1);
                 filtrarTablaNumProducto(vistaTramitar.tblProductos, "");
+                     
+                }else{
+                    JOptionPane.showMessageDialog(vistaTramitar, "Solicitud ya ha sido tramitada");
+                }
+                    
+                
 
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,8 +58,14 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
         }
         if (e.getSource() == vistaTramitar.btnRechazar) {
             try {
-                tramitarSolicitud(2);
+                if (vistaTramitar.txtEstado.equals(0)) {
+                    tramitarSolicitud(2);
                 filtrarTablaNumProducto(vistaTramitar.tblProductos, "");
+                     
+                }else{
+                    JOptionPane.showMessageDialog(vistaTramitar, "Solicitud ya ha sido tramitada");
+                }
+                
 
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);

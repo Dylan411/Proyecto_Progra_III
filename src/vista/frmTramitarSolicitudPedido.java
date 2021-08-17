@@ -16,6 +16,7 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
      */
     public frmTramitarSolicitudPedido() {
         initComponents();
+        txtEstado.setVisible(false);
     }
 
     /**
@@ -53,6 +54,7 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
         btnRechazar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        txtEstado = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -217,6 +219,13 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Informacion Solicitud");
 
+        txtEstado.setEditable(false);
+        txtEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEstadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,7 +247,8 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
                             .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnRefrescar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRechazar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnRechazar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -268,14 +278,16 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar)
                         .addGap(30, 30, 30)
                         .addComponent(btnRefrescar)
@@ -302,7 +314,7 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
             txtFecha.setText(tblProductos.getValueAt(fila, 3).toString());
             txtDestino.setText(tblProductos.getValueAt(fila, 4).toString());
             txtTotal.setText(tblProductos.getValueAt(fila, 5).toString());
-            
+            txtEstado.setText(tblProductos.getValueAt(fila, 6).toString());
            
            
             
@@ -341,6 +353,10 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdProducto2ActionPerformed
 
+    private void txtEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEstadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAceptar;
@@ -364,6 +380,7 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
     public javax.swing.JTable tblProductos;
     public javax.swing.JTextField txtBuscar;
     public javax.swing.JTextPane txtDestino;
+    public javax.swing.JTextField txtEstado;
     public javax.swing.JTextField txtFecha;
     public javax.swing.JTextField txtIdCliente;
     public javax.swing.JTextField txtIdPedido;
