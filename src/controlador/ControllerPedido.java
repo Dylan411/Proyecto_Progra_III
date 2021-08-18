@@ -116,7 +116,7 @@ public class ControllerPedido implements ActionListener {
         }
 
         pedido.setCheck(0);
-
+        pedido.setdespachada(0);
         int r = dao.enviarSolicitud(pedido);
         if (r == 1) {
             JOptionPane.showMessageDialog(vistaPedido, "Solicitud enviada correctamente");
