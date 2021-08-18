@@ -53,7 +53,7 @@ public class PedidoDAO {
 
     public int enviarSolicitud(Pedido order) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "INSERT INTO Pedidos (numPedido, date, destiny, total, discount, id, idProducto, idCliente, accepted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Pedidos (numPedido, date, destiny, total, discount, id, idProducto, idCliente, accepted,dispatched) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
@@ -66,6 +66,7 @@ public class PedidoDAO {
             ps.setInt(7, order.getProducto().getIdProducto());
             ps.setInt(8, order.getClientes().getIdCliente());
             ps.setInt(9, order.getCheck());
+            ps.setInt(10, order.getdespachada());
             r = ps.executeUpdate();
         } catch (SQLException e) {
         }
@@ -80,7 +81,7 @@ public class PedidoDAO {
             ps = con.prepareStatement(sql);
             ps.setInt(1, order.getCheck());
             ps.setInt(2, order.getNumPedido());
-            
+
             r = ps.executeUpdate();
         } catch (SQLException e) {
         }
@@ -114,7 +115,8 @@ public class PedidoDAO {
             System.out.println("Error al buscar los datos" + e.getMessage());
         }
     }
-     public void filtrarTablaNegada(JTable table, String filtro) throws Conexion.DataBaseException {
+
+    public void filtrarTablaNegada(JTable table, String filtro) throws Conexion.DataBaseException {
 
         String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
         String[] registros = new String[7];
@@ -141,7 +143,8 @@ public class PedidoDAO {
             System.out.println("Error al buscar los datos" + e.getMessage());
         }
     }
-        public void iniciar(JTable table, String filtro) throws Conexion.DataBaseException {
+
+    public void iniciar(JTable table, String filtro) throws Conexion.DataBaseException {
 
         String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
         String[] registros = new String[7];
@@ -168,5 +171,75 @@ public class PedidoDAO {
             System.out.println("Error al buscar los datos" + e.getMessage());
         }
     }
+
+    public int despacharPedido(Pedido order) throws Conexion.DataBaseException {
+        int r = 0;
+        String sql = "UPDATE Pedidos SET dispatched=?  WHERE numPedido=?";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, order.getdespachada());
+            ps.setInt(2, order.getNumPedido());
+
+            r = ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+        return r;
+    }
+
+    public void iniciarDespacho(JTable table, String filtro) throws Conexion.DataBaseException {
+
+        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
+        String[] registros = new String[7];
+        DefaultTableModel model = new DefaultTableModel(null, titulos);
+        String sql = "SELECT * FROM pedidos WHERE  dispatched=0 and accepted=1";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                registros[0] = rs.getString("idCliente");
+                registros[1] = rs.getString("idPedidos");
+                registros[2] = rs.getString("numPedido");
+                registros[3] = rs.getString("date");
+                registros[4] = rs.getString("destiny");
+                registros[5] = rs.getString("total");
+                registros[6] = rs.getString("accepted");
+
+                model.addRow(registros);
+            }
+            table.setModel(model);
+        } catch (SQLException e) {
+            System.out.println("Error al buscar los datos" + e.getMessage());
+        }
+
+    }
+    public void filtrarTablaDespacho(JTable table, String filtro) throws Conexion.DataBaseException {
+
+        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
+        String[] registros = new String[7];
+        DefaultTableModel model = new DefaultTableModel(null, titulos);
+        String sql = "SELECT * FROM pedidos WHERE  numPedido LIKE '%" + filtro + "%'";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                registros[0] = rs.getString("idCliente");
+                registros[1] = rs.getString("idPedidos");
+                registros[2] = rs.getString("numPedido");
+                registros[3] = rs.getString("date");
+                registros[4] = rs.getString("destiny");
+                registros[5] = rs.getString("total");
+                registros[6] = rs.getString("accepted");
+
+                model.addRow(registros);
+            }
+            table.setModel(model);
+        } catch (SQLException e) {
+            System.out.println("Error al buscar los datos" + e.getMessage());
+        }
+    }
 }
-   
