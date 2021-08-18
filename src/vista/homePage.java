@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.ControllerDespacharOrden;
 import controlador.ControllerPedido;
 import controlador.ControllerProducto;
 import controlador.ControllerProveedores;
@@ -15,7 +16,7 @@ import controlador.controllerClientes;
 import java.io.UnsupportedEncodingException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import modelo.Conexion;
 import reporte.generarReporte;
@@ -58,7 +59,6 @@ public class homePage extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         btnArchivo = new javax.swing.JMenu();
         btnSalir = new javax.swing.JMenuItem();
-        btnCerrarSesion = new javax.swing.JMenuItem();
         btnMantenimiento = new javax.swing.JMenu();
         btnUsuarios = new javax.swing.JMenuItem();
         btnProveedores = new javax.swing.JMenuItem();
@@ -142,15 +142,6 @@ public class homePage extends javax.swing.JFrame {
             }
         });
         btnArchivo.add(btnSalir);
-
-        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/log-out.png"))); // NOI18N
-        btnCerrarSesion.setText("Cerrar Sesion");
-        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarSesionActionPerformed(evt);
-            }
-        });
-        btnArchivo.add(btnCerrarSesion);
 
         jMenuBar1.add(btnArchivo);
 
@@ -412,8 +403,12 @@ public class homePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmDespacharOrden obj = new frmDespacharOrden();
         jDesktopPane1.add(obj);
-        //ControllerDespacharOrden con = new ControllerDespacharOrden(obj);
-        //con.iniciar();
+        ControllerDespacharOrden con = new ControllerDespacharOrden(obj);
+        try {
+            con.iniciar();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
         obj.toFront();
         obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
         obj.setVisible(true);
@@ -495,18 +490,6 @@ public class homePage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnNegadasActionPerformed
 
-    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-       this.dispose();
-        Login frm;
-        try {
-            frm = new Login();
-            frm.setVisible(true);
-        } catch (Conexion.DataBaseException ex) {
-            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_btnCerrarSesionActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -546,7 +529,6 @@ public class homePage extends javax.swing.JFrame {
     private javax.swing.JMenu btnAprobarSolicitudes;
     public javax.swing.JMenu btnArchivo;
     private javax.swing.JMenu btnAyuda;
-    private javax.swing.JMenuItem btnCerrarSesion;
     public javax.swing.JMenuItem btnClientes;
     private javax.swing.JMenuItem btnDespachar;
     private javax.swing.JMenuItem btnEnviarSolicitud;
