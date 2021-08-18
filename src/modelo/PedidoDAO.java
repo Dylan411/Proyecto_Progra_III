@@ -180,7 +180,6 @@ public class PedidoDAO {
             ps = con.prepareStatement(sql);
             ps.setInt(1, order.getdespachada());
             ps.setInt(2, order.getNumPedido());
-
             r = ps.executeUpdate();
         } catch (SQLException e) {
         }
@@ -220,7 +219,7 @@ public class PedidoDAO {
         String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
         String[] registros = new String[7];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
-        String sql = "SELECT * FROM pedidos WHERE  numPedido LIKE '%" + filtro + "%'";
+        String sql = "SELECT * FROM pedidos WHERE  numPedido LIKE '%" + filtro + "%' and dispatched=0 and accepted=1";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);

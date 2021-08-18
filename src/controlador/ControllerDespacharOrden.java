@@ -66,7 +66,7 @@ public class ControllerDespacharOrden implements ActionListener {
 
         int r = dao.despacharPedido(pedido);
 
-        if (r > 1) {
+        if (r > 0) {
             JOptionPane.showMessageDialog(vistaDespachar, "Solicitud despachada correctamente");
             dao.iniciarDespacho(vistaDespachar.tblProductosDespacho, "");
         } else {
