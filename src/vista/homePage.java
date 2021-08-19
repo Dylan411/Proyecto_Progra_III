@@ -13,10 +13,9 @@ import controlador.ControllerSolicitudesNegadas;
 import controlador.ControllerTramitarSolicitudPedido;
 import controlador.ControllerUsuario;
 import controlador.controllerClientes;
-import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import modelo.Conexion;
 import reporte.generarReporte;
@@ -328,6 +327,8 @@ public class homePage extends javax.swing.JFrame {
         try {
             con.iniciar();
         } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
             Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
         }
         obj.toFront();

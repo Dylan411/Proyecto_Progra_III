@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -53,7 +54,7 @@ public class PedidoDAO {
 
     public int enviarSolicitud(Pedido order) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "INSERT INTO Pedidos (numPedido, date, destiny, total, discount, id, idProducto, idCliente, accepted,dispatched) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+        String sql = "INSERT INTO Pedidos (numPedido, date, destiny, total, discount, id, idProducto, idCliente, accepted, dispatched) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
@@ -239,6 +240,19 @@ public class PedidoDAO {
             table.setModel(model);
         } catch (SQLException e) {
             System.out.println("Error al buscar los datos" + e.getMessage());
+        }
+    }
+    
+    public void ultimoPedido(JTextField txt) throws Conexion.DataBaseException {
+        String sql = "SELECT * FROM pedidos ORDER BY ID DESC LIMIT 1";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                txt.setText(rs.getString("idPedidos"));
+            }
+        } catch (SQLException e) {
         }
     }
 }

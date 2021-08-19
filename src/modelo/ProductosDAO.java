@@ -9,14 +9,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import vista.frmSolicitarPedido;
 
 /**
  *
  * @author PC-Soma
  */
 public class ProductosDAO {
+    DefaultTableModel modelo;
+    frmSolicitarPedido vistaPedido = new frmSolicitarPedido();
     PreparedStatement ps;
     ResultSet rs;
     Connection con;
@@ -101,5 +106,44 @@ public class ProductosDAO {
         return r;
     }
 
+    public void cargarComboProducto(JComboBox combo) throws Conexion.DataBaseException {
+        combo.removeAllItems();
+        combo.addItem("SELECCIONAR PRODUCTO");
+        String sql = "SELECT * FROM Productos";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                combo.addItem(rs.getString("name"));
+            }
+
+        } catch (SQLException e) {
+        }
+    }
+
+    public void cargarIdProducto(JComboBox combo, JTextField textField)throws Conexion.DataBaseException {
+        String sql = "SELECT idProducto FROM Productos WHERE name= '" + combo.getSelectedItem() + "'";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            rs.next();
+            textField.setText(String.valueOf(rs.getInt("idProducto")));
+        } catch (SQLException e) {
+        }
+    }
+    
+    public void cargarPrecioProducto(JComboBox combo, JTextField textField)throws Conexion.DataBaseException {
+        String sql = "SELECT price FROM Productos WHERE name= '" + combo.getSelectedItem() + "'";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            rs.next();
+            textField.setText(String.valueOf(rs.getInt("price")));
+        } catch (SQLException e) {
+        }
+    }
     
 }
