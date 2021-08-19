@@ -102,7 +102,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(txtNombreUsuario))
                 .addGap(62, 62, 62))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(221, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,7 +154,8 @@ public class Login extends javax.swing.JFrame {
                 String nombreUsuario = vista.Login.txtNombreUsuario.getText();
                 String tipoUsuario = vista.Login.comboTipo.getSelectedItem().toString();
                 String idUsuario = String.valueOf(dao.cargarIdUsuario(nombreUsuario));
-                vista.homePage home = new homePage(nombreUsuario, tipoUsuario,idUsuario);
+                String correo = String.valueOf(dao.cargarCorreo(nombreUsuario));
+                vista.homePage home = new homePage(nombreUsuario, tipoUsuario,idUsuario,correo);
                 home.setVisible(true);
             }
         } catch (Conexion.DataBaseException ex) {

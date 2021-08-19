@@ -8,8 +8,8 @@ package mail;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
-//import javax.activation.DataHandler;
-//import javax.activation.FileDataSource;
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -37,15 +37,15 @@ public class Mail {
         propiedad.setProperty("mail.smtp.starttls.enable", "true");
         propiedad.setProperty("mail.smtp.port", "587");
         propiedad.setProperty("mail smtp auth", "true");
+        
     }
-    
+    private final Session sesion = Session.getDefaultInstance(propiedad);
+    private final String correoEnvia = "";
+    private final String contrasena = "";
     
     
     public void enviarMail(String correo, String codigo) throws UnsupportedEncodingException, MessagingException {
         propiedades();
-        Session sesion = Session.getDefaultInstance(propiedad);
-        String correoEnvia = "correo";
-        String contrasena = "contraseña";
         String receptor = correo;
         String asunto = "Cambio de Contraseña";
         String mensaje = "Su codigo es: " + codigo;   
@@ -70,9 +70,7 @@ public class Mail {
     
     public void enviarFactura(String correo,String num) throws UnsupportedEncodingException, MessagingException {
         propiedades();
-        Session sesion = Session.getDefaultInstance(propiedad);
-        String correoEnvia = "correo";
-        String contrasena = "pass";
+        
         String receptor = correo;
         String asunto = "Factura";
         String mensaje = "!Muchas gracias por su compra!";   
@@ -84,8 +82,8 @@ public class Mail {
             mail.setSubject(asunto);
             mail.setText(mensaje);
             BodyPart adjunto = new MimeBodyPart();
-            //adjunto.setDataHandler(new DataHandler(new FileDataSource("src\\reporte\\report"+num+".pdf")));
-            adjunto.setFileName("report.pdf");
+            adjunto.setDataHandler(new DataHandler(new FileDataSource("src\\reporte\\report"+num+".pdf")));
+            adjunto.setFileName("report"+num+".pdf");
             MimeMultipart multiParte = new MimeMultipart();
             multiParte.addBodyPart(adjunto);
             mail.setContent(multiParte);

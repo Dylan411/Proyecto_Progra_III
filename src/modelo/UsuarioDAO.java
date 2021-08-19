@@ -234,4 +234,19 @@ public class UsuarioDAO {
         }
         return idUsuario;
     }
+    
+    public String cargarCorreo(String nombreUsuario) throws Conexion.DataBaseException {
+        String correo = "";
+        String sql = "SELECT email FROM usuarios WHERE userName='" + nombreUsuario + "'";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            rs.next();
+            correo = rs.getString("email");
+        } catch (SQLException e) {
+
+        }
+        return correo;
+    }
 }

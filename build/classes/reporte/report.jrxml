@@ -3,25 +3,44 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="num" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
-		<![CDATA[SELECT
-     *
-FROM
-     `usuarios` usuarios]]>
+		<![CDATA[select numPedido,date,destiny,contactName,companyName,name,description,price,pedidos.quantity,total
+from pedidos 
+inner join clientes using (idCliente)
+inner join productos using (idProducto)
+where numPedido = $P{num};]]>
 	</queryString>
-	<field name="id" class="java.lang.Integer">
+	<field name="numPedido" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="userName" class="java.lang.String">
+	<field name="date" class="java.sql.Timestamp">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="password" class="java.lang.String">
+	<field name="destiny" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="typeUser" class="java.lang.String">
+	<field name="contactName" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="act" class="java.lang.Boolean">
+	<field name="companyName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="price" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantity" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<background>
@@ -46,67 +65,123 @@ FROM
 		</band>
 	</title>
 	<pageHeader>
-		<band height="33">
+		<band height="113">
 			<staticText>
-				<reportElement mode="Opaque" x="86" y="12" width="93" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="21b89d86-9ed0-4859-8bf3-82624a10b75d"/>
+				<reportElement mode="Opaque" x="7" y="13" width="172" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="21b89d86-9ed0-4859-8bf3-82624a10b75d"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[User Name]]></text>
+				<text><![CDATA[Nombre del Cliente:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="191" y="13" width="100" height="20" uuid="b5e66b13-fc5f-4c64-b4c0-e40507e89f73"/>
+				<textFieldExpression><![CDATA[$F{contactName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="59" width="100" height="20" uuid="b9ae60c6-9f79-4b1b-a3f8-ed84a3019869"/>
+				<textFieldExpression><![CDATA[$F{destiny}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="473" y="59" width="82" height="20" uuid="8b6ae61b-342b-4724-b079-076756d25a51"/>
+				<textFieldExpression><![CDATA[$F{numPedido}]]></textFieldExpression>
+			</textField>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="13" width="72" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="98bbeb36-275d-4181-be8a-cad74ebbd3bd"/>
+				<reportElement mode="Opaque" x="7" y="56" width="69" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="db778e99-a12c-4657-84b1-f318ec769162"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ID]]></text>
+				<text><![CDATA[Destino:]]></text>
 			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="301" y="56" width="163" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="717b8e41-94b2-4657-acb0-b2ef6e04be83"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Numero de pedido:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="301" y="13" width="163" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="7f0221ba-419f-4d34-b223-569add5841e5"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de la compra:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="473" y="14" width="82" height="20" uuid="7db8837e-589b-453f-8619-e5337bb6a486"/>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="7" y="85" width="172" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="20265dc8-b72b-41f6-9ae0-f4c2abc542b8"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre de la empresa:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="193" y="88" width="100" height="20" uuid="5f8df049-49d6-4739-8f7d-344266ed5574"/>
+				<textFieldExpression><![CDATA[$F{companyName}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
 		<band/>
 	</columnHeader>
 	<detail>
-		<band height="76">
+		<band height="74">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="9106c01b-2a6b-4207-b77b-ccecd52ab459"/>
 			</line>
 			<textField>
-				<reportElement x="14" y="44" width="72" height="20" uuid="d741dfa3-2f84-452b-8222-cbf9a00362c8"/>
-				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+				<reportElement x="93" y="31" width="100" height="20" uuid="80241e99-2005-4198-814d-0e489a52826b"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="289" y="44" width="100" height="20" uuid="71c15f15-c6fa-4460-aed9-c28ad9dab51e"/>
-				<textFieldExpression><![CDATA[$F{typeUser}]]></textFieldExpression>
+				<reportElement x="276" y="31" width="100" height="20" uuid="58e5cb51-36bd-4a67-be2a-13945c98f645"/>
+				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="415" y="44" width="100" height="20" uuid="5c6e86d0-c815-432e-ad1f-11f5e1a95adb"/>
-				<textFieldExpression><![CDATA[$F{act}]]></textFieldExpression>
+				<reportElement x="483" y="31" width="62" height="20" uuid="8be46844-0559-4659-a348-b68611d1ad63"/>
+				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="103" y="44" width="93" height="20" uuid="ee73b6a6-3304-4b77-8391-1954efa4f268"/>
-				<textFieldExpression><![CDATA[$F{userName}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="216" y="44" width="60" height="20" uuid="c172f632-9fd7-4b2a-8ea0-61e00c3e980c"/>
-				<textFieldExpression><![CDATA[$F{password}]]></textFieldExpression>
-			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="7" y="31" width="69" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="20228125-5528-4a72-acc1-70907b129169"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="200" y="31" width="56" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="63a43d47-072e-4a7f-a4cb-e0173bb3560e"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Precio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="391" y="30" width="73" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="8321ce29-c466-4b32-989e-678e6fbf2362"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cantidad:]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>
 		<band/>
 	</columnFooter>
 	<pageFooter>
-		<band height="17">
+		<band height="52">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="daa2d532-0904-49a2-91d1-48e0b8596859"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				<reportElement x="473" y="26" width="82" height="20" uuid="b8e1d477-9dfd-4aab-a00e-dff784dab814"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
 			</textField>
-			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="a36825ab-d147-4176-b749-6d886fc57a00"/>
-				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="391" y="25" width="64" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="aee5f159-c194-41a0-9136-24aaffb4f4d7"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total:]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 	<summary>

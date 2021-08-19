@@ -29,7 +29,7 @@ public class homePage extends javax.swing.JFrame {
     /**
      * Creates new form homePage
      */
-    public homePage(String nombreUsuario, String tipoUsuario, String idUsuario) {
+    public homePage(String nombreUsuario, String tipoUsuario, String idUsuario, String correo) {
         initComponents();
         setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -37,6 +37,9 @@ public class homePage extends javax.swing.JFrame {
         lblNombreUsuario.setText(nombreUsuario);
         lblTipoUsuario.setText(tipoUsuario);
         lblId2.setText(idUsuario);
+        lblCorreo.setText(correo);
+        lblCorreo.setVisible(false);
+        
     }
 
     /**
@@ -55,6 +58,7 @@ public class homePage extends javax.swing.JFrame {
         lblTipoUsuario1 = new javax.swing.JLabel();
         lblId1 = new javax.swing.JLabel();
         lblId2 = new javax.swing.JLabel();
+        lblCorreo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         btnArchivo = new javax.swing.JMenu();
         btnSalir = new javax.swing.JMenuItem();
@@ -93,12 +97,15 @@ public class homePage extends javax.swing.JFrame {
 
         lblId2.setText("Id Usuario:");
 
+        lblCorreo.setText("Id Usuario:");
+
         jDesktopPane1.setLayer(lblNombreUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(lblTipoUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(lblNombreUsuario1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(lblTipoUsuario1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(lblId1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(lblId2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(lblCorreo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -116,7 +123,9 @@ public class homePage extends javax.swing.JFrame {
                 .addComponent(lblId1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblId2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 50, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +136,8 @@ public class homePage extends javax.swing.JFrame {
                     .addComponent(lblTipoUsuario1)
                     .addComponent(lblTipoUsuario)
                     .addComponent(lblId1)
-                    .addComponent(lblId2))
+                    .addComponent(lblId2)
+                    .addComponent(lblCorreo))
                 .addContainerGap(481, Short.MAX_VALUE))
         );
 
@@ -520,8 +530,9 @@ public class homePage extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new homePage(lblNombreUsuario.getText(), lblTipoUsuario.getText(),lblId2.getText()).setVisible(true);
+                new homePage(lblNombreUsuario.getText(), lblTipoUsuario.getText(), lblId2.getText(), lblCorreo.getText());
             }
         });
     }
@@ -551,6 +562,7 @@ public class homePage extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     public javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem2;
+    public static javax.swing.JLabel lblCorreo;
     public javax.swing.JLabel lblId1;
     public static javax.swing.JLabel lblId2;
     public static javax.swing.JLabel lblNombreUsuario;

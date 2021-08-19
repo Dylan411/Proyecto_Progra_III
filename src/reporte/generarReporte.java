@@ -51,11 +51,6 @@ public class generarReporte {
         }
     }
     
-
-    public void guardarPdf(String num) throws  Conexion.DataBaseException, JRException{
-        String path1 = "src\\reporte\\report"+num+".pdf";
-    }
-    
     public void abrirReporteClientes(String compañia) throws Conexion.DataBaseException {
         try {
             reporte = (JasperReport) JRLoader.loadObjectFromFile(pathClientes);
@@ -97,12 +92,14 @@ public class generarReporte {
         }
     }
      
-    public void guardarPdf() throws  Conexion.DataBaseException, JRException{
-
-        reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
-        JasperPrint jprint1 = (JasperPrint) JasperFillManager.fillReport(reporte, null, conn.getConnexion());
-        JasperExportManager.exportReportToPdfFile(jprint1, path1);
-        JasperViewer.viewReport(jprint1);
+    public void guardarPdf(String num) throws  Conexion.DataBaseException, JRException{
+        String pathPDF = "src\\reporte\\report"+num+".pdf";
+        String pathJ = "src\\reporte\\report.jasper";
+        reporte = (JasperReport) JRLoader.loadObjectFromFile(pathJ);
+        Map parametros = new HashMap();
+        parametros.put("num", num);
+        JasperPrint jprint1 = (JasperPrint) JasperFillManager.fillReport(reporte, parametros, conn.getConnexion());
+        JasperExportManager.exportReportToPdfFile(jprint1, pathPDF);
     }
     
 }
