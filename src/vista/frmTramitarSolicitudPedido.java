@@ -311,10 +311,10 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
             txtIdCliente.setText(tblProductos.getValueAt(fila, 0).toString());
             txtIdPedido.setText(tblProductos.getValueAt(fila, 1).toString());
             txtNumPedido.setText(tblProductos.getValueAt(fila, 2).toString());
-            txtFecha.setText(tblProductos.getValueAt(fila, 3).toString());
-            txtDestino.setText(tblProductos.getValueAt(fila, 4).toString());
-            txtTotal.setText(tblProductos.getValueAt(fila, 5).toString());
-            txtEstado.setText(tblProductos.getValueAt(fila, 6).toString());
+            txtFecha.setText(tblProductos.getValueAt(fila, 4).toString());
+            txtDestino.setText(tblProductos.getValueAt(fila, 5).toString());
+            txtTotal.setText(tblProductos.getValueAt(fila, 6).toString());
+            txtEstado.setText(tblProductos.getValueAt(fila, 7).toString());
            
            
             

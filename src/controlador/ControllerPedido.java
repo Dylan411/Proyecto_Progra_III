@@ -66,13 +66,7 @@ public class ControllerPedido implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vistaPedido.btnEnviar) {
-            try {
-                enviarSolicitud();
-            } catch (Conexion.DataBaseException ex) {
-                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ParseException ex) {
-                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            enviarTodosPedidos();
             try {
                 limpiarCampos();
                 cargarUltimoPedido();
@@ -132,6 +126,7 @@ public class ControllerPedido implements ActionListener {
         Integer idProducto = Integer.parseInt(vistaPedido.txtIdProducto.getText());
         Integer idUsuario = Integer.parseInt(homePage.lblId2.getText());
         int numPedido = Integer.parseInt(vistaPedido.txtNumPedido.getText());
+        int cant = Integer.parseInt(vistaPedido.txtCantidadProduc.getText());
         String destino = vistaPedido.txtDestino.getText();
         int total = Integer.parseInt(vistaPedido.txtTotal.getText());
 
@@ -143,6 +138,7 @@ public class ControllerPedido implements ActionListener {
         pedido.setProducto(productos);
         pedido.setClientes(clientes);
         pedido.setNumPedido(numPedido);
+        pedido.setCantidad(cant);
         pedido.setFechaVenta(Helpers.fechaActual().toString());
         pedido.setDestino(destino);
         pedido.setTotal(total);
@@ -195,6 +191,11 @@ public class ControllerPedido implements ActionListener {
     
     public void cargarUltimoPedido() throws Conexion.DataBaseException {
         dao.ultimoPedido(vistaPedido.txtNumPedido);
+        if (vistaPedido.txtNumPedido.getText().isEmpty()) {
+            vistaPedido.txtNumPedido.setText("1");
+        } else {
+            dao.ultimoPedido(vistaPedido.txtNumPedido);
+        }
     }
     
     public void crearTable() {
@@ -303,12 +304,37 @@ public class ControllerPedido implements ActionListener {
         int p = 0;
         int s = 0;
         if (vistaPedido.tblSolicitud.getRowCount() > 0) {
-            for (int i = 0; i < vistaPedido.tblSolicitud.getRowCount(); i++) {
-                s = Integer.parseInt(vistaPedido.tblSolicitud.getValueAt(i, 3).toString());
-                p = Integer.parseInt(vistaPedido.tblSolicitud.getValueAt(i, 4).toString());
-                t += s * p;
-            }
+            int filaSeleccionada = vistaPedido.tblSolicitud.getSelectedRow();
+                s = Integer.parseInt(vistaPedido.tblSolicitud.getValueAt(filaSeleccionada, 3).toString());
+                p = Integer.parseInt(vistaPedido.tblSolicitud.getValueAt(filaSeleccionada, 4).toString());
+                t = s * p;
+            
         }
         vistaPedido.txtTotal.setText(String.valueOf(t));
+    }
+    
+    public void enviarTodosPedidos() {
+
+        for (int i = 0; i < vistaPedido.tblSolicitud.getRowCount(); i++) {
+
+            try {
+                dao.ultimoPedido(vistaPedido.txtNumPedido);
+                vistaPedido.tblSolicitud.setRowSelectionInterval(i, i);
+                calcularTotal();
+                int fila = vistaPedido.tblSolicitud.getSelectedRow();
+                vistaPedido.cbProductos.setSelectedItem(vistaPedido.tblSolicitud.getValueAt(fila, 0));
+                vistaPedido.txtCantidadProduc.setText(vistaPedido.tblSolicitud.getValueAt(fila, 4).toString());
+                vistaPedido.txtPrecio.setText(vistaPedido.tblSolicitud.getValueAt(fila, 3).toString());
+                try {
+                    enviarSolicitud();
+                } catch (Conexion.DataBaseException ex) {
+                    Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (Conexion.DataBaseException ex) {
+                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

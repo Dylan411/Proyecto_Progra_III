@@ -70,7 +70,7 @@ public class ProductosDAO {
     public void filtrarTablaNomProducto(JTable table, String filtro) throws Conexion.DataBaseException {
 
         //Declararo los headers del table
-        String[] titulos = {"Id Producto", "Nombre Producto", "Tipo", "Cantidad", "Descripción", "Proveedor", "Precio"};
+        String[] titulos = {"Id Producto", "Nombre Producto", "Tipo", "Cantidad en Stock", "Descripción", "Proveedor", "Precio"};
         String[] registros = new String[7];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
         String sql = "SELECT * FROM Productos WHERE name LIKE '%" + filtro + "%'";

@@ -99,8 +99,6 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
         int numPedido = Integer.parseInt(vistaTramitar.txtNumPedido.getText());
         int check = num;
         
-        
-        
         pedido.setNumPedido(numPedido);
         pedido.setCheck(check);
 

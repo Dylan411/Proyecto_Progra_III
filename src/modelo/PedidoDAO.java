@@ -54,7 +54,7 @@ public class PedidoDAO {
 
     public int enviarSolicitud(Pedido order) throws Conexion.DataBaseException {
         int r = 0;
-        String sql = "INSERT INTO Pedidos (numPedido, date, destiny, total, discount, id, idProducto, idCliente, accepted, dispatched) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+        String sql = "INSERT INTO Pedidos (numPedido, date, destiny, total, discount, id, idProducto, idCliente, accepted, dispatched, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?)";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
@@ -68,6 +68,7 @@ public class PedidoDAO {
             ps.setInt(8, order.getClientes().getIdCliente());
             ps.setInt(9, order.getCheck());
             ps.setInt(10, order.getdespachada());
+            ps.setInt(11, order.getCantidad());
             r = ps.executeUpdate();
         } catch (SQLException e) {
         }
@@ -91,8 +92,8 @@ public class PedidoDAO {
 
     public void filtrarTablaTramitar(JTable table, String filtro) throws Conexion.DataBaseException {
 
-        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
-        String[] registros = new String[7];
+        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero Pedido", "Cantidad", "Fecha", "Destino", "Total", "Estado"};
+        String[] registros = new String[8];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
         String sql = "SELECT * FROM pedidos WHERE numPedido LIKE '%" + filtro + "%'";
         try {
@@ -104,10 +105,11 @@ public class PedidoDAO {
                 registros[0] = rs.getString("idCliente");
                 registros[1] = rs.getString("idPedidos");
                 registros[2] = rs.getString("numPedido");
-                registros[3] = rs.getString("date");
-                registros[4] = rs.getString("destiny");
-                registros[5] = rs.getString("total");
-                registros[6] = rs.getString("accepted");
+                registros[3] = rs.getString("quantity");
+                registros[4] = rs.getString("date");
+                registros[5] = rs.getString("destiny");
+                registros[6] = rs.getString("total");
+                registros[7] = rs.getString("accepted");
 
                 model.addRow(registros);
             }
@@ -119,8 +121,8 @@ public class PedidoDAO {
 
     public void filtrarTablaNegada(JTable table, String filtro) throws Conexion.DataBaseException {
 
-        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
-        String[] registros = new String[7];
+        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero Pedido", "Cantidad", "Fecha", "Destino", "Total", "Estado"};
+        String[] registros = new String[8];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
         String sql = "SELECT * FROM pedidos WHERE  numPedido LIKE '%" + filtro + "%'";
         try {
@@ -132,10 +134,11 @@ public class PedidoDAO {
                 registros[0] = rs.getString("idCliente");
                 registros[1] = rs.getString("idPedidos");
                 registros[2] = rs.getString("numPedido");
-                registros[3] = rs.getString("date");
-                registros[4] = rs.getString("destiny");
-                registros[5] = rs.getString("total");
-                registros[6] = rs.getString("accepted");
+                registros[3] = rs.getString("quantity");
+                registros[4] = rs.getString("date");
+                registros[5] = rs.getString("destiny");
+                registros[6] = rs.getString("total");
+                registros[7] = rs.getString("accepted");
 
                 model.addRow(registros);
             }
@@ -147,8 +150,8 @@ public class PedidoDAO {
 
     public void iniciar(JTable table, String filtro) throws Conexion.DataBaseException {
 
-        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
-        String[] registros = new String[7];
+        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero Pedido", "Cantidad", "Fecha", "Destino", "Total", "Estado"};
+        String[] registros = new String[8];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
         String sql = "SELECT * FROM pedidos WHERE  accepted=2";
         try {
@@ -160,10 +163,11 @@ public class PedidoDAO {
                 registros[0] = rs.getString("idCliente");
                 registros[1] = rs.getString("idPedidos");
                 registros[2] = rs.getString("numPedido");
-                registros[3] = rs.getString("date");
-                registros[4] = rs.getString("destiny");
-                registros[5] = rs.getString("total");
-                registros[6] = rs.getString("accepted");
+                registros[3] = rs.getString("quantity");
+                registros[4] = rs.getString("date");
+                registros[5] = rs.getString("destiny");
+                registros[6] = rs.getString("total");
+                registros[7] = rs.getString("accepted");
 
                 model.addRow(registros);
             }
@@ -189,8 +193,8 @@ public class PedidoDAO {
 
     public void iniciarDespacho(JTable table, String filtro) throws Conexion.DataBaseException {
 
-        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
-        String[] registros = new String[7];
+        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero Pedido", "Cantidad", "Fecha", "Destino", "Total", "Estado"};
+        String[] registros = new String[8];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
         String sql = "SELECT * FROM pedidos WHERE  dispatched=0 and accepted=1";
         try {
@@ -202,11 +206,11 @@ public class PedidoDAO {
                 registros[0] = rs.getString("idCliente");
                 registros[1] = rs.getString("idPedidos");
                 registros[2] = rs.getString("numPedido");
-                registros[3] = rs.getString("date");
-                registros[4] = rs.getString("destiny");
-                registros[5] = rs.getString("total");
-                registros[6] = rs.getString("accepted");
-
+                registros[3] = rs.getString("quantity");
+                registros[4] = rs.getString("date");
+                registros[5] = rs.getString("destiny");
+                registros[6] = rs.getString("total");
+                registros[7] = rs.getString("accepted");
                 model.addRow(registros);
             }
             table.setModel(model);
@@ -217,8 +221,8 @@ public class PedidoDAO {
     }
     public void filtrarTablaDespacho(JTable table, String filtro) throws Conexion.DataBaseException {
 
-        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero", "Fecha", "Destino", "Total", "Estado"};
-        String[] registros = new String[7];
+        String[] titulos = {"Id Cliente ", "Id Pedido", "Numero Pedido", "Cantidad", "Fecha", "Destino", "Total", "Estado"};
+        String[] registros = new String[8];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
         String sql = "SELECT * FROM pedidos WHERE  numPedido LIKE '%" + filtro + "%' and dispatched=0 and accepted=1";
         try {
@@ -230,10 +234,11 @@ public class PedidoDAO {
                 registros[0] = rs.getString("idCliente");
                 registros[1] = rs.getString("idPedidos");
                 registros[2] = rs.getString("numPedido");
-                registros[3] = rs.getString("date");
-                registros[4] = rs.getString("destiny");
-                registros[5] = rs.getString("total");
-                registros[6] = rs.getString("accepted");
+                registros[3] = rs.getString("quantity");
+                registros[4] = rs.getString("date");
+                registros[5] = rs.getString("destiny");
+                registros[6] = rs.getString("total");
+                registros[7] = rs.getString("accepted");
 
                 model.addRow(registros);
             }
@@ -250,7 +255,7 @@ public class PedidoDAO {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                txt.setText(rs.getString("idPedidos"));
+                txt.setText(String.valueOf(rs.getInt("numPedido")+1));
             }
         } catch (SQLException e) {
         }

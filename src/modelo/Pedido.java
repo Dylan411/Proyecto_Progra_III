@@ -24,12 +24,13 @@ public class Pedido {
     private Productos producto;
     private int check;
     private int despachada;
+    private int cantidad;
 
     public Pedido() {
 
     }
 
-    public Pedido(int idPedido, int numPedido, String fechaVenta, String destino, int total, boolean descuento, Usuario usuarios, Clientes clientes, Productos producto, int check, int despachada) {
+    public Pedido(int idPedido, int numPedido, String fechaVenta, String destino, int total, boolean descuento, Usuario usuarios, Clientes clientes, Productos producto, int check, int despachada, int cantidad) {
         this.idPedido = idPedido;
         this.numPedido = numPedido;
         this.fechaVenta = fechaVenta;
@@ -41,6 +42,7 @@ public class Pedido {
         this.producto = producto;
         this.check = check;
         this.despachada = despachada;
+        this.cantidad = cantidad;
     }
 
    
@@ -132,5 +134,12 @@ public class Pedido {
     public void setdespachada(int despachada) {
         this.despachada = despachada;
     }
-    
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 }

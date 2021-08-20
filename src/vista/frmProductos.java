@@ -93,7 +93,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
         lblTitle.setText("Información del producto");
 
         lblCantidad.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        lblCantidad.setText("Cantidad");
+        lblCantidad.setText("Cantidad en Stock:");
 
         cbProveedorProducto.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         cbProveedorProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione el proveedor" }));
