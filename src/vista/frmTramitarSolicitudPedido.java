@@ -16,7 +16,7 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
      */
     public frmTramitarSolicitudPedido() {
         initComponents();
-        txtEstado.setVisible(false);
+        txtEstado.setVisible(true);
     }
 
     /**
@@ -306,8 +306,7 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
     private void tblProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProductosMouseClicked
         try {
             int fila = tblProductos.getSelectedRow();
-            
-            
+
             txtIdCliente.setText(tblProductos.getValueAt(fila, 0).toString());
             txtIdPedido.setText(tblProductos.getValueAt(fila, 1).toString());
             txtNumPedido.setText(tblProductos.getValueAt(fila, 2).toString());
@@ -315,12 +314,6 @@ public class frmTramitarSolicitudPedido extends javax.swing.JInternalFrame {
             txtDestino.setText(tblProductos.getValueAt(fila, 5).toString());
             txtTotal.setText(tblProductos.getValueAt(fila, 6).toString());
             txtEstado.setText(tblProductos.getValueAt(fila, 7).toString());
-           
-           
-            
-            
-            
-
         } catch (Exception e) {
         }
     }//GEN-LAST:event_tblProductosMouseClicked
