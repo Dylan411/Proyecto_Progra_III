@@ -19,6 +19,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Conexion;
 import reporte.generarReporte;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -51,7 +54,15 @@ public class homePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/fondoHomePage.png"));
+        Image image = icon.getImage();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        }
+        ;
         lblNombreUsuario = new javax.swing.JLabel();
         lblTipoUsuario = new javax.swing.JLabel();
         lblNombreUsuario1 = new javax.swing.JLabel();
@@ -71,8 +82,8 @@ public class homePage extends javax.swing.JFrame {
         btnGestionarInventario = new javax.swing.JMenu();
         btnProductos = new javax.swing.JMenuItem();
         btnSolicitudes = new javax.swing.JMenuItem();
-        btnAprobarSolicitudes = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        btnGestionarOrden = new javax.swing.JMenu();
+        btnAprobarSolicitudes = new javax.swing.JMenuItem();
         btnDespachar = new javax.swing.JMenuItem();
         btnFactura = new javax.swing.JMenuItem();
         btnNegadas = new javax.swing.JMenuItem();
@@ -211,20 +222,25 @@ public class homePage extends javax.swing.JFrame {
 
         btnSolicitudes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventario.png"))); // NOI18N
         btnSolicitudes.setText("Solicitudes");
+        btnSolicitudes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSolicitudesActionPerformed(evt);
+            }
+        });
         btnGestionarInventario.add(btnSolicitudes);
 
         jMenuBar1.add(btnGestionarInventario);
 
-        btnAprobarSolicitudes.setText("Gestionar orden");
+        btnGestionarOrden.setText("Gestionar orden");
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista-de-verificacion.png"))); // NOI18N
-        jMenuItem2.setText("Aprobar solicitudes");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        btnAprobarSolicitudes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista-de-verificacion.png"))); // NOI18N
+        btnAprobarSolicitudes.setText("Aprobar solicitudes");
+        btnAprobarSolicitudes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                btnAprobarSolicitudesActionPerformed(evt);
             }
         });
-        btnAprobarSolicitudes.add(jMenuItem2);
+        btnGestionarOrden.add(btnAprobarSolicitudes);
 
         btnDespachar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/orden (1).png"))); // NOI18N
         btnDespachar.setText("Despachar ordenes");
@@ -233,7 +249,7 @@ public class homePage extends javax.swing.JFrame {
                 btnDespacharActionPerformed(evt);
             }
         });
-        btnAprobarSolicitudes.add(btnDespachar);
+        btnGestionarOrden.add(btnDespachar);
 
         btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/factura (2).png"))); // NOI18N
         btnFactura.setText("Factura");
@@ -242,7 +258,7 @@ public class homePage extends javax.swing.JFrame {
                 btnFacturaActionPerformed(evt);
             }
         });
-        btnAprobarSolicitudes.add(btnFactura);
+        btnGestionarOrden.add(btnFactura);
 
         btnNegadas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista-de-verificacion.png"))); // NOI18N
         btnNegadas.setText("Solicitudes negadas");
@@ -251,9 +267,9 @@ public class homePage extends javax.swing.JFrame {
                 btnNegadasActionPerformed(evt);
             }
         });
-        btnAprobarSolicitudes.add(btnNegadas);
+        btnGestionarOrden.add(btnNegadas);
 
-        jMenuBar1.add(btnAprobarSolicitudes);
+        jMenuBar1.add(btnGestionarOrden);
 
         btnReportes.setText("Reportes");
 
@@ -347,7 +363,7 @@ public class homePage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnEnviarSolicitudActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void btnAprobarSolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAprobarSolicitudesActionPerformed
         frmTramitarSolicitudPedido obj = new frmTramitarSolicitudPedido();
         jDesktopPane1.add(obj);
         ControllerTramitarSolicitudPedido con = new ControllerTramitarSolicitudPedido(obj);
@@ -358,7 +374,7 @@ public class homePage extends javax.swing.JFrame {
         }
         obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
         obj.setVisible(true);   
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_btnAprobarSolicitudesActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
         frmProductos obj = new frmProductos();
@@ -501,6 +517,20 @@ public class homePage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnNegadasActionPerformed
 
+    private void btnSolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitudesActionPerformed
+        // TODO add your handling code here:
+        frmSolicitudes obj = new frmSolicitudes();
+        jDesktopPane1.add(obj);
+        ControllerTramitarSolicitudPedido con = new ControllerTramitarSolicitudPedido(obj);
+        try {
+            con.iniciarSolicitud();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
+        obj.setVisible(true);  
+    }//GEN-LAST:event_btnSolicitudesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -538,7 +568,7 @@ public class homePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu btnAprobarSolicitudes;
+    private javax.swing.JMenuItem btnAprobarSolicitudes;
     public javax.swing.JMenu btnArchivo;
     private javax.swing.JMenu btnAyuda;
     public javax.swing.JMenuItem btnClientes;
@@ -546,6 +576,7 @@ public class homePage extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnEnviarSolicitud;
     private javax.swing.JMenuItem btnFactura;
     public javax.swing.JMenu btnGestionarInventario;
+    private javax.swing.JMenu btnGestionarOrden;
     private javax.swing.JMenuItem btnInformacion;
     private javax.swing.JMenu btnMantenimiento;
     private javax.swing.JMenuItem btnNegadas;
@@ -561,7 +592,6 @@ public class homePage extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnUsuarios;
     private javax.swing.JDesktopPane jDesktopPane1;
     public javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     public static javax.swing.JLabel lblCorreo;
     public javax.swing.JLabel lblId1;
     public static javax.swing.JLabel lblId2;

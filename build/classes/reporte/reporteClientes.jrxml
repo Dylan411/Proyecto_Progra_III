@@ -71,42 +71,42 @@ where companyname = $P{companyname}]]>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[contactName]]></text>
+				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="158" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="cfd57489-7a01-468d-95bb-e33f1207e1c2"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[companyName]]></text>
+				<text><![CDATA[Compañia]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="237" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="0a4cc484-cf42-4c71-89f7-5511cd74c95a"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[adress]]></text>
+				<text><![CDATA[Dirección]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="316" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="24b29e9e-c2c2-4fc5-8d98-35227b8f1586"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[city]]></text>
+				<text><![CDATA[Ciudad]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="395" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="4314adac-135c-4392-85be-566a3bc087f9"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[region]]></text>
+				<text><![CDATA[Región]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="474" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="72844573-eff9-4977-8182-0e037676bbe4"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[phone]]></text>
+				<text><![CDATA[Teléfono]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

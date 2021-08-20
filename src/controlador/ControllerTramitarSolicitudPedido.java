@@ -15,6 +15,7 @@ import modelo.Conexion;
 import modelo.Pedido;
 import modelo.PedidoDAO;
 import modelo.Productos;
+import vista.frmSolicitudes;
 import vista.frmTramitarSolicitudPedido;
 
 /**
@@ -25,8 +26,9 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
 
     Pedido pedido = new Pedido();
     PedidoDAO peDao = new PedidoDAO();
-    Productos productos = new Productos(); 
+    Productos productos = new Productos();
     frmTramitarSolicitudPedido vistaTramitar = new frmTramitarSolicitudPedido();
+    frmSolicitudes vistaSolicitudes = new frmSolicitudes();
 
     public ControllerTramitarSolicitudPedido(frmTramitarSolicitudPedido frm) {
         this.vistaTramitar = frm;
@@ -37,6 +39,10 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
         this.vistaTramitar.btnBuscar.addActionListener(this);
     }
 
+    public ControllerTramitarSolicitudPedido(frmSolicitudes frmSolicitudes) {
+        this.vistaSolicitudes = frmSolicitudes;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -44,13 +50,11 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
             try {
                 if (vistaTramitar.txtEstado.equals(0)) {
                     tramitarSolicitud(1);
-                filtrarTablaNumProducto(vistaTramitar.tblProductos, "");
-                     
-                }else{
+                    filtrarTablaNumProducto(vistaTramitar.tblProductos, "");
+
+                } else {
                     JOptionPane.showMessageDialog(vistaTramitar, "Solicitud ya ha sido tramitada");
                 }
-                    
-                
 
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,12 +64,11 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
             try {
                 if (vistaTramitar.txtEstado.equals(0)) {
                     tramitarSolicitud(2);
-                filtrarTablaNumProducto(vistaTramitar.tblProductos, "");
-                     
-                }else{
+                    filtrarTablaNumProducto(vistaTramitar.tblProductos, "");
+
+                } else {
                     JOptionPane.showMessageDialog(vistaTramitar, "Solicitud ya ha sido tramitada");
                 }
-                
 
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerUsuario.class.getName()).log(Level.SEVERE, null, ex);
@@ -98,7 +101,7 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
 
         int numPedido = Integer.parseInt(vistaTramitar.txtNumPedido.getText());
         int check = num;
-        
+
         pedido.setNumPedido(numPedido);
         pedido.setCheck(check);
 
@@ -114,9 +117,9 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
     public void filtrarTablaNumProducto(JTable tabla, String filtro) throws Conexion.DataBaseException {
         peDao.filtrarTablaTramitar(tabla, filtro);
     }
-    
+
     public void limpiarCampos() throws Conexion.DataBaseException {
-        filtrarTablaNumProducto(vistaTramitar.tblProductos, "" );
+        filtrarTablaNumProducto(vistaTramitar.tblProductos, "");
         vistaTramitar.txtIdCliente.setText("");
         vistaTramitar.txtNumPedido.setText("");
         vistaTramitar.txtFecha.setText("");
@@ -125,13 +128,12 @@ public class ControllerTramitarSolicitudPedido implements ActionListener {
         vistaTramitar.txtIdPedido.setText("");
         vistaTramitar.txtBuscar.setText("");
     }
-    public void iniciar() throws Conexion.DataBaseException {
-        filtrarTablaNumProducto(vistaTramitar.tblProductos , "" );
 
+    public void iniciar() throws Conexion.DataBaseException {
+        filtrarTablaNumProducto(vistaTramitar.tblProductos, "");
     }
 
+    public void iniciarSolicitud() throws Conexion.DataBaseException {
+        filtrarTablaNumProducto(vistaSolicitudes.tableSolicitudes, "");
+    }
 }
-
-
-    
-
