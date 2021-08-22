@@ -1,4 +1,4 @@
-/*
+  /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -95,7 +95,7 @@ public class PedidoDAO {
         String[] titulos = {"Id Cliente ", "Id Pedido", "Numero Pedido", "Cantidad", "Fecha", "Destino", "Total", "Estado"};
         String[] registros = new String[8];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
-        String sql = "SELECT * FROM pedidos WHERE numPedido LIKE '%" + filtro + "%'";
+        String sql = "SELECT * FROM pedidos WHERE accepted = 0 and numPedido  LIKE '%" + filtro + "%'";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
