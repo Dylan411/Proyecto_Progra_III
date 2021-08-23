@@ -12,7 +12,7 @@ import controlador.ControllerProveedores;
 import controlador.ControllerSolicitudesNegadas;
 import controlador.ControllerTramitarSolicitudPedido;
 import controlador.ControllerUsuario;
-import controlador.controllerClientes;
+import controlador.ControllerClientes;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -493,7 +493,7 @@ public class homePage extends javax.swing.JFrame {
     private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
        frmClientes obj = new frmClientes();
         jDesktopPane1.add(obj);
-        controllerClientes con = new controllerClientes(obj);
+        ControllerClientes con = new ControllerClientes(obj);
         try {
             con.iniciar();
         } catch (Conexion.DataBaseException ex) {
