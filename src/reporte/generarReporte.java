@@ -33,6 +33,7 @@ public class generarReporte {
     String pathClientes = "src\\reporte\\reporteClientes.jasper";
     String pathPedidos = "src\\reporte\\reportePedidos.jasper";
     String pathInventario = "src\\reporte\\reporteInventario.jasper";
+    String pathUsuarios = "src\\reporte\\reporteUsuarios.jasper";
     String path1 = "src\\reporte\\report.pdf";
 
     Conexion conn = new Conexion();
@@ -82,6 +83,19 @@ public class generarReporte {
     public void abrirReporteInventario() throws Conexion.DataBaseException {
         try {
             reporte = (JasperReport) JRLoader.loadObjectFromFile(pathInventario);
+            JasperPrint jprint  = JasperFillManager.fillReport(reporte, null, conn.getConnexion());
+            JasperViewer view =  new JasperViewer(jprint, false);
+            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            view.setVisible(true);
+            JasperExportManager.exportReportToPdfFile(jprint, "test.pdf");
+        } catch (JRException ex) {
+            System.out.println("Error");
+        }
+    }
+    
+    public void abrirReporteUsuarios() throws Conexion.DataBaseException {
+        try {
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(pathUsuarios);
             JasperPrint jprint  = JasperFillManager.fillReport(reporte, null, conn.getConnexion());
             JasperViewer view =  new JasperViewer(jprint, false);
             view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);

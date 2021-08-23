@@ -36,14 +36,14 @@ From Productos]]>
 			<frame>
 				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699" uuid="8adb4095-6452-487d-afb4-e2f30045821d"/>
 				<staticText>
-					<reportElement x="20" y="20" width="337" height="43" forecolor="#FFFFFF" uuid="cd0d33ab-7447-428f-8070-7be5a4fcc956"/>
+					<reportElement x="20" y="20" width="370" height="43" forecolor="#FFFFFF" uuid="cd0d33ab-7447-428f-8070-7be5a4fcc956"/>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[Reporte inventario]]></text>
+					<text><![CDATA[Reporte de inventario]]></text>
 				</staticText>
 				<textField pattern="dd/MM/yyyy">
-					<reportElement x="475" y="43" width="100" height="20" uuid="fbedc64e-13a8-4ecb-b830-4e25e058287e"/>
+					<reportElement x="473" y="43" width="100" height="20" uuid="fbedc64e-13a8-4ecb-b830-4e25e058287e"/>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
 			</frame>

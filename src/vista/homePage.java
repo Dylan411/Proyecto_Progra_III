@@ -36,7 +36,7 @@ public class homePage extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.setExtendedState(MAXIMIZED_BOTH);
-        setTitle("Sistema de pedidos de inventarios");
+        setTitle("Sistema de pedidos de inventario");
         lblNombreUsuario.setText(nombreUsuario);
         lblTipoUsuario.setText(tipoUsuario);
         lblId2.setText(idUsuario);
@@ -45,6 +45,7 @@ public class homePage extends javax.swing.JFrame {
         permisoUsuario(tipoUsuario);
         
     }
+    
     public void permisoUsuario(String tipoUsuario) {
         if ("Administrador".equals(tipoUsuario)){
             btnMantenimiento.setVisible(false);
@@ -111,6 +112,7 @@ public class homePage extends javax.swing.JFrame {
         btnReporteClientes = new javax.swing.JMenuItem();
         btnReportePedidos = new javax.swing.JMenuItem();
         btnReporteInventario = new javax.swing.JMenuItem();
+        btnReporteUsuarios = new javax.swing.JMenuItem();
         btnAyuda = new javax.swing.JMenu();
         btnInformacion = new javax.swing.JMenuItem();
 
@@ -184,7 +186,7 @@ public class homePage extends javax.swing.JFrame {
         btnArchivo.add(btnSalir);
 
         btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/log-out.png"))); // NOI18N
-        btnCerrarSesion.setText("Cerrar Sesion");
+        btnCerrarSesion.setText("Cerrar sesión");
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSesionActionPerformed(evt);
@@ -329,6 +331,15 @@ public class homePage extends javax.swing.JFrame {
         });
         btnReportes.add(btnReporteInventario);
 
+        btnReporteUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png"))); // NOI18N
+        btnReporteUsuarios.setText("Usuarios");
+        btnReporteUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReporteUsuariosActionPerformed(evt);
+            }
+        });
+        btnReportes.add(btnReporteUsuarios);
+
         jMenuBar1.add(btnReportes);
 
         btnAyuda.setText("Ayuda");
@@ -434,7 +445,7 @@ public class homePage extends javax.swing.JFrame {
         } catch (MessagingException ex) {
             Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
         }*/
-        JOptionPane.showMessageDialog(null, "*****GRACIAS POR UTILIZAR ESTA APLICACION*****" + "\n\n"
+        JOptionPane.showMessageDialog(null, "*****GRACIAS POR UTILIZAR ESTA APLICACIÓN*****" + "\n\n"
                                             + "Programadores: " + "\n"
                                             + "-Jan Chris Solís Díaz" + "\n"
                                             + "-Adrián Somarribas Brenes" + "\n"
@@ -442,8 +453,8 @@ public class homePage extends javax.swing.JFrame {
                                             + "-Dylan Fabian Vargas Martínez" + "\n"
                                             + "-Kevin Alberto Barquero Brenes" + "\n\n"
                                             + "Elaborado el 16 de Agosto del 2021" + "\n\n"
-                                            + "Esta aplicacion fue elaborada con lucros" + "\n"
-                                            + "educativos para el curso de Programacion III");
+                                            + "Esta aplicación fue elaborada con lucros" + "\n"
+                                            + "educativos para el curso de Programación III");
     }//GEN-LAST:event_btnInformacionActionPerformed
 
     private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
@@ -542,8 +553,6 @@ public class homePage extends javax.swing.JFrame {
         }
         obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
         obj.setVisible(true);   
-                                           
-
     }//GEN-LAST:event_btnNegadasActionPerformed
 
     private void btnSolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitudesActionPerformed
@@ -570,6 +579,16 @@ public class homePage extends javax.swing.JFrame {
             Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void btnReporteUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteUsuariosActionPerformed
+        // TODO add your handling code here:
+        reporte.generarReporte r = new generarReporte();
+        try {
+            r.abrirReporteUsuarios();
+        } catch (Conexion.DataBaseException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnReporteUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -626,6 +645,7 @@ public class homePage extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnReporteClientes;
     private javax.swing.JMenuItem btnReporteInventario;
     private javax.swing.JMenuItem btnReportePedidos;
+    private javax.swing.JMenuItem btnReporteUsuarios;
     private javax.swing.JMenu btnReportes;
     private javax.swing.JMenuItem btnSalir;
     private javax.swing.JMenu btnSolicitarPedido;

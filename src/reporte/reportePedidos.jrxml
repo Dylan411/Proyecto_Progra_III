@@ -67,18 +67,18 @@ From pedidos]]>
 				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="53bfd91a-2e8b-4345-93ff-24d32864e200"/>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2204760e-933d-4ff1-949e-491dde0ccf98"/>
+				<reportElement mode="Opaque" x="0" y="0" width="28" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="2204760e-933d-4ff1-949e-491dde0ccf98"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[idPedido]]></text>
+				<text><![CDATA[Id]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="55" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="bca0a3d7-9d03-45b5-ba46-5bc6abddd6d1"/>
+				<reportElement mode="Opaque" x="28" y="0" width="82" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="bca0a3d7-9d03-45b5-ba46-5bc6abddd6d1"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[numPedido]]></text>
+				<text><![CDATA[NumPedido]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="110" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="e0a92bd8-fea8-42c0-8635-4440f6347377"/>
@@ -113,21 +113,21 @@ From pedidos]]>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[id]]></text>
+				<text><![CDATA[Usuario]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="385" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="15da3cf7-bd9c-41f2-a1ab-1b8fb85d5fb9"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[idProducto]]></text>
+				<text><![CDATA[Producto]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="440" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="499b68fe-84df-4dc6-97ab-9dcd2203f214"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<text><![CDATA[idCliente]]></text>
+				<text><![CDATA[Cliente]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="495" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="fe6adf23-27b0-4b6c-889b-6624b0fdf03e"/>
@@ -144,14 +144,14 @@ From pedidos]]>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="c09f4497-ed93-441c-9aa8-16d6f8e051fe"/>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="0" y="0" width="55" height="20" uuid="7b8a52c2-19f7-4d2a-8f49-ec9c74fffd2b"/>
+				<reportElement x="0" y="0" width="28" height="20" uuid="7b8a52c2-19f7-4d2a-8f49-ec9c74fffd2b"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{idPedidos}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="55" y="0" width="55" height="20" uuid="ad542825-8241-4ccc-bab6-db5bc0236ca2"/>
+				<reportElement x="28" y="0" width="82" height="20" uuid="ad542825-8241-4ccc-bab6-db5bc0236ca2"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
