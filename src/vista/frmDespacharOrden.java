@@ -44,7 +44,7 @@ public class frmDespacharOrden extends javax.swing.JInternalFrame {
         setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Despechar Orden");
+        jLabel1.setText("Despachar orden");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
