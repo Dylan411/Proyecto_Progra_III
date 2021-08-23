@@ -20,7 +20,7 @@ public class frmSolicitarPedido extends javax.swing.JInternalFrame {
      */
     public frmSolicitarPedido() {
         initComponents();
-        txtIdCliente.setVisible(false);
+        txtCant.setVisible(false);
         txtIdProducto.setVisible(false);
     }
 
@@ -60,10 +60,11 @@ public class frmSolicitarPedido extends javax.swing.JInternalFrame {
         txtTotal = new javax.swing.JTextField();
         btnCancelar = new javax.swing.JButton();
         btnEnviar = new javax.swing.JButton();
-        txtIdCliente = new javax.swing.JTextField();
+        txtCant = new javax.swing.JTextField();
         txtIdProducto = new javax.swing.JTextField();
         btnCalcular = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
+        txtIdCliente1 = new javax.swing.JTextField();
 
         setClosable(true);
         setMaximizable(true);
@@ -152,10 +153,10 @@ public class frmSolicitarPedido extends javax.swing.JInternalFrame {
             }
         });
 
-        txtIdCliente.setEditable(false);
-        txtIdCliente.addActionListener(new java.awt.event.ActionListener() {
+        txtCant.setEditable(false);
+        txtCant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdClienteActionPerformed(evt);
+                txtCantActionPerformed(evt);
             }
         });
 
@@ -169,6 +170,13 @@ public class frmSolicitarPedido extends javax.swing.JInternalFrame {
         btnCalcular.setText("Calcular");
 
         jLabel13.setText("Nota: Seleccionar un producto de la lista para editar, eliminar o calcular total.");
+
+        txtIdCliente1.setEditable(false);
+        txtIdCliente1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdCliente1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -244,13 +252,18 @@ public class frmSolicitarPedido extends javax.swing.JInternalFrame {
                                                 .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(20, 20, 20))))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(92, 92, 92)
                         .addComponent(jLabel13)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                    .addContainerGap(564, Short.MAX_VALUE)
+                    .addComponent(txtIdCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(22, 22, 22)))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -302,10 +315,10 @@ public class frmSolicitarPedido extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addComponent(txtIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,6 +328,11 @@ public class frmSolicitarPedido extends javax.swing.JInternalFrame {
                     .addComponent(btnCancelar)
                     .addComponent(btnEnviar))
                 .addContainerGap())
+            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                    .addContainerGap(416, Short.MAX_VALUE)
+                    .addComponent(txtIdCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(187, 187, 187)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -360,6 +378,7 @@ public class frmSolicitarPedido extends javax.swing.JInternalFrame {
             int fila = tblSolicitud.getSelectedRow();
             cbProductos.setSelectedItem(tblSolicitud.getValueAt(fila, 0));
             txtCantidadProduc.setText(tblSolicitud.getValueAt(fila, 4).toString());
+            txtCant.setText(tblSolicitud.getValueAt(fila, 4).toString());
             txtPrecio.setText(tblSolicitud.getValueAt(fila, 3).toString());
             txtTotal.setText("");
         } catch (Exception e) {
@@ -370,13 +389,17 @@ public class frmSolicitarPedido extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdProductoActionPerformed
 
-    private void txtIdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdClienteActionPerformed
+    private void txtCantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdClienteActionPerformed
+    }//GEN-LAST:event_txtCantActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void txtIdCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdCliente1ActionPerformed
 
     
 
@@ -404,10 +427,11 @@ public class frmSolicitarPedido extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     public javax.swing.JTable tblSolicitud;
+    public javax.swing.JTextField txtCant;
     public javax.swing.JTextField txtCantidadProduc;
     public javax.swing.JTextPane txtDestino;
     public javax.swing.JTextField txtFecha;
-    public javax.swing.JTextField txtIdCliente;
+    public javax.swing.JTextField txtIdCliente1;
     public javax.swing.JTextField txtIdProducto;
     public javax.swing.JTextField txtNumPedido;
     public javax.swing.JTextField txtPrecio;

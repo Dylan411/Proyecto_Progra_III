@@ -21,6 +21,7 @@ import modelo.Conexion;
 import reporte.generarReporte;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 
 /**
@@ -47,6 +48,13 @@ public class homePage extends javax.swing.JFrame {
     }
     
     public void permisoUsuario(String tipoUsuario) {
+<<<<<<< Updated upstream
+=======
+        if ("Administrador".equals(tipoUsuario)){
+            
+            
+        }
+>>>>>>> Stashed changes
         if ("Encargado de compras".equals(tipoUsuario)) {
             btnMantenimiento.setVisible(false);
             btnGestionarInventario.setVisible(false);
@@ -100,7 +108,6 @@ public class homePage extends javax.swing.JFrame {
         btnGestionarOrden = new javax.swing.JMenu();
         btnAprobarSolicitudes = new javax.swing.JMenuItem();
         btnDespachar = new javax.swing.JMenuItem();
-        btnFactura = new javax.swing.JMenuItem();
         btnNegadas = new javax.swing.JMenuItem();
         btnReportes = new javax.swing.JMenu();
         btnReporteClientes = new javax.swing.JMenuItem();
@@ -276,15 +283,6 @@ public class homePage extends javax.swing.JFrame {
         });
         btnGestionarOrden.add(btnDespachar);
 
-        btnFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/factura (2).png"))); // NOI18N
-        btnFactura.setText("Factura");
-        btnFactura.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFacturaActionPerformed(evt);
-            }
-        });
-        btnGestionarOrden.add(btnFactura);
-
         btnNegadas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista-de-verificacion.png"))); // NOI18N
         btnNegadas.setText("Solicitudes negadas");
         btnNegadas.addActionListener(new java.awt.event.ActionListener() {
@@ -390,6 +388,8 @@ public class homePage extends javax.swing.JFrame {
             Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
             Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
         }
         obj.toFront();
         obj.setLocation(jDesktopPane1.getWidth() / 2 - obj.getWidth() / 2, jDesktopPane1.getHeight() / 2 - obj.getHeight() / 2);
@@ -450,15 +450,6 @@ public class homePage extends javax.swing.JFrame {
                                             + "Esta aplicación fue elaborada con lucros" + "\n"
                                             + "educativos para el curso de Programación III");
     }//GEN-LAST:event_btnInformacionActionPerformed
-
-    private void btnFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFacturaActionPerformed
-        reporte.generarReporte r = new generarReporte();
-        try {
-            r.abrirReporte();
-        } catch (Conexion.DataBaseException ex) {
-            Logger.getLogger(homePage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnFacturaActionPerformed
 
     private void btnDespacharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespacharActionPerformed
         // TODO add your handling code here:
@@ -628,7 +619,6 @@ public class homePage extends javax.swing.JFrame {
     public javax.swing.JMenuItem btnClientes;
     private javax.swing.JMenuItem btnDespachar;
     private javax.swing.JMenuItem btnEnviarSolicitud;
-    private javax.swing.JMenuItem btnFactura;
     public javax.swing.JMenu btnGestionarInventario;
     private javax.swing.JMenu btnGestionarOrden;
     private javax.swing.JMenuItem btnInformacion;

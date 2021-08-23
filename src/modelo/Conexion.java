@@ -20,7 +20,11 @@ public class Conexion {
     private final static String IP = "localhost";
     private final static String PUERTO = "3306";
     private final static String USUARIO = "root";
+<<<<<<< Updated upstream
     private final static String CLAVE = "adminadmin"
+=======
+    private final static String CLAVE = "root"
+>>>>>>> Stashed changes
             + ""
             + ""
             + ""
@@ -44,7 +48,7 @@ public class Conexion {
     }
 
     public Connection getConnexion() throws DataBaseException {
-        System.out.println("Conexion establecida");
+        
         return this.conectar();
     }
 

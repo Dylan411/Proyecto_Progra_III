@@ -7,6 +7,7 @@ package vista;
 
 
 import java.io.UnsupportedEncodingException;
+import java.text.Collator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
@@ -184,15 +185,18 @@ public class Login extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     UsuarioDAO dao = new UsuarioDAO();
         Usuario u = new Usuario();
-
+        Collator comparador = Collator.getInstance();
+        
+        
+        
         if (!txtNombreUsuario.getText().equals("") && !txtPassword.getText().equals("")) {
-
+            comparador.setStrength(Collator.TERTIARY);
             u.setNombreUsuario(txtNombreUsuario.getText());
             u.setContraseña(txtPassword.getText());
             u.setTipoUsuario(comboTipo.getSelectedItem().toString());
-
+            
         try {
-            if (dao.login(u)) {
+            if ( dao.login(u) && comparador.equals(dao.password(txtNombreUsuario.getText()),txtPassword.getText())) {
                 this.dispose();
                 String nombreUsuario = vista.Login.txtNombreUsuario.getText();
                 String tipoUsuario = vista.Login.comboTipo.getSelectedItem().toString();
@@ -200,6 +204,9 @@ public class Login extends javax.swing.JFrame {
                 String correo = String.valueOf(dao.cargarCorreo(nombreUsuario));
                 vista.homePage home = new homePage(nombreUsuario, tipoUsuario,idUsuario,correo);
                 home.setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Datos Incorrectos");
             }
         } catch (Conexion.DataBaseException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
