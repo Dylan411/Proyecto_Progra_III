@@ -192,12 +192,12 @@
         </Container>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Buscar por numero:"/>
+            <Property name="text" type="java.lang.String" value="Buscar por n&#xfa;mero:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Numero de Pedido: "/>
+            <Property name="text" type="java.lang.String" value="N&#xfa;mero de pedido: "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNumPedido">

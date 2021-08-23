@@ -79,9 +79,9 @@ public class frmDespacharOrden extends javax.swing.JInternalFrame {
         });
         jScrollPane4.setViewportView(tblProductosDespacho);
 
-        jLabel3.setText("Buscar por numero:");
+        jLabel3.setText("Buscar por número:");
 
-        jLabel5.setText("Numero de Pedido: ");
+        jLabel5.setText("Número de pedido: ");
 
         txtNumPedido.setEditable(false);
 
