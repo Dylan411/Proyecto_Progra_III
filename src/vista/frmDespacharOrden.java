@@ -155,7 +155,7 @@ public class frmDespacharOrden extends javax.swing.JInternalFrame {
                         .addComponent(btnRefrescar)
                         .addGap(177, 177, 177)
                         .addComponent(btnDespachar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
