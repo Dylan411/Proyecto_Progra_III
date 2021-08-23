@@ -50,6 +50,8 @@ public class ControllerPedido implements ActionListener {
     Conexion conectar = new Conexion();
     PreparedStatement ps;
     ResultSet rs;
+ 
+    
 
     public ControllerPedido(frmSolicitarPedido frm) {
         this.vistaPedido = frm;
@@ -79,6 +81,8 @@ public class ControllerPedido implements ActionListener {
                     cargarUltimoPedido();
                 } catch (Conexion.DataBaseException ex) {
                     Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -87,26 +91,41 @@ public class ControllerPedido implements ActionListener {
                 limpiarCampos();
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if (e.getSource() == vistaPedido.btnAgregar) {
-                if (vistaPedido.cbProductos.getSelectedIndex() == 0) {
-                    JOptionPane.showMessageDialog(vistaPedido, "Seleccione un producto");
-                } else if (vistaPedido.txtCantidadProduc.getText().isEmpty()) {
-                    JOptionPane.showMessageDialog(vistaPedido, "Digite la cantidad");
-                } else {
-                    try {
-                        agregarProductosCarrito(vistaPedido.cbProductos, vistaPedido.tblSolicitud);
-                        vistaPedido.txtTotal.setText("");
-                        prodDAO.cargarComboProducto(vistaPedido.cbProductos);
-                        vistaPedido.txtPrecio.setText("");
-                        vistaPedido.txtCantidadProduc.setText("");
-                    } catch (Conexion.DataBaseException ex) {
-                        Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+           
+
+            if (vistaPedido.cbProductos.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(vistaPedido, "Seleccione un producto");
+            } else if (vistaPedido.txtCantidadProduc.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(vistaPedido, "Digite la cantidad");
+            } else {
+                try {
+                    if (prodDAO.consultarStock(vistaPedido.cbProductos) <= Integer.parseInt(vistaPedido.txtCantidadProduc.getText())+3) {
+                        JOptionPane.showMessageDialog(vistaPedido, "No hay stock suficiente");
+                    } else {
+                            agregarProductosCarrito(vistaPedido.cbProductos, vistaPedido.tblSolicitud);
+                            int stock = prodDAO.consultarStock(vistaPedido.cbProductos);
+                            int cantidad = Integer.parseInt(vistaPedido.txtCantidadProduc.getText());
+                            prodDAO.actualizarStock(stock - cantidad, vistaPedido.cbProductos);
+                            vistaPedido.txtTotal.setText("");
+                            prodDAO.cargarComboProducto(vistaPedido.cbProductos);
+                            vistaPedido.txtPrecio.setText("");
+                            vistaPedido.txtCantidadProduc.setText("");
                     }
+
+                } catch (Conexion.DataBaseException ex) {
+                    Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } 
+            }
+        }
         if (e.getSource() == vistaPedido.btnEditar) {
+            
             if (vistaPedido.tblSolicitud.getSelectionModel().isSelectionEmpty()) {
                 JOptionPane.showMessageDialog(vistaPedido, "Seleccione un producto de la lista");
             } else if (vistaPedido.cbProductos.getSelectedIndex() == 0) {
@@ -115,12 +134,25 @@ public class ControllerPedido implements ActionListener {
                 JOptionPane.showMessageDialog(vistaPedido, "Digite la cantidad");
             } else {
                 try {
-                    actualizarProductosCarrito(vistaPedido.cbProductos, vistaPedido.tblSolicitud);
-                    vistaPedido.txtTotal.setText("");
-                    prodDAO.cargarComboProducto(vistaPedido.cbProductos);
-                    vistaPedido.txtPrecio.setText("");
-                    vistaPedido.txtCantidadProduc.setText("");
+                    int cant = Integer.parseInt(vistaPedido.txtCant.getText());
+                    int stock = prodDAO.consultarStock(vistaPedido.cbProductos);
+                    int cantidad = Integer.parseInt(vistaPedido.txtCantidadProduc.getText());
+                    prodDAO.actualizarStock(stock + cant, vistaPedido.cbProductos);
+                    if (prodDAO.consultarStock(vistaPedido.cbProductos) <= Integer.parseInt(vistaPedido.txtCantidadProduc.getText())+3) {
+                        JOptionPane.showMessageDialog(vistaPedido, "No hay stock suficiente");
+                    } else {
+                        int stock1 = prodDAO.consultarStock(vistaPedido.cbProductos);
+                        actualizarProductosCarrito(vistaPedido.cbProductos, vistaPedido.tblSolicitud);
+                        prodDAO.actualizarStock(stock1 - cantidad, vistaPedido.cbProductos);
+                        vistaPedido.txtTotal.setText("");
+                        prodDAO.cargarComboProducto(vistaPedido.cbProductos);
+                        vistaPedido.txtPrecio.setText("");
+                        vistaPedido.txtCantidadProduc.setText("");
+                    }
+
                 } catch (Conexion.DataBaseException ex) {
+                    Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
                     Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -134,12 +166,17 @@ public class ControllerPedido implements ActionListener {
                 JOptionPane.showMessageDialog(vistaPedido, "Digite la cantidad");
             } else {
                 try {
+                    int stock = prodDAO.consultarStock(vistaPedido.cbProductos);
+                    int cantidad = Integer.parseInt(vistaPedido.txtCantidadProduc.getText());
+                    prodDAO.actualizarStock(cantidad + stock, vistaPedido.cbProductos);
                     eliminarProductosCarrito();
                     vistaPedido.txtTotal.setText("");
                     prodDAO.cargarComboProducto(vistaPedido.cbProductos);
                     vistaPedido.txtPrecio.setText("");
                     vistaPedido.txtCantidadProduc.setText("");
                 } catch (Conexion.DataBaseException ex) {
+                    Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
                     Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
@@ -157,7 +194,7 @@ public class ControllerPedido implements ActionListener {
         }
         if (e.getSource() == vistaPedido.cbClientes) {
             try {
-                clieDAO.cargarIdCliente(vistaPedido.cbClientes, vistaPedido.txtIdCliente);
+                clieDAO.cargarIdCliente(vistaPedido.cbClientes, vistaPedido.txtCant);
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -173,7 +210,7 @@ public class ControllerPedido implements ActionListener {
     }
 
     public void enviarSolicitud() throws Conexion.DataBaseException, ParseException {
-        Integer idCliente = Integer.parseInt(vistaPedido.txtIdCliente.getText());
+        Integer idCliente = Integer.parseInt(vistaPedido.txtCant.getText());
         Integer idProducto = Integer.parseInt(vistaPedido.txtIdProducto.getText());
         Integer idUsuario = Integer.parseInt(homePage.lblId2.getText());
         int numPedido = Integer.parseInt(vistaPedido.txtNumPedido.getText());
@@ -211,7 +248,7 @@ public class ControllerPedido implements ActionListener {
         }
     }
 
-    public void iniciar() throws Conexion.DataBaseException, ParseException {
+    public void iniciar() throws Conexion.DataBaseException, ParseException, SQLException {
         cargarComboProductos();
         cargarComboClientes();
         vistaPedido.txtFecha.setText(Helpers.fechaActual().toString());
@@ -221,7 +258,7 @@ public class ControllerPedido implements ActionListener {
         limpiarCampos();
     }
 
-    public void limpiarCampos() throws Conexion.DataBaseException {
+    public void limpiarCampos() throws Conexion.DataBaseException, SQLException {
         vistaPedido.txtPrecio.setText("");
         vistaPedido.txtCantidadProduc.setText("");
         vistaPedido.txtDestino.setText("");
@@ -235,11 +272,11 @@ public class ControllerPedido implements ActionListener {
     public void cargarComboClientes() throws Conexion.DataBaseException {
         clieDAO.cargarComboCliente(vistaPedido.cbClientes);
     }
-    
+
     public void cargarComboProductos() throws Conexion.DataBaseException {
         prodDAO.cargarComboProducto(vistaPedido.cbProductos);
     }
-    
+
     public void cargarUltimoPedido() throws Conexion.DataBaseException {
         dao.ultimoPedido(vistaPedido.txtNumPedido);
         if (vistaPedido.txtNumPedido.getText().isEmpty()) {
@@ -248,9 +285,9 @@ public class ControllerPedido implements ActionListener {
             dao.ultimoPedido(vistaPedido.txtNumPedido);
         }
     }
-    
+
     public void crearTable() {
-        
+
         modelo = new DefaultTableModel();
         modelo.addColumn("Nombre");
         modelo.addColumn("Tipo");
@@ -258,7 +295,7 @@ public class ControllerPedido implements ActionListener {
         modelo.addColumn("Precio");
         modelo.addColumn("Cantidad");
         vistaPedido.tblSolicitud.setModel(modelo);
-        
+
         int filaSeleccionada = vistaPedido.tblSolicitud.getSelectedRow();
 
         if (filaSeleccionada >= 0) {
@@ -270,9 +307,9 @@ public class ControllerPedido implements ActionListener {
             datos[4] = vistaPedido.tblSolicitud.getValueAt(filaSeleccionada, 4).toString();
         }
     }
-    
+
     public void agregarProductosCarrito(JComboBox combo, JTable table) throws Conexion.DataBaseException {
-        
+
         String cant = vistaPedido.txtCantidadProduc.getText();
         String sql = "SELECT name, type, description, price FROM Productos WHERE name= '" + combo.getSelectedItem() + "'";
         try {
@@ -280,15 +317,15 @@ public class ControllerPedido implements ActionListener {
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                
+
                 String datos1 = rs.getString("name");
                 String datos2 = rs.getString("type");
                 String datos3 = rs.getString("description");
                 String datos4 = rs.getString("price");
                 String datos5 = cant;
-                
-                String datos[]={datos1,datos2,datos3,datos4,datos5};
-                
+
+                String datos[] = {datos1, datos2, datos3, datos4, datos5};
+
                 modelo.addRow(datos);
             }
             table.setModel(modelo);
@@ -296,36 +333,40 @@ public class ControllerPedido implements ActionListener {
             System.out.println("Error al agregar producto" + e.getMessage());
         }
     }
-    
+
     public void actualizarProductosCarrito(JComboBox combo, JTable table) throws Conexion.DataBaseException {
-        
+        String cant;
         int filaSeleccionada = vistaPedido.tblSolicitud.getSelectedRow();
-        String cant = vistaPedido.txtCantidadProduc.getText();
+        {
+            cant = vistaPedido.txtCantidadProduc.getText();
+        
+        }
+
         String sql = "SELECT name, type, description, price FROM Productos WHERE name= '" + combo.getSelectedItem() + "'";
         try {
             con = conectar.getConnexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                
+
                 String datos1 = rs.getString("name");
                 String datos2 = rs.getString("type");
                 String datos3 = rs.getString("description");
                 String datos4 = rs.getString("price");
                 String datos5 = cant;
-               
+
                 modelo.setValueAt(datos1, filaSeleccionada, 0);
                 modelo.setValueAt(datos2, filaSeleccionada, 1);
                 modelo.setValueAt(datos3, filaSeleccionada, 2);
                 modelo.setValueAt(datos4, filaSeleccionada, 3);
                 modelo.setValueAt(datos5, filaSeleccionada, 4);
             }
-            
+
         } catch (SQLException e) {
             System.out.println("Error al editar producto" + e.getMessage());
         }
     }
-    
+
     public void eliminarProductosCarrito() {
 
         try {
@@ -335,20 +376,18 @@ public class ControllerPedido implements ActionListener {
             System.out.println("Error al eliminar producto" + e.getMessage());
         }
     }
-    
-    public void limpiarTableCarrito() {
 
-        for (int i = 0; i < vistaPedido.tblSolicitud.getRowCount(); i++) {
-            String datos1 = vistaPedido.tblSolicitud.getValueAt(i, 0).toString();
-            String datos2 = vistaPedido.tblSolicitud.getValueAt(i, 1).toString();
-            String datos3 = vistaPedido.tblSolicitud.getValueAt(i, 2).toString();
-            String datos4 = vistaPedido.tblSolicitud.getValueAt(i, 3).toString();
-            String datos5 = vistaPedido.tblSolicitud.getValueAt(i, 4).toString();
+    public void limpiarTableCarrito() throws Conexion.DataBaseException, SQLException {
 
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            String name = modelo.getValueAt(i, 0).toString();
+            int stock = prodDAO.consultarStockTabla(name);
+            int cantidad = Integer.valueOf(modelo.getValueAt(i, 4).toString());
+            prodDAO.actualizarStockCancelar(stock+cantidad,name);
             modelo.removeRow(i);
         }
     }
-    
+
     public void calcularTotal() {
 
         int t = 0;
@@ -356,46 +395,30 @@ public class ControllerPedido implements ActionListener {
         int s = 0;
         if (vistaPedido.tblSolicitud.getRowCount() > 0) {
             int filaSeleccionada = vistaPedido.tblSolicitud.getSelectedRow();
-                s = Integer.parseInt(vistaPedido.tblSolicitud.getValueAt(filaSeleccionada, 3).toString());
-                p = Integer.parseInt(vistaPedido.tblSolicitud.getValueAt(filaSeleccionada, 4).toString());
-                t = s * p;
-            
+            s = Integer.parseInt(vistaPedido.tblSolicitud.getValueAt(filaSeleccionada, 3).toString());
+            p = Integer.parseInt(vistaPedido.tblSolicitud.getValueAt(filaSeleccionada, 4).toString());
+            t = s * p;
+
         }
         vistaPedido.txtTotal.setText(String.valueOf(t));
     }
-    
+
     public void enviarTodosPedidos() {
 
         for (int i = 0; i < vistaPedido.tblSolicitud.getRowCount(); i++) {
 
+            vistaPedido.tblSolicitud.setRowSelectionInterval(i, i);
+            calcularTotal();
+            int fila = vistaPedido.tblSolicitud.getSelectedRow();
+            vistaPedido.cbProductos.setSelectedItem(vistaPedido.tblSolicitud.getValueAt(fila, 0));
+            vistaPedido.txtCantidadProduc.setText(vistaPedido.tblSolicitud.getValueAt(fila, 4).toString());
+            vistaPedido.txtPrecio.setText(vistaPedido.tblSolicitud.getValueAt(fila, 3).toString());
             try {
-                dao.ultimoPedido(vistaPedido.txtNumPedido);
-                vistaPedido.tblSolicitud.setRowSelectionInterval(i, i);
-                calcularTotal();
-                int fila = vistaPedido.tblSolicitud.getSelectedRow();
-                vistaPedido.cbProductos.setSelectedItem(vistaPedido.tblSolicitud.getValueAt(fila, 0));
-                vistaPedido.txtCantidadProduc.setText(vistaPedido.tblSolicitud.getValueAt(fila, 4).toString());
-                vistaPedido.txtPrecio.setText(vistaPedido.tblSolicitud.getValueAt(fila, 3).toString());
-                try {
-                    enviarSolicitud();
-                } catch (Conexion.DataBaseException ex) {
-                    Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ParseException ex) {
-                    Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                enviarSolicitud();
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-    
-    public void productosRepetidos() {
-        
-        for (int i = 0; i < vistaPedido.tblSolicitud.getRowCount(); i++) {
-            if (vistaPedido.cbProductos.getSelectedObjects() == vistaPedido.tblSolicitud.getValueAt(i, 0)) {
-                
-            } else {
-                
+            } catch (ParseException ex) {
+                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

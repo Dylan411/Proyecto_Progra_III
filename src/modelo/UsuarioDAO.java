@@ -249,4 +249,19 @@ public class UsuarioDAO {
         }
         return correo;
     }
+    
+    public String password(String nombreUsuario) throws Conexion.DataBaseException {
+        String pass = "";
+        String sql = "SELECT password FROM usuarios WHERE userName='" + nombreUsuario + "'";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            rs.next();
+            pass = rs.getString("password");
+        } catch (SQLException e) {
+
+        }
+        return pass;
+    }
 }

@@ -146,4 +146,51 @@ public class ProductosDAO {
         }
     }
     
+    public int consultarStock(JComboBox combo)throws Conexion.DataBaseException, SQLException {
+        String sql = "SELECT quantity FROM Productos WHERE name= '" + combo.getSelectedItem() + "'";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            rs.next();
+            
+        } catch (SQLException e) {
+        }
+        return rs.getInt("quantity");
+    }
+    public int consultarStockTabla(String name)throws Conexion.DataBaseException, SQLException {
+        String sql = "SELECT quantity FROM Productos WHERE name= '" + name + "'";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            rs.next();
+            
+        } catch (SQLException e) {
+        }
+        return rs.getInt("quantity");
+    }
+    
+    public void actualizarStock(int cantidad,JComboBox combo)throws Conexion.DataBaseException, SQLException {
+        String sql = "update productos set quantity = " + cantidad +
+                " where name= '"+ combo.getSelectedItem() + "'";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+    
+    public void actualizarStockCancelar(int cantidad,String name)throws Conexion.DataBaseException, SQLException {
+        String sql = "update productos set quantity = " + cantidad +
+                " where name= '"+ name + "'";
+        try {
+            con = conectar.getConnexion();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
+    }
+    
 }

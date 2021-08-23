@@ -106,13 +106,16 @@ public class ControllerUsuario implements ActionListener {
         String correo = vistaUsuario.txtCorreo.getText();
 
         u.setNombreUsuario(nombreUsuario);
-        u.setContraseña(contraseña);
+
         u.setTipoUsuario(tipoUsuario);
         u.setActivo(activo);
         Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+        Pattern patternPass = Pattern.compile("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}");
         Matcher mather = pattern.matcher(correo);
-
-        if (mather.find() == true) {
+        Matcher matherPass = patternPass.matcher(contraseña);
+         
+        if (matherPass.find() == true && mather.find() == true) {
+            u.setContraseña(contraseña);
             u.setCorreo(correo);
             int r = dao.agregarUsuario(u);
             if (r == 1) {
@@ -121,8 +124,8 @@ public class ControllerUsuario implements ActionListener {
                 JOptionPane.showMessageDialog(vistaUsuario, "El usuario NO fue agregado");
             }
         } else {
-            JOptionPane.showMessageDialog(vistaUsuario, "El email ingresado es inválido.");
-        } 
+            JOptionPane.showMessageDialog(vistaUsuario, "La contraseña ingresada es inválida o El email ingresado es inválido.");
+        }
     }
 
     public void editarUsuario() throws Conexion.DataBaseException {
@@ -141,20 +144,23 @@ public class ControllerUsuario implements ActionListener {
         u.setActivo(activo);
         
         Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+        Pattern patternPass = Pattern.compile("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}");
         Matcher mather = pattern.matcher(correo);
+        Matcher matherPass = patternPass.matcher(contraseña);
         
-        if (mather.find() == true) {
+        
+        if (matherPass.find() == true && mather.find() == true) {
+            u.setContraseña(contraseña);
             u.setCorreo(correo);
             int r = dao.editarUsuario(u);
-        if (r == 1) {
-            JOptionPane.showMessageDialog(vistaUsuario, "Usuario actualizado con exito");
+            if (r == 1) {
+                JOptionPane.showMessageDialog(vistaUsuario, "Usuario actualizado correctamente");
+            } else {
+                JOptionPane.showMessageDialog(vistaUsuario, "El usuario NO fue actualizado");
+            }
         } else {
-            JOptionPane.showMessageDialog(vistaUsuario, "Usuario NO actualizado");
+            JOptionPane.showMessageDialog(vistaUsuario, "La contraseña ingresada es inválida o El email ingresado es inválido.");
         }
-        } else {
-            JOptionPane.showMessageDialog(vistaUsuario, "El email ingresado es inválido.");
-        } 
-
     }
 
     public void filtrarTablaPorNombreDeUsuario(JTable tabla, String filtro) throws Conexion.DataBaseException {
