@@ -48,13 +48,11 @@ public class homePage extends javax.swing.JFrame {
     }
     
     public void permisoUsuario(String tipoUsuario) {
-<<<<<<< Updated upstream
-=======
+
         if ("Administrador".equals(tipoUsuario)){
             
             
         }
->>>>>>> Stashed changes
         if ("Encargado de compras".equals(tipoUsuario)) {
             btnMantenimiento.setVisible(false);
             btnGestionarInventario.setVisible(false);
