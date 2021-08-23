@@ -66,12 +66,20 @@ public class ControllerPedido implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vistaPedido.btnEnviar) {
-            enviarTodosPedidos();
-            try {
-                limpiarCampos();
-                cargarUltimoPedido();
-            } catch (Conexion.DataBaseException ex) {
-                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+            if (vistaPedido.tblSolicitud.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(vistaPedido, "Agregue mínimo un producto");
+            } else if (vistaPedido.cbClientes.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(vistaPedido, "Seleccione un cliente");
+            } else if (vistaPedido.txtDestino.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(vistaPedido, "Digite el destino");
+            } else {
+                enviarTodosPedidos();
+                try {
+                    limpiarCampos();
+                    cargarUltimoPedido();
+                } catch (Conexion.DataBaseException ex) {
+                    Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         if (e.getSource() == vistaPedido.btnCancelar) {
@@ -82,27 +90,70 @@ public class ControllerPedido implements ActionListener {
             }
         }
         if (e.getSource() == vistaPedido.btnAgregar) {
-            try {
-                agregarProductosCarrito(vistaPedido.cbProductos, vistaPedido.tblSolicitud);
-                vistaPedido.txtTotal.setText("");
-            } catch (Conexion.DataBaseException ex) {
-                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+                if (vistaPedido.cbProductos.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(vistaPedido, "Seleccione un producto");
+                } else if (vistaPedido.txtCantidadProduc.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(vistaPedido, "Digite la cantidad");
+                } else {
+                    try {
+                        agregarProductosCarrito(vistaPedido.cbProductos, vistaPedido.tblSolicitud);
+                        vistaPedido.txtTotal.setText("");
+                        prodDAO.cargarComboProducto(vistaPedido.cbProductos);
+                        vistaPedido.txtPrecio.setText("");
+                        vistaPedido.txtCantidadProduc.setText("");
+                    } catch (Conexion.DataBaseException ex) {
+                        Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            } 
         if (e.getSource() == vistaPedido.btnEditar) {
-            try {
-                actualizarProductosCarrito(vistaPedido.cbProductos, vistaPedido.tblSolicitud);
-                vistaPedido.txtTotal.setText("");
-            } catch (Conexion.DataBaseException ex) {
-                Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+            if (vistaPedido.tblSolicitud.getSelectionModel().isSelectionEmpty()) {
+                JOptionPane.showMessageDialog(vistaPedido, "Seleccione un producto de la lista");
+            } else if (vistaPedido.cbProductos.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(vistaPedido, "Seleccione un producto");
+            } else if (vistaPedido.txtCantidadProduc.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(vistaPedido, "Digite la cantidad");
+            } else {
+                try {
+                    actualizarProductosCarrito(vistaPedido.cbProductos, vistaPedido.tblSolicitud);
+                    vistaPedido.txtTotal.setText("");
+                    prodDAO.cargarComboProducto(vistaPedido.cbProductos);
+                    vistaPedido.txtPrecio.setText("");
+                    vistaPedido.txtCantidadProduc.setText("");
+                } catch (Conexion.DataBaseException ex) {
+                    Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
         if (e.getSource() == vistaPedido.btnEliminar) {
-            eliminarProductosCarrito();
-            vistaPedido.txtTotal.setText("");
+            if (vistaPedido.tblSolicitud.getSelectionModel().isSelectionEmpty()) {
+                JOptionPane.showMessageDialog(vistaPedido, "Seleccione un producto de la lista");
+            } else if (vistaPedido.cbProductos.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(vistaPedido, "Seleccione un producto");
+            } else if (vistaPedido.txtCantidadProduc.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(vistaPedido, "Digite la cantidad");
+            } else {
+                try {
+                    eliminarProductosCarrito();
+                    vistaPedido.txtTotal.setText("");
+                    prodDAO.cargarComboProducto(vistaPedido.cbProductos);
+                    vistaPedido.txtPrecio.setText("");
+                    vistaPedido.txtCantidadProduc.setText("");
+                } catch (Conexion.DataBaseException ex) {
+                    Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
         if (e.getSource() == vistaPedido.btnCalcular) {
-            calcularTotal();
+            if (vistaPedido.tblSolicitud.getSelectionModel().isSelectionEmpty()) {
+                JOptionPane.showMessageDialog(vistaPedido, "Seleccione un producto de la lista");
+            } else if (vistaPedido.cbProductos.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(vistaPedido, "Seleccione un producto");
+            } else if (vistaPedido.txtCantidadProduc.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(vistaPedido, "Digite la cantidad");
+            } else {
+                calcularTotal();
+            }
         }
         if (e.getSource() == vistaPedido.cbClientes) {
             try {
@@ -142,7 +193,7 @@ public class ControllerPedido implements ActionListener {
         pedido.setFechaVenta(Helpers.fechaActual().toString());
         pedido.setDestino(destino);
         pedido.setTotal(total);
-        int condicion = total;
+        int condicion = cant;
         if (condicion > 10) {
             pedido.setDescuento(true);
 
@@ -334,6 +385,17 @@ public class ControllerPedido implements ActionListener {
                 }
             } catch (Conexion.DataBaseException ex) {
                 Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    public void productosRepetidos() {
+        
+        for (int i = 0; i < vistaPedido.tblSolicitud.getRowCount(); i++) {
+            if (vistaPedido.cbProductos.getSelectedObjects() == vistaPedido.tblSolicitud.getValueAt(i, 0)) {
+                
+            } else {
+                
             }
         }
     }

@@ -168,7 +168,7 @@ public class frmSolicitarPedido extends javax.swing.JInternalFrame {
 
         btnCalcular.setText("Calcular");
 
-        jLabel13.setText("Nota: Seleccionar un producto de la lista para editar, eliminar o calcular el precio.");
+        jLabel13.setText("Nota: Seleccionar un producto de la lista para editar, eliminar o calcular total.");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -250,7 +250,7 @@ public class frmSolicitarPedido extends javax.swing.JInternalFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(92, 92, 92)
                         .addComponent(jLabel13)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

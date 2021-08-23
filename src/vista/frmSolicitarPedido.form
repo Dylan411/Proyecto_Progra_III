@@ -178,7 +178,7 @@
                           <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="16" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -526,7 +526,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nota: Seleccionar un producto de la lista para editar, eliminar o calcular el precio."/>
+            <Property name="text" type="java.lang.String" value="Nota: Seleccionar un producto de la lista para editar, eliminar o calcular total."/>
           </Properties>
         </Component>
       </SubComponents>
