@@ -102,7 +102,7 @@ public class ControllerPedido implements ActionListener {
                 JOptionPane.showMessageDialog(vistaPedido, "Seleccione un producto");
             } else if (vistaPedido.txtCantidadProduc.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(vistaPedido, "Digite la cantidad");
-            } else {
+            } else if(productosRepetidos() == false){
                 try {
                     if (prodDAO.consultarStock(vistaPedido.cbProductos) <= Integer.parseInt(vistaPedido.txtCantidadProduc.getText())+3) {
                         JOptionPane.showMessageDialog(vistaPedido, "No hay stock suficiente");
@@ -421,5 +421,16 @@ public class ControllerPedido implements ActionListener {
                 Logger.getLogger(ControllerPedido.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    public boolean productosRepetidos() {
+        boolean repetido = false;
+        for (int i = 0; i < modelo.getRowCount(); i++) {
+            System.out.println(vistaPedido.cbProductos.getSelectedItem());
+            System.out.println(modelo.getValueAt(i, 0).toString());
+            if (vistaPedido.cbProductos.getSelectedItem().equals(modelo.getValueAt(i, 0).toString())) {
+                repetido = true;
+            }
+        }
+        return repetido;
     }
 }
