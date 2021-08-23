@@ -47,21 +47,15 @@ public class homePage extends javax.swing.JFrame {
     }
     
     public void permisoUsuario(String tipoUsuario) {
-        if ("Administrador".equals(tipoUsuario)){
-            btnMantenimiento.setVisible(false);
-            btnSolicitarPedido.setVisible(false);
-            btnGestionarOrden.setVisible(false);
-            
-        }
         if ("Encargado de compras".equals(tipoUsuario)) {
             btnMantenimiento.setVisible(false);
             btnGestionarInventario.setVisible(false);
-            
+            btnGestionarOrden.setVisible(false);  
         }
         if ("Encargado de bodega".equals(tipoUsuario)){
-            
+            btnMantenimiento.setVisible(false);
             btnSolicitarPedido.setVisible(false);
-            btnGestionarInventario.setVisible(false);
+            btnGestionarOrden.setVisible(false);  
         }
     }
 
